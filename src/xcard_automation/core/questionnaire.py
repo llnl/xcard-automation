@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 import sys
 from typing import Any
 
@@ -18,11 +16,10 @@ def collect_answers(metadata: dict[str, Any], answers: dict[str, Any], missing_f
         batch_fields = [field for field in batch if field.path in unresolved]
         if not batch_fields:
             continue
-        print()
         for field in batch_fields:
             existing = answers.get(field.path, get_path(metadata, field.path, ""))
             prompt = f"{field.prompt}{prompt_suffix_for_field(field.path)}"
-            if existing not in ("", None):
+            if existing not in {"", None}:
                 prompt += f" [{existing}]"
             prompt += ": "
             raw = input(prompt)

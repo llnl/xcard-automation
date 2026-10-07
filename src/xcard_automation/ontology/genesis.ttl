@@ -1,0 +1,2009 @@
+@prefix bfo: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix iao: <http://purl.obolibrary.org/obo/IAO_> .
+@prefix llnl: <http://example.org/llnl#> .
+@prefix obi: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pato: <http://purl.obolibrary.org/obo/PATO_> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+llnl:access_level rdfs:label "access_level" ;
+    bfo:BFO_0000176 llnl:access_policy,
+        llnl:name ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[accessibility_required] Open | Restricted | Controlled" .
+
+llnl:access_protocol rdfs:label "access_protocol" ;
+    bfo:BFO_0000176 llnl:name ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[reference_only_do_not_include] https | ftp | s3 | globus | nfs | lustre | other" ;
+    cco:ont00001982 llnl:repositories .
+
+llnl:access_restrictions rdfs:label "access_restrictions" ;
+    bfo:BFO_0000176 llnl:access_policy ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[accessibility_if_applicable] Freetext description of access restrictions. e.g., Requires signed DUA | None - publicly accessible" .
+
+llnl:accessed_date rdfs:label "accessed_date" ;
+    bfo:BFO_0000176 llnl:ai_model ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:date ],
+        cco:ont00000529 ;
+    skos:definition "Date when AI model was accessed" .
+
+llnl:agent_type rdfs:label "agent_type" ;
+    bfo:BFO_0000176 llnl:additional_contacts,
+        llnl:contact,
+        llnl:creator ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00001017 ;
+    skos:definition "[discoverability_required] person | organization | ai_model | software TYPE: person — use for a human contributor" .
+
+llnl:agreement_required rdfs:label "agreement_required" ;
+    bfo:BFO_0000176 llnl:rights_release_records ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[governed_use_required] select one from list: Yes | No — Is a rights release agreement required for use of this dataset?" .
+
+llnl:agreement_type rdfs:label "agreement_type" ;
+    bfo:BFO_0000176 llnl:rights_release_records ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[governed_use_if_applicable, required if agreement_required = Yes] list all that apply: DUA | CRADA | MOU | NDA | LICENSE | WFO | OTHER" .
+
+llnl:ai_models rdfs:label "ai_models" ;
+    bfo:BFO_0000176 llnl:related_resources ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "- name: __NAME__ version: __VERSION__ accessed_date: __YYYY-MM-DD__ identifier: type: __TYPE__                      # doi | ark | handle | url | local | other value: __VALUE__ role: - ${ROLE}                           # [interoperability_if_applicable] list from roles extending the CRediT taxonomy: Conceptualization | Data_Curation | Formal_Analysis | Funding_Acquisition | Investigation | Methodology | Project_Administration | Resources | Software | Supervision | Validation | Visualization | Writing_Original_Draft | Writing_Review_Editing | Data_Collection | Other relationship: __REL__                 # see vocabulary above" ;
+    cco:ont00001982 cco:ont00000653 .
+
+llnl:approved_environments rdfs:label "approved_environments" ;
+    bfo:BFO_0000176 llnl:access_policy ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[accessibility_if_applicable] Describe the approved environment for access. List of approved environments, if more than one — e.g., DOE HPC facilities with export control review | On-site access only at Oak Ridge National Laboratory [] means no explicitly approved environments; access may still be granted on a case-by-case basis. null or absent means it has not yet been determined whether approved environments are required." .
+
+llnl:authentication rdfs:label "authentication" ;
+    bfo:BFO_0000176 llnl:name ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "None | API_Key | OAuth2 | SAML | Certificate | OpenID_Connect | Basic_Auth | Bearer_Token | Other" ;
+    cco:ont00001808 llnl:intended_repositories .
+
+llnl:author rdfs:label "author" ;
+    bfo:BFO_0000176 llnl:preferred_citation ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[reusability_if_applicable, required if preferred_citation is included] e.g., Smith, John A.; Doe, Jane B." .
+
+llnl:authorization_required rdfs:label "authorization_required" ;
+    bfo:BFO_0000176 llnl:access_policy ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[accessibility_if_applicable] Required if access_level is not open. List of authorization needed to access this dataset: Account               — registered account required User_Agreement        — user agreement or terms of service Data_Use_Agreement    — formal DUA required Sponsor_Approval      — sponsor or PI approval required Export_Control_Review — export control review required IRB_Approval          — IRB approval required Other                 — describe in access_restrictions" .
+
+llnl:award_number rdfs:label "award_number" ;
+    bfo:BFO_0000176 llnl:name ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:token ],
+        cco:ont00000292 ;
+    skos:definition "[discoverability_if_applicable] e.g., DE-AC05-00OR22725" .
+
+llnl:bias_risks rdfs:label "bias_risks" ;
+    bfo:BFO_0000176 llnl:ai_usage ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[ai_usability_required] e.g., Overrepresents samples from facility X | None" .
+
+llnl:checksum_available rdfs:label "checksum_available" ;
+    bfo:BFO_0000176 llnl:integrity ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[reusability_if_applicable] Yes | No" .
+
+llnl:checksum_type rdfs:label "checksum_type" ;
+    bfo:BFO_0000176 llnl:integrity ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[required if checksum_available=Yes] sha256 | sha512 | md5 | other sha256 recommended; md5 not recommended for new datasets" .
+
+llnl:checksum_value rdfs:label "checksum_value" ;
+    bfo:BFO_0000176 llnl:integrity ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:anyURI ],
+        cco:ont00000853 ;
+    skos:definition "[required if checksum_available=Yes] Checksum of primary data file(s). For multi-file datasets, provide a checksum manifest and link here." .
+
+llnl:citation rdfs:label "citation" ;
+    bfo:BFO_0000176 llnl:reusability ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[reusability_if_applicable] Important:Populate when dataset release_status = Approved | Published. Replace ALL ${...} placeholders in the BibTeX block below before publishing." ;
+    cco:ont00001982 iao:IAO_0000301 .
+
+llnl:citation_count rdfs:label "citation_count" ;
+    bfo:BFO_0000176 llnl:usage_metrics ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:integer ],
+        cco:ont00001163 ;
+    skos:definition "Field for citation counts" ;
+    cco:ont00001808 iao:IAO_0000301 .
+
+llnl:classification_category rdfs:label "classification_category" ;
+    bfo:BFO_0000176 llnl:sensitivity ;
+    rdfs:subClassOf cco:ont00000965 ;
+    skos:definition "[discoverability_if_applicable] For classified information, list the classification category or categories, if applicable. use vocabulary: NSI | RD | FRD | TFNI | Other_Classified" ;
+    cco:ont00001942 cco:ont00000751 .
+
+llnl:classification_level rdfs:label "classification_level" ;
+    bfo:BFO_0000176 llnl:sensitivity ;
+    rdfs:subClassOf cco:ont00000965 ;
+    skos:definition "[discoverability_if_applicable] For classified information, top_secret | secret | confidential classification level" ;
+    cco:ont00001942 cco:ont00000751 .
+
+llnl:classified_control_markings rdfs:label "classified_control_markings" ;
+    bfo:BFO_0000176 llnl:sensitivity ;
+    rdfs:subClassOf cco:ont00000965 ;
+    skos:definition "[discoverability_if_applicable] For classified information, list the specific control markings that apply, if any. Provide as a list of unique entries if multiple markings apply. e.g., - NOFORN - CNWDI - SIGMA 14 - REL TO USA, CAN, GBR - ORCON" ;
+    cco:ont00001942 cco:ont00000751 .
+
+llnl:classified_status rdfs:label "classified_status" ;
+    bfo:BFO_0000176 llnl:sensitivity ;
+    rdfs:subClassOf cco:ont00000965 ;
+    skos:definition "[discoverability_required] Yes | No description: Indicates whether the asset is classified." ;
+    cco:ont00001942 cco:ont00000751 .
+
+llnl:code rdfs:label "code" ;
+    bfo:BFO_0000176 llnl:missing_data_codes ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:token ],
+        cco:ont00000853 ;
+    skos:definition "code for missing data" ;
+    cco:ont00001982 cco:ont00000077 .
+
+llnl:collection_methodology rdfs:label "collection_methodology" ;
+    bfo:BFO_0000176 llnl:dataset_description ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[discoverability_if_applicable] How was data acquired? e.g., experimental sensors | computational simulation | human annotation | derived from prior datasets" ;
+    cco:ont00001808 iao:IAO_0001000 .
+
+llnl:comments rdfs:label "comments" ;
+    bfo:BFO_0000176 llnl:source_review_reference ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[governed_use_if_applicable]" .
+
+llnl:compiler rdfs:label "compiler" ;
+    bfo:BFO_0000176 llnl:software_environment ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[interoperability_if_applicable] e.g., GCC 11.3 | Intel oneAPI 2023.1" ;
+    cco:ont00001808 cco:ont00000932 .
+
+llnl:completeness rdfs:label "completeness" ;
+    bfo:BFO_0000176 llnl:data_quality ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[reusability_required] e.g., All detector channels present; 2% of timesteps missing due to instrument downtime on 2023-04-12" ;
+    cco:ont00001982 cco:ont00000575 .
+
+llnl:completeness_score rdfs:label "completeness_score" ;
+    bfo:BFO_0000176 llnl:_repository ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:decimal ],
+        cco:ont00000853 ;
+    skos:definition "[reference_only_do_not_include] Catalog-computed completeness score against completeness of fields in declared inteded_capabilities" .
+
+llnl:compressed_bytes rdfs:label "compressed_bytes" ;
+    bfo:BFO_0000176 llnl:dataset_scale ;
+    qudt:hasUnit unit:BYTE ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:integer ],
+        cco:ont00001163 ;
+    skos:definition "[accessibility_if_applicable] Total size when compressed, in bytes" .
+
+llnl:container rdfs:label "container" ;
+    bfo:BFO_0000176 llnl:software_environment ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:anyURI ],
+        cco:ont00000649 ;
+    skos:definition "[interoperability_if_applicable] e.g., docker://registry/image:tag" ;
+    cco:ont00001808 cco:ont00000420 .
+
+llnl:created_date rdfs:label "created_date" ;
+    bfo:BFO_0000176 llnl:datacard ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:date ],
+        cco:ont00000529 ;
+    skos:definition "[discoverability_required] ISO 8601 date this data card was first created" .
+
+llnl:creation_method rdfs:label "creation_method" ;
+    bfo:BFO_0000176 llnl:datacard ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[discoverability_required] Method used to create or most recently update this data card. " .
+
+llnl:cui_basic_categories rdfs:label "cui_basic_categories" ;
+    bfo:BFO_0000176 llnl:sensitivity ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[discoverability_if_applicable, at least one basic or specified category is required if cui_status = Yes] For CUI, list the basic category or categories that apply, if any. use DOE/ISOO-authoritative CUI Basic categories or subcategories. provide as a list of unique entries if multiple categories apply." ;
+    cco:ont00001982 cco:ont00000751 .
+
+llnl:cui_limited_dissemination_controls rdfs:label "cui_limited_dissemination_controls" ;
+    bfo:BFO_0000176 llnl:sensitivity ;
+    rdfs:subClassOf cco:ont00000965 ;
+    skos:definition "[discoverability_if_applicable] List the applicable CUI limited dissemination controls, if any. provide as a list of unique entries if multiple controls apply. e.g., - NOFORN - DL ONLY -  REL TO USA, GBR - DISPLAY ONLY USA, GBR - RELIDO If cui_limited_dissemination_controls contains NOFORN, REL TO..., DISPLAY ONLY..., or similar controls, foreign_national_access_status should be consistent with those controls." ;
+    cco:ont00001942 cco:ont00000751 .
+
+llnl:cui_specified_categories rdfs:label "cui_specified_categories" ;
+    bfo:BFO_0000176 llnl:sensitivity ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[discoverability_if_applicable, at least one basic or specified category is required if cui_status = Yes] For CUI, list the specified category or categories that apply, if any. use DOE/ISOO-authoritative CUI Specified categories or subcategories. provide as a list of unique entries if multiple categories apply." ;
+    cco:ont00001982 cco:ont00000751 .
+
+llnl:cui_status rdfs:label "cui_status" ;
+    bfo:BFO_0000176 llnl:sensitivity ;
+    rdfs:subClassOf cco:ont00000965 ;
+    skos:definition "[discoverability_required] Yes | No description: Indicates whether the asset is CUI." ;
+    cco:ont00001942 cco:ont00000751 .
+
+llnl:current_location rdfs:label "current_location" ;
+    bfo:BFO_0000176 llnl:access ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:anyURI ],
+        cco:ont00000649 ;
+    skos:definition "[accessibility_required] Where the data physically resides right now. Use for in-workflow data not yet deposited in a repository, or for any dataset with a known internal or external storage path. e.g., /mnt/ecs/scientific-data/project/dataset/ e.g., /lustre/orion/proj-shared/dataset/ e.g., s3://genesis-bucket/dataset/" .
+
+llnl:current_use rdfs:label "current_use" ;
+    bfo:BFO_0000176 llnl:use_governance ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[governed_use_required] For in-workflow data: what is this dataset actively being used for right now? Distinct from intended_use." .
+
+llnl:data_characteristics rdfs:label "data_characteristics" ;
+    bfo:BFO_0000176 llnl:dataset_description ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[discoverability_if_applicable] Key structural and content characteristics: scale, dimensionality, temporal coverage, spatial resolution" .
+
+llnl:data_collection_end rdfs:label "data_collection_end" ;
+    bfo:BFO_0000176 llnl:dates ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:date ],
+        cco:ont00000529 ;
+    skos:definition "[interoperability_if_applicable] ISO 8601 date data collection or generation ended" .
+
+llnl:data_collection_start rdfs:label "data_collection_start" ;
+    bfo:BFO_0000176 llnl:dates ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:date ],
+        cco:ont00000529 ;
+    skos:definition "[interoperability_if_applicable] ISO 8601 date data collection or generation began" .
+
+llnl:data_type rdfs:label "data_type" ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[interoperability_if_applicable] The data type of the value (e.g., string, integer, float, boolean)." ;
+    cco:ont00001920 llnl:FIELD_NAME .
+
+llnl:datacard_version rdfs:label "datacard_version" ;
+    bfo:BFO_0000176 llnl:datacard ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000649 ;
+    skos:definition "[discoverability_required] Version of this specific data card document. Increment when the data card is meaningfully updated. Use semantic versioning: MAJOR.MINOR.PATCH e.g., 1.0 → 1.1 for content updates; 1.x → 2.0 for structural changes" .
+
+llnl:dataset_download_url rdfs:label "dataset_download_url" ;
+    bfo:BFO_0000176 llnl:name ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:anyURI ],
+        cco:ont00000649 ;
+    skos:definition "[reference_only_do_not_include] Direct download URL assigned by the repository" ;
+    cco:ont00001808 llnl:repositories .
+
+llnl:dataset_id_in_repo rdfs:label "dataset_id_in_repo" ;
+    bfo:BFO_0000176 llnl:name ;
+    rdfs:subClassOf cco:ont00000649 ;
+    skos:definition "[reference_only_do_not_include] Accession number or ID assigned by this repository" ;
+    cco:ont00001808 llnl:repositories .
+
+llnl:dataset_landing_page rdfs:label "dataset_landing_page" ;
+    bfo:BFO_0000176 llnl:name ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[reference_only_do_not_include] Human-readable dataset page assigned by the repository" ;
+    cco:ont00001982 llnl:repositories .
+
+llnl:dataset_summary rdfs:label "dataset_summary" ;
+    bfo:BFO_0000176 llnl:dataset_description ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        iao:IAO_0000315 ;
+    skos:definition "[discoverability_required] 1–3 sentence plain-language description of the dataset. Write for a broad scientific audience unfamiliar with your project." .
+
+llnl:dataset_type rdfs:label "dataset_type" ;
+    bfo:BFO_0000176 llnl:discoverability ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000686 ;
+    skos:definition "[discoverability_if_applicable] OSTI DOE Data Explorer type code. Select the single best-fit: GD  Genome/Genetic Data     — DNA/RNA sequences, genomic annotations IM  Image                   — photographs, scans, microscopy, visualizations ND  Numeric Data            — measurements, time series, tabular, sensor readings SM  Specialized Mix         — multiple data types combined FP  Figure/Plot             — charts, graphs, plots as primary deliverable I   Interactive Resource    — web apps, interactive visualizations, dashboards MM  Multimedia              — audio, video, combined media MD  Model                   — computational models, simulations, trained ML models AS  Automated Software      — scripts, analysis pipelines, workflows IP  Instrumentation/Protocols — experimental protocols, instrument specs IG  Integrated Genomic Resources — combined genomic databases and tools" .
+
+llnl:date_deposited rdfs:label "date_deposited" ;
+    bfo:BFO_0000176 llnl:name ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:date ],
+        cco:ont00000529 ;
+    skos:definition "[accessibility_if_applicable]" ;
+    cco:ont00001808 llnl:intended_repositories .
+
+llnl:decontrol_or_declassify_on rdfs:label "decontrol_or_declassify_on" ;
+    bfo:BFO_0000176 llnl:source_review_reference ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:date ],
+        cco:ont00000529 ;
+    skos:definition "[governed_use_if_applicable] If provided, use YYYY-MM-DD format or not_applicable, for export-controlled or classified datasets, the date when the dataset will be decontrolled or declassified, if known." .
+
+llnl:description rdfs:label "description" ;
+    bfo:BFO_0000176 llnl:FIELD_NAME,
+        llnl:Location,
+        llnl:contribution_date,
+        llnl:missing_data_codes,
+        llnl:name,
+        llnl:spatial_coverage,
+        llnl:temporal_coverage ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[discoverability_if_applicable] Describe what this contributor did. e.g., Automated generation of data card from dataset metadata e.g., Reviewed and corrected AI-generated content" .
+
+llnl:distributions rdfs:label "distributions" ;
+    bfo:BFO_0000176 llnl:_repository ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[reference_only_do_not_include] Distribution records populated at ingest" .
+
+llnl:documentation_url rdfs:label "documentation_url" ;
+    bfo:BFO_0000176 llnl:name ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:anyURI ],
+        cco:ont00000649 ;
+    skos:definition "URL to locate the documentation" ;
+    cco:ont00001808 llnl:data_services .
+
+llnl:doe_data_management_plan rdfs:label "doe_data_management_plan" ;
+    bfo:BFO_0000176 llnl:compliance ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[governed_use_required] select one from list: Yes | No | Unknown — a DOE DMP is on file for this dataset" .
+
+llnl:doi rdfs:label "doi" ;
+    bfo:BFO_0000176 llnl:preferred_citation ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:anyURI ],
+        cco:ont00000649 ;
+    skos:definition "[reusability_if_applicable, either doi or url is required] e.g., 10.1234/zenodo.1234567" .
+
+llnl:download_count rdfs:label "download_count" ;
+    bfo:BFO_0000176 llnl:usage_metrics ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:integer ],
+        cco:ont00001163 ;
+    skos:definition "field for download counts" .
+
+llnl:eastBoundLongitude rdfs:label "eastBoundLongitude" ;
+    bfo:BFO_0000176 llnl:geo_location_box ;
+    qudt:hasUnit unit:DEG ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:decimal ],
+        cco:ont00001163 ;
+    skos:definition "aligns with datacite:eastBoundLongitude" ;
+    cco:ont00001808 cco:ont00000469 .
+
+llnl:email rdfs:label "email" ;
+    bfo:BFO_0000176 llnl:Person ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00002070 ;
+    skos:definition "${EMAIL}" .
+
+llnl:embargo_until rdfs:label "embargo_until" ;
+    bfo:BFO_0000176 llnl:workflow ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:date ],
+        cco:ont00000529 ;
+    skos:definition "[discoverability_if_applicable] Required if state=embargo. ISO 8601 date after which release is permitted." .
+
+llnl:encoding rdfs:label "encoding" ;
+    bfo:BFO_0000176 llnl:data_structure ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[interoperability_if_applicable] Character encoding for text-based formats. e.g., UTF-8 | ASCII | Latin-1 UTF-8 strongly recommended. Use not_applicable for binary formats." .
+
+llnl:end_date rdfs:label "end_date" ;
+    bfo:BFO_0000176 llnl:temporal_coverage ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:date ],
+        cco:ont00000529 ;
+    skos:definition "[interoperability_if_applicable] aligns with dcterms:coverage" .
+
+llnl:endpoint rdfs:label "endpoint" ;
+    bfo:BFO_0000176 llnl:name ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:anyURI ],
+        cco:ont00000649 ;
+    skos:definition "API endpoint" ;
+    cco:ont00001808 llnl:intended_repositories .
+
+llnl:eprint rdfs:label "eprint" ;
+    bfo:BFO_0000176 llnl:preferred_citation ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:token ],
+        cco:ont00000686 ;
+    skos:definition "[reusability_if_applicable] e.g., 1234.56789 | SAND2024-XXXXX" .
+
+llnl:eprinttype rdfs:label "eprinttype" ;
+    bfo:BFO_0000176 llnl:preferred_citation ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000686 ;
+    skos:definition "[reusability_if_applicable] e.g., arxiv | biorxiv | report_number | other" .
+
+llnl:evaluation_use_conditions rdfs:label "evaluation_use_conditions" ;
+    bfo:BFO_0000176 llnl:ai_usage ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000686 ;
+    skos:definition "[ai_usability_if_applicable, required if evaluation_use_status is Conditional] e.g., Only for non-commercial research | Requires citation of SAND2024-XXXXX" .
+
+llnl:evaluation_use_status rdfs:label "evaluation_use_status" ;
+    bfo:BFO_0000176 llnl:ai_usage ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[ai_usability_required] Yes | No | Conditional" .
+
+llnl:export_control_basis rdfs:label "export_control_basis" ;
+    bfo:BFO_0000176 llnl:export_control ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[governed_use_if_applicable, required if export_control_status = Yes] select one from: ITAR | EAR | DOE_Nuclear_Export_Control | Other | not_applicable" .
+
+llnl:export_control_status rdfs:label "export_control_status" ;
+    bfo:BFO_0000176 llnl:export_control ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[governed_use_required] select one from list: Yes | No | Pending_Review | Unknown" .
+
+llnl:family_name rdfs:label "family_name" ;
+    bfo:BFO_0000176 llnl:Person ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00001331 ;
+    skos:definition "${FAMILY_NAME}" .
+
+llnl:features rdfs:label "features" ;
+    bfo:BFO_0000176 llnl:data_structure ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[interoperability_required] Primary variables, fields, or features. IMPORTANT: choose ONE form and use it consistently — do not mix. For basic documentation — flat string list: - name: temperature - name: pressure - name: timestamp - name: label To support  AI-ready data — structured form (replace flat list above): - name: temperature: data_type: float           # float | int | string | boolean | datetime | other unit: Kelvin description: Sample temperature at time of measurement range: 273.15 - 373.15" .
+
+llnl:field_value rdfs:label "field_value" ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[interoperability_if_applicable] The value for this domain-specific metadata field. The specific value will depend on the field and schema referenced above." ;
+    cco:ont00001920 llnl:FIELD_NAME .
+
+llnl:fields rdfs:label "fields" ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[interoperability_if_applicable] Key-value pairs of domain-specific metadata fields. The specific fields will depend on the domain and schema referenced above." ;
+    cco:ont00001920 llnl:name .
+
+llnl:filename rdfs:label "filename" ;
+    bfo:BFO_0000176 llnl:datacard ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000649 ;
+    skos:definition "[discoverability_required] Follow naming convention; align with identification.name" .
+
+llnl:fixity_policy rdfs:label "fixity_policy" ;
+    bfo:BFO_0000176 llnl:integrity ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[reusability_if_applicable] e.g., Monthly sha256 verification via repository integrity service" ;
+    cco:ont00001982 terms:Policy .
+
+llnl:foreign_national_access_status rdfs:label "foreign_national_access_status" ;
+    bfo:BFO_0000176 llnl:export_control ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[governed_use_if_applicable] select one from list: Allowed | Restricted | Prohibited | Conditional | Unknown if cui_limited_dissemination_controls includes NOFORN / REL TO / similar, foreign_national_access_status should be consistent" .
+
+llnl:formats rdfs:label "formats" ;
+    bfo:BFO_0000176 llnl:data_structure ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[interoperability_required] File formats in this dataset. e.g., [CSV, HDF5, NetCDF4, Parquet, TIFF, JSON]" .
+
+llnl:funding_source rdfs:label "funding_source" ;
+    bfo:BFO_0000176 llnl:name ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[discoverability_if_applicable] Identifies the funding source from a controlled vocabulary: DOE_Program_SC | DOE_Program_NNSA | LDRD | WFO | CRADA | Other_Federal | State_Government | Subcontract | Industry | Nonprofit | Internal | Other" ;
+    cco:ont00001808 cco:ont00001180 .
+
+llnl:given_name rdfs:label "given_name" ;
+    bfo:BFO_0000176 llnl:Person ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00001014 ;
+    skos:definition "${GIVEN_NAME}" .
+
+llnl:howpublished rdfs:label "howpublished" ;
+    bfo:BFO_0000176 llnl:preferred_citation ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[reusability_if_applicable, either preferred_citation or howpublished is required] e.g., (Version v1) [Data set]. Zenodo | Available at https://doi.org/10.1234/zenodo.1234567" ;
+    cco:ont00001982 iao:IAO_0000444 .
+
+llnl:hpc_environment rdfs:label "hpc_environment" ;
+    bfo:BFO_0000176 llnl:software_environment ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[interoperability_if_applicable] e.g., module load python/3.10 cuda/11.8 openmpi/4.1" ;
+    cco:ont00001982 cco:ont00000420 .
+
+llnl:human_review_required rdfs:label "human_review_required" ;
+    bfo:BFO_0000176 llnl:ai_usage ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[ai_usability_required] Yes | No" .
+
+llnl:identifier rdfs:label "identifier" ;
+    bfo:BFO_0000176 llnl:Software,
+        llnl:ai_model,
+        llnl:parent_collection ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "field for specifying identifiers" .
+
+llnl:inference_use_conditions rdfs:label "inference_use_conditions" ;
+    bfo:BFO_0000176 llnl:ai_usage ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[ai_usability_if_applicable, required if inference_use_status is Conditional] e.g., Only for non-commercial research | Requires citation of SAND2024-XXXXX" .
+
+llnl:inference_use_status rdfs:label "inference_use_status" ;
+    bfo:BFO_0000176 llnl:ai_usage ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[ai_usability_required] Yes | No | Conditional" .
+
+llnl:ingest_date rdfs:label "ingest_date" ;
+    bfo:BFO_0000176 llnl:_repository ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:date ],
+        cco:ont00000529 ;
+    skos:definition "[reference_only_do_not_include] ISO 8601 date this data card was ingested by the managing system" .
+
+llnl:instrumentation rdfs:label "instrumentation" ;
+    bfo:BFO_0000176 llnl:provenance ;
+    iao:IAO_0000136 llnl:MeasurementCapability ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        iao:IAO_0000315 ;
+    skos:definition "[interoperability_if_applicable] Instruments, sensors, detectors, or equipment used. Include make, model, and version where relevant." .
+
+llnl:intended_partner_classes rdfs:label "intended_partner_classes" ;
+    bfo:BFO_0000176 llnl:access_policy ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[accessibility_if_applicable] List of intended partner classes or user groups for this dataset, if any. from controlled vocabulary: Internal_Team | Tri_Lab | DOE_NNSA_Lab | Federal_Partner | Contractor | Academic_Researchers | External_Research_Partner | Public | Industry_Partner | Other If absent, or null, this field is not yet known or determined. Use an empty list if definitively no specific partner classes are targeted. Use public if this dataset is intended for broad public use without restrictions." .
+
+llnl:intended_use rdfs:label "intended_use" ;
+    bfo:BFO_0000176 llnl:use_governance ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[governed_use_if_applicable] Tasks or workflows this dataset is designed to support. e.g., ML training | physics analysis | benchmarking | visualization" .
+
+llnl:ip_restriction_type rdfs:label "ip_restriction_type" ;
+    bfo:BFO_0000176 llnl:rights_release_records ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[governed_use_if_applicable] select one from list: Proprietary | Limited_Rights | Restricted_Rights | Government_Purpose_Rights | Unlimited_Rights | Third_Party_Licensed | None" .
+
+llnl:irb_approved rdfs:label "irb_approved" ;
+    bfo:BFO_0000176 llnl:compliance ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[governed_use_required] select one from list: Yes | No | Unknown | not_applicable - IRB approval is in place for this dataset, if applicable" .
+
+llnl:is_intermediate rdfs:label "is_intermediate" ;
+    bfo:BFO_0000176 llnl:workflow ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[discoverability_if_applicable] Yes | No if this is an intermediate processing artifact rather than a final deliverable. No if this is final." .
+
+llnl:is_primary rdfs:label "is_primary" ;
+    bfo:BFO_0000176 llnl:name ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[accessibility_if_applicable] Yes | No — only one entry should be marked Yes" ;
+    cco:ont00001808 llnl:intended_repositories .
+
+llnl:issued rdfs:label "issued" ;
+    bfo:BFO_0000176 llnl:dates ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:date ],
+        cco:ont00000529 ;
+    skos:definition "[interoperability_if_applicable] ISO 8601 date the dataset was first publicly released" .
+
+llnl:keywords rdfs:label "keywords" ;
+    bfo:BFO_0000176 llnl:dataset_description ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[discoverability_required] Terms that describe this dataset and aid discovery. Include domain terms, methods, instruments, and relevant ontology terms." .
+
+llnl:known_contractual_rights rdfs:label "known_contractual_rights" ;
+    bfo:BFO_0000176 llnl:additional_licenses,
+        llnl:license ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[reusability_if_applicable] Legal rights statement, separate from license. Important because DOE/NNSA datasets may have complex contractual arrangements that impact how the data can be used and shared beyond license terms. e.g., Government has unlimited rights" ;
+    cco:ont00001982 terms:RightsStatement .
+
+llnl:known_issues rdfs:label "known_issues" ;
+    bfo:BFO_0000176 llnl:data_quality ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[reusability_required] e.g., Sensor drift observed after 2023-06-01T12:00:00Z" ;
+    cco:ont00001808 pato:PATO_0000069 .
+
+llnl:language rdfs:label "language" ;
+    bfo:BFO_0000176 llnl:data_structure,
+        llnl:datacard ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00001175 ;
+    skos:definition "[discoverability_required] ISO 639-1 language code for this data card's content" .
+
+llnl:last_accessed rdfs:label "last_accessed" ;
+    bfo:BFO_0000176 llnl:usage_metrics ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:date ],
+        cco:ont00000529 ;
+    skos:definition "Date of last access" .
+
+llnl:legacy_label_source rdfs:label "legacy_label_source" ;
+    bfo:BFO_0000176 llnl:sensitivity ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[discoverability_if_applicable]  Preserves deprecated or local historical control labels such as OUO, SBU, if source_marking_scheme = Legacy_OUO, legacy_label_source should be populated or site-specific legacy markings as provenance/source information only. Provide as a list of unique entries if multiple legacy labels apply. E.g., - OUO - SBU" .
+
+llnl:level rdfs:label "level" ;
+    bfo:BFO_0000176 llnl:stewardship ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[reusability_if_applicable] Select one: Project_Managed | Repository_Managed | Externally_Managed | not_applicable" ;
+    cco:ont00001916 terms:ProvenanceStatement .
+
+llnl:limitations rdfs:label "limitations" ;
+    bfo:BFO_0000176 llnl:dataset_description ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[discoverability_if_applicable] Known limitations, gaps, or caveats users should be aware of before using this dataset." .
+
+llnl:location rdfs:label "location" ;
+    bfo:BFO_0000176 llnl:facilities ;
+    rdfs:subClassOf cco:ont00000487 ;
+    skos:definition "[discoverability_if_applicable] Point location for facility-based experimental data." .
+
+llnl:modalities rdfs:label "modalities" ;
+    bfo:BFO_0000176 llnl:data_structure ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[interoperability_required] Data modalities present. e.g., [tabular, image, time-series, text, graph, point-cloud]" .
+
+llnl:modified rdfs:label "modified" ;
+    bfo:BFO_0000176 llnl:dates ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:date ],
+        cco:ont00000529 ;
+    skos:definition "[interoperability_if_applicable] ISO 8601 date of most recent significant modification" .
+
+llnl:need_to_know_basis rdfs:label "need_to_know_basis" ;
+    bfo:BFO_0000176 llnl:use_governance ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[governed_use_if_applicable] If access is restricted based on a need-to-know basis, list the specific basis for the restriction. select one from list: Mission_Need | Job_Duty | Project_Program_Association | Agreement_Defined | DGB_Exception_Waiver" .
+
+llnl:noise_characteristics rdfs:label "noise_characteristics" ;
+    bfo:BFO_0000176 llnl:data_quality ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[reusability_if_applicable]" .
+
+llnl:normalized_control_basis rdfs:label "normalized_control_basis" ;
+    bfo:BFO_0000176 llnl:sensitivity ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[discoverability_if_applicable] Optional interpreted control basis used for governance where source materials This does not replace authoritative source markings. Provide as a list of unique entries if multiple control bases apply. If source_marking_scheme = Legacy_OUO and the legacy marking is unresolved to a current standard marking, this should be populated as Legacy_Needs_Mapping to indicate that the control basis is legacy and needs interpretation for governance purposes. Entries should use this controlled vocabulary: - Classified - CUI - UCNI - Public_Release_Approved - Legacy_Needs_Mapping - Other_Controlled" .
+
+llnl:northBoundLatitude rdfs:label "northBoundLatitude" ;
+    bfo:BFO_0000176 llnl:geo_location_box ;
+    qudt:hasUnit unit:DEG ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:decimal ],
+        cco:ont00001163 ;
+    skos:definition "aligns with datacite:northBoundLatitude" ;
+    cco:ont00001808 cco:ont00000469 .
+
+llnl:note rdfs:label "note" ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[reusability_if_applicable] e.g., Available at \\url{ark:/12345/abcde} For legacy bibtex entries (that don't accept eprinttype and eprint) and that need to support an ark or other identifiers that don't fit cleanly into the existing fields, the note field can be used to capture this information in a free-text format. include a note: field use this format for the note field: note: Available at \\url{ark:/12345/abcde} --- Integrity & Fixity ----------------------------------------- [reusability_if_applicable] Checksums enable automated validation of data integrity after transfer or storage." ;
+    cco:ont00001920 llnl:preferred_citation .
+
+llnl:notes rdfs:label "notes" ;
+    bfo:BFO_0000176 llnl:software_environment ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[interoperability_if_applicable] Additional environment details, key library versions, or reference to a full environment manifest. e.g., See requirements.txt in dataset root e.g., numpy 1.24, pytorch 2.0.1, h5py 3.8.0" .
+
+llnl:object_type rdfs:label "object_type" ;
+    bfo:BFO_0000176 llnl:tags ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "select one of: Dataset | Model | Software | AI_Agent | Eval | Framework | Software" .
+
+llnl:orcid rdfs:label "orcid" ;
+    bfo:BFO_0000176 llnl:Person ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:token ],
+        iao:IAO_0000708 ;
+    skos:definition "[discoverability_if_applicable] Format: https://orcid.org/0000-0000-0000-0000 Required where DOE employee/contractor author policy applies, if locally applicable Register at https://orcid.org if needed" .
+
+llnl:organization rdfs:label "organization" ;
+    bfo:BFO_0000176 llnl:contributors,
+        llnl:creator,
+        llnl:maintainer,
+        llnl:reviewed_by,
+        llnl:type ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "use when a team or org created the data card without a named individual" ;
+    cco:ont00001808 cco:ont00001261 .
+
+llnl:os rdfs:label "os" ;
+    bfo:BFO_0000176 llnl:software_environment ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[interoperability_if_applicable] e.g., RHEL 8.6 | Ubuntu 22.04" ;
+    cco:ont00001808 llnl:SWO_0000021 .
+
+llnl:osti_elink2_metadata_compliant rdfs:label "osti_elink2_metadata_compliant" ;
+    bfo:BFO_0000176 llnl:compliance ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[governed_use_required] select one from list: Yes | No | Unknown — metadata complies with OSTI E-Link 2 API specs" .
+
+llnl:out_of_scope_use rdfs:label "out_of_scope_use" ;
+    bfo:BFO_0000176 llnl:use_governance ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[governed_use_if_applicable] Uses this dataset should NOT be applied to. e.g., clinical decision-making | real-time control systems" .
+
+llnl:overall_sensitivity rdfs:label "overall_sensitivity" ;
+    bfo:BFO_0000176 llnl:sensitivity ;
+    rdfs:subClassOf cco:ont00000965 ;
+    skos:definition "[discoverability_required] The overall sensitivity of THE DATA CARD only. Set based solely on the sensitivity of this data card. not the dataset it describes. See NOTE ON SENSITIVITY above. The sensitivity of the data card and the dataset are independent and will often differ. Uses a controlled vocabulary: - Public: No sensitivity; publicly shareable. - Unclassified_Uncontrolled: Unclassified but uncontrolled; may have minimal sensitivity; generally shareable with minimal controls. - CUI: CUI (Controlled Unclassified Information); requires handling per CUI guidelines; access controls required. - UCNI: UCNI (Unclassified Controlled Nuclear Information); requires handling per UCNI guidelines; strict access controls required. - Classified: Classified information; requires handling per classification level and guide; strict access controls required. - Legacy_Controlled: Legacy controlled information; may have specific handling requirements based on legacy controls; access controls required. - Mixed: Mixed sensitivity; contains a combination of sensitive and non-sensitive information; handling requirements depend on the specific content; access controls required. - Other_Controlled: Other controlled information; may have specific handling requirements based on other controls; access controls required." .
+
+llnl:permitted_use rdfs:label "permitted_use" ;
+    bfo:BFO_0000176 llnl:use_governance ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[governed_use_if_applicable] Uses this dataset is suitable for, beyond the intended use. e.g., exploratory analysis | hypothesis generation | educational use" .
+
+llnl:person rdfs:label "person" ;
+    bfo:BFO_0000176 llnl:additional_contacts,
+        llnl:contact,
+        llnl:contributors,
+        llnl:creator,
+        llnl:maintainer,
+        llnl:reviewed_by,
+        llnl:type ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "human contributor information" ;
+    cco:ont00001808 cco:ont00001261 .
+
+llnl:phi_status rdfs:label "phi_status" ;
+    bfo:BFO_0000176 llnl:privacy ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[governed_use_required] select one from list: Yes | No | Pending_Review | Unknown" .
+
+llnl:pii_status rdfs:label "pii_status" ;
+    bfo:BFO_0000176 llnl:privacy ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[governed_use_required] select one from list: Yes | No | Pending_Review | Unknown" .
+
+llnl:pipeline_stage rdfs:label "pipeline_stage" ;
+    bfo:BFO_0000176 llnl:workflow ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[discoverability_if_applicable] Freetext position in processing pipeline. e.g., post-detector, pre-reconstruction e.g., raw telemetry, pre-calibration" .
+
+llnl:policy_text rdfs:label "policy_text" ;
+    bfo:BFO_0000176 llnl:access_policy ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        iao:IAO_0000315 ;
+    skos:definition "[accessibility_if_applicable] Inline summary if no policy_url exists" .
+
+llnl:policy_url rdfs:label "policy_url" ;
+    bfo:BFO_0000176 llnl:access_policy ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:anyURI ],
+        cco:ont00000649 ;
+    skos:definition "[accessibility_if_applicable] URL to the full access policy document" .
+
+llnl:populated_by_repository rdfs:label "populated_by_repository" ;
+    bfo:BFO_0000176 llnl:_repository ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[reference_only_do_not_include] Always true; signals to parsers this block is system-owned" .
+
+llnl:privacy_control_basis rdfs:label "privacy_control_basis" ;
+    bfo:BFO_0000176 llnl:privacy ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[governed_use_if_applicable] select all that apply: HIPPA | Privacy_Act | Human_Subjects | Other_Regulated_Privacy | Site_Specific | not_applicable" .
+
+llnl:privacy_regime_notes rdfs:label "privacy_regime_notes" ;
+    bfo:BFO_0000176 llnl:privacy ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[governed_use_if_applicable] Optional notes for privacy regimes or handling nuances not captured by controlled values." .
+
+llnl:privacy_status rdfs:label "privacy_status" ;
+    bfo:BFO_0000176 llnl:privacy ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[governed_use_required] select one from list: Yes | No | Pending_Review | Unknown" .
+
+llnl:processing_steps rdfs:label "processing_steps" ;
+    bfo:BFO_0000176 llnl:provenance ;
+    iao:IAO_0000136 iao:BFO_0000144 ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        iao:IAO_0000315 ;
+    skos:definition "[interoperability_required] Key processing, cleaning, calibration, or transformation steps applied to produce this dataset." .
+
+llnl:product_type rdfs:label "product_type" ;
+    bfo:BFO_0000176 llnl:discoverability ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000686 ;
+    skos:definition "[discoverability_required] Primary type of product type described by this data card. These align with and extend the STI Product Types to support interoperability with STI catalogs and OSTI DOE Data Explorer. Select the single best-fit: Technical_Report | Paper_or_Proceedings | Journal_Article | Software_Manual | Data | Collection | Computer_Related | Model | Agent Data is expected here for a data card describing a dataset, but select the best fit if this data card describes a different type of product." .
+
+llnl:program rdfs:label "program" ;
+    bfo:BFO_0000176 llnl:sponsor_organizations ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00001180 ;
+    skos:definition "[discoverability_if_applicable] e.g., Advanced Scientific Computing Research" .
+
+llnl:prohibited_use rdfs:label "prohibited_use" ;
+    bfo:BFO_0000176 llnl:use_governance ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[governed_use_if_applicable] Uses that are explicitly prohibited for this dataset. e.g., any use involving human subjects | commercial applications | use in high-risk domains" .
+
+llnl:project rdfs:label "project" ;
+    bfo:BFO_0000176 llnl:identification,
+        llnl:tags ;
+    rdfs:subClassOf cco:ont00000292 ;
+    skos:definition "[discoverability_required] Genesis project or sub-project this dataset belongs to. e.g., genesis | genesis-fusion | genesis-lightsource" .
+
+llnl:public_release_status rdfs:label "public_release_status" ;
+    bfo:BFO_0000176 llnl:rights_release_records ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[governed_use_required] select one from list: Approved | Pending | Not_Approved | Requires_STI_Review" .
+
+llnl:publications rdfs:label "publications" ;
+    bfo:BFO_0000176 llnl:related_resources ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "- type: __TYPE__                        # doi | ark | arxiv | url | report | other value: __VALUE__ relationship: __REL__                 # see vocabulary above" ;
+    cco:ont00001982 iao:IAO_0000311 .
+
+llnl:publicly_facing_landing_page_url rdfs:label "publicly_facing_landing_page_url" ;
+    bfo:BFO_0000176 llnl:access ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:anyURI ],
+        cco:ont00000649 ;
+    skos:definition "[accessibility_if_applicable] URL to the publicly facing landing page for this dataset. This is the URL that should be shared publicly and included in citations. It may differ from the current_location if the dataset is not yet publicly released or if the current_location is an internal storage path." .
+
+llnl:publisher rdfs:label "publisher" ;
+    bfo:BFO_0000176 llnl:preferred_citation ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[reusability_if_applicable, either preferred_citation or howpublished is required] e.g., Oak Ridge National Laboratory | DOE NNSA | University of X" ;
+    cco:ont00001982 iao:IAO_0000311 .
+
+llnl:purpose rdfs:label "purpose" ;
+    bfo:BFO_0000176 llnl:dataset_description ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        iao:IAO_0000315 ;
+    skos:definition "[discoverability_if_applicable] Why was this dataset created? What gap does it fill?" .
+
+llnl:rate_limit rdfs:label "rate_limit" ;
+    bfo:BFO_0000176 llnl:name ;
+    qudt:hasUnit unit:PER-HR ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:integer ],
+        cco:ont00000853 ;
+    skos:definition "e.g., 1000 requests/hour" ;
+    cco:ont00001808 llnl:intended_repositories .
+
+llnl:record_count rdfs:label "record_count" ;
+    bfo:BFO_0000176 llnl:dataset_scale ;
+    qudt:hasUnitSystem llnl:record_unit ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:integer ],
+        cco:ont00000539 ;
+    skos:definition "[accessibility_if_applicable] Number of primary records, samples, or files" .
+
+llnl:record_status rdfs:label "record_status" ;
+    bfo:BFO_0000176 llnl:rights_release_records ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[governed_use_required] select one from list: Federal_Record | Contractor_Record | Non_Record | Mixed | Unknown" .
+
+llnl:relationship rdfs:label "relationship" ;
+    bfo:BFO_0000176 llnl:Software,
+        llnl:ai_model,
+        llnl:name ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[discoverability_if_applicable, required for ai_model] select from: used_to_create | used_to_process | used_to_analyze | recorded_by | trained_on | evaluated_on | other; relationship of AI model to the  data card creation process. e.g., used_to_create if the AI model generated the initial draft of the data card, used_to_analyze if the AI model analyzed dataset metadata to populate the data card, evaluated_on if the AI model was used to evaluate or validate the data card content, or other if none of the predefined relationships apply." .
+
+llnl:release_status rdfs:label "release_status" ;
+    bfo:BFO_0000176 llnl:discoverability ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[discoverability_required] Current publication and governance state of this dataset. See NOTE ON WORKFLOW STATE vs. RELEASE STATUS in the header for expected alignment with workflow.state. Draft         — work in progress; not ready for sharing Under_Review  — submitted for formal review Approved      — review complete; cleared for release Published     — publicly released and accessible Deprecated    — superseded or retired; no longer recommended for use" .
+
+llnl:report_number rdfs:label "report_number" ;
+    bfo:BFO_0000176 llnl:Citation ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:token ],
+        cco:ont00000686 ;
+    skos:definition "[reusability_if_applicable] e.g., SAND2024-XXXXX | LAUR-XX-XXXXX | ORNL/TM-2024/XXXXX" ;
+    cco:ont00001916 cco:ont00002043 .
+
+llnl:repository_catalog_id rdfs:label "repository_catalog_id" ;
+    bfo:BFO_0000176 llnl:_repository ;
+    rdfs:subClassOf cco:ont00000649 ;
+    skos:definition "[reference_only_do_not_include] Identifier assigned to this data card by the managing catalog" .
+
+llnl:restrictions rdfs:label "restrictions" ;
+    bfo:BFO_0000176 llnl:ai_usage ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[ai_usability_required] e.g., Not for clinical decision-making | None" .
+
+llnl:retention_policy rdfs:label "retention_policy" ;
+    bfo:BFO_0000176 llnl:stewardship ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[reusability_if_applicable] e.g., Retained for 10 years per DOE data management policy" ;
+    cco:ont00001982 terms:Policy .
+
+llnl:review_contact_email rdfs:label "review_contact_email" ;
+    bfo:BFO_0000176 llnl:source_review_reference ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00002070 ;
+    skos:definition "[governed_use_if_applicable] Email of the primary contact for this review, if applicable." .
+
+llnl:review_contact_name rdfs:label "review_contact_name" ;
+    bfo:BFO_0000176 llnl:source_review_reference ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00001017 ;
+    skos:definition "[governed_use_if_applicable] Name of the primary contact for this review, if applicable." .
+
+llnl:review_date rdfs:label "review_date" ;
+    bfo:BFO_0000176 llnl:source_review_reference ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:date ],
+        cco:ont00000529 ;
+    skos:definition "[governed_use_if_applicable] If provided, use YYYY-MM-DD format or not_applicable" .
+
+llnl:review_purpose rdfs:label "review_purpose" ;
+    bfo:BFO_0000176 llnl:source_review_reference ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[governed_use_if_applicable] e.g., Export control review prior to public release" .
+
+llnl:role rdfs:label "role" ;
+    bfo:BFO_0000176 llnl:Person,
+        llnl:facilities ;
+    rdfs:subClassOf cco:ont00000175 ;
+    skos:definition "Human contributor's function" .
+
+llnl:ror_id rdfs:label "ror_id" ;
+    bfo:BFO_0000176 llnl:Location,
+        llnl:Organization,
+        llnl:Person,
+        llnl:affiliation,
+        llnl:dataset_publisher,
+        llnl:facilities,
+        llnl:name ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:anyURI ],
+        cco:ont00000649 ;
+    skos:definition "[discoverability_if_applicable] Format: https://ror.org/XXXXXXX Look up at https://ror.org" .
+
+llnl:safety_considerations rdfs:label "safety_considerations" ;
+    bfo:BFO_0000176 llnl:ai_usage ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[ai_usability_required] e.g., Outputs may be export-controlled | None" .
+
+llnl:schema_url rdfs:label "schema_url" ;
+    bfo:BFO_0000176 llnl:semantic_layer ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:anyURI ],
+        cco:ont00000649 ;
+    skos:definition "[interoperability_if_applicable] URL to a formal schema for this dataset. e.g., JSON Schema | XML Schema | NeXus application definition" .
+
+llnl:schema_version rdfs:label "schema_version" ;
+    bfo:BFO_0000176 llnl:data_structure ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        iao:IAO_0000129 ;
+    skos:definition "[interoperability_if_applicable] Version of the data schema used in this dataset. Distinct from data card_version. Increment when field names, types, or structure change between dataset versions." .
+
+llnl:science rdfs:label "science" ;
+    bfo:BFO_0000176 llnl:tags ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "e.g., lightsource | fusion | materials | biology" .
+
+llnl:science_domain rdfs:label "science_domain" ;
+    bfo:BFO_0000176 llnl:dataset_description ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[discoverability_if_applicable] Extends the the list of OSTI Subject Areas with an Other category for datasets that do not fit into the OSTI list. Controlled vocabulary: Biology and Medicine | Chemistry | Energy Storage, Conversion, and Utilization | Engineering | Environmental Sciences | Fission and Nuclear Technologies | Fossil Fuels | Geosciences | Materials | Mathematics and Computing | National Defense | Physics | Power Generation and Distribution | Renewable Energy | Other" ;
+    cco:ont00001920 llnl:name .
+
+llnl:semantic_context rdfs:label "semantic_context" ;
+    bfo:BFO_0000176 llnl:semantic_layer ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[interoperability_if_applicable] Semantic conventions applied. e.g., NetCDF CF Conventions 1.10 | NeXus NXmonopd" .
+
+llnl:simulation_details rdfs:label "simulation_details" ;
+    bfo:BFO_0000176 llnl:provenance ;
+    iao:IAO_0000136 llnl:PMD_0000933 ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        iao:IAO_0000315 ;
+    skos:definition "[interoperability_if_applicable] For simulation-derived data: code, version, key parameters, and configuration. e.g., LAMMPS 23Jun2022, NVT ensemble, 300K, 10ns run, CHARMM36" .
+
+llnl:software rdfs:label "software" ;
+    bfo:BFO_0000176 llnl:creator,
+        llnl:related_resources ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "- name: __NAME__ version: __VERSION__ identifier: type: __TYPE__                      # doi | ark | handle | url | local | other value: __VALUE__ role: - ${ROLE}                           # [interoperability_if_applicable] list from roles extending the CRediT taxonomy: Conceptualization | Data_Curation | Formal_Analysis | Funding_Acquisition | Investigation | Methodology | Project_Administration | Resources | Software | Supervision | Validation | Visualization | Writing_Original_Draft | Writing_Review_Editing | Data_Collection | Other relationship: __REL__                 # see vocabulary above" ;
+    cco:ont00001808 cco:ont00001261 .
+
+llnl:source_marking_scheme rdfs:label "source_marking_scheme" ;
+    bfo:BFO_0000176 llnl:sensitivity ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[discoverability_required] If this data card has a source marking, provide the marking scheme used. use vocabulary: DOE_CUI | DOE_UCNI | EO13526_Classified | AEA_RD_FRD_TFNI | DOD_CUI | DHS_CUI | Legacy_OUO | Legacy_Site_Specific | Other_Agency | None if a Legacy_OUO is unresolved to a current standard marking, normalized_control_basis should be populated as Legacy_Needs_Mapping to indicate that the control basis is legacy and needs interpretation for governance purposes." ;
+    cco:ont00001982 cco:ont00000649 .
+
+llnl:source_marking_string rdfs:label "source_marking_string" ;
+    bfo:BFO_0000176 llnl:sensitivity ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[discoverability_required] If this data card has a source marking, provide the marking string exactly as it appears on the data card." ;
+    cco:ont00001982 cco:ont00000649 .
+
+llnl:source_review_authority rdfs:label "source_review_authority" ;
+    bfo:BFO_0000176 llnl:source_review_reference ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[governed_use_if_applicable] e.g., DOE Export Control Officer | ORNL IRB" .
+
+llnl:southBoundLatitude rdfs:label "southBoundLatitude" ;
+    bfo:BFO_0000176 llnl:geo_location_box ;
+    qudt:hasUnit unit:DEG ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:decimal ],
+        cco:ont00001163 ;
+    skos:definition "aligns with datacite:southBoundLatitude" ;
+    cco:ont00001808 cco:ont00000469 .
+
+llnl:spdx_id rdfs:label "spdx_id" ;
+    bfo:BFO_0000176 llnl:additional_licenses,
+        llnl:license ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000292 ;
+    skos:definition "[reusability_if_applicable] SPDX license identifier: https://spdx.org/licenses/ e.g., CC-BY-4.0 | CC0-1.0 | Apache-2.0 | MIT Use Other if not in SPDX registry. Use pending if not yet assigned." .
+
+llnl:splits rdfs:label "splits" ;
+    bfo:BFO_0000176 llnl:data_structure ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[interoperability_if_applicable] Dataset splits if pre-divided. e.g., [train, test, validation]" .
+
+llnl:sponsoring_doe_program_office rdfs:label "sponsoring_doe_program_office" ;
+    bfo:BFO_0000176 llnl:discoverability ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00001180 ;
+    skos:definition "[discoverability_if_applicable] DOE program office that sponsored this dataset, if applicable." .
+
+llnl:sponsoring_doe_subprogram rdfs:label "sponsoring_doe_subprogram" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00001180 ;
+    skos:definition "[discoverability_if_applicable] DOE subprogram that sponsored this dataset, if applicable." ;
+    cco:ont00001920 llnl:discoverability .
+
+llnl:start_date rdfs:label "start_date" ;
+    bfo:BFO_0000176 llnl:temporal_coverage ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:date ],
+        cco:ont00000529 ;
+    skos:definition "[interoperability_if_applicable] aligns with dcterms:coverage" .
+
+llnl:state rdfs:label "state" ;
+    bfo:BFO_0000176 llnl:workflow ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[discoverability_required] Current lifecycle position: Raw        — data as collected; no processing applied Processing — actively being cleaned, transformed, or reduced QA         — undergoing quality assurance or validation Analysis   — in active scientific analysis Review     — under formal review (security, export, IRB, etc.) Embargo    — complete but intentionally withheld from release Published  — publicly released Archived   — preserved; no longer actively maintained not_applicable - use when workflow state is not applicable or not yet determined" .
+
+llnl:succession_note rdfs:label "succession_note" ;
+    bfo:BFO_0000176 llnl:additional_contacts,
+        llnl:contact ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00001017 ;
+    skos:definition "[discoverability_if_applicable] Who to contact if this contact is no longer reachable. e.g., Contact the ORNL data management office at data@ornl.gov" .
+
+llnl:summary rdfs:label "summary" ;
+    bfo:BFO_0000176 llnl:change_date ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[discoverability_required] Brief description of what changed and why. Update this text for all subsequent revisions. e.g., Updated license to CC-BY-4.0 e.g., Added checksum after file transfer to OSTI e.g., Corrected collection end date" .
+
+llnl:supports_accessibility rdfs:label "supports_accessibility" ;
+    bfo:BFO_0000176 llnl:datacard_capabilities ;
+    rdfs:subClassOf cco:ont00000965 ;
+    skos:definition "[required] Set to Yes if this data card includes the metadata to support accessibility of the dataset. Required for data cards describing datasets that are shared or published. Does not necessary indicate that the dataset itself is accessible, only that the data card includes all the metadata to support accessibility." .
+
+llnl:supports_ai_usability rdfs:label "supports_ai_usability" ;
+    bfo:BFO_0000176 llnl:datacard_capabilities ;
+    rdfs:subClassOf cco:ont00000965 ;
+    skos:definition "[required] Set to Yes if this data card includes the metadata to support AI usability of the dataset. Does not necessary indicate that the dataset itself is AI-usable, only that the data card includes some metadata to support AI usability." .
+
+llnl:supports_discoverability rdfs:label "supports_discoverability" ;
+    bfo:BFO_0000176 llnl:datacard_capabilities ;
+    rdfs:subClassOf cco:ont00000965 ;
+    skos:definition "[required] Yes is required as all data cards must support basic discovery and identification of the dataset. Yes is required for all data cards." .
+
+llnl:supports_governed_use rdfs:label "supports_governed_use" ;
+    bfo:BFO_0000176 llnl:datacard_capabilities ;
+    rdfs:subClassOf cco:ont00000965 ;
+    skos:definition "[required] Set to Yes if this data card includes the metadata to support governed use of the dataset. Does not necessary indicate that the dataset itself is cleared for governed use, only that the data card includes some metadata to support governed use." .
+
+llnl:supports_interoperability rdfs:label "supports_interoperability" ;
+    bfo:BFO_0000176 llnl:datacard_capabilities ;
+    rdfs:subClassOf cco:ont00000965 ;
+    skos:definition "[required] Set to Yes if this data card includes the metadata to support interoperability of the dataset. Does not necessary indicate that the dataset itself is interoperable, only that the data card includes all the metadata to support interoperability." .
+
+llnl:supports_reusability rdfs:label "supports_reusability" ;
+    bfo:BFO_0000176 llnl:datacard_capabilities ;
+    rdfs:subClassOf cco:ont00000965 ;
+    skos:definition "[required] Set to Yes if this data card includes the metadata to support reusability of the dataset. Does not necessary indicate that the dataset itself is reusable, only that the data card includes some metadata to support reusability." .
+
+llnl:task_category rdfs:label "task_category" ;
+    bfo:BFO_0000176 llnl:dataset_description ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[discoverability_if_applicable, at least one value required if task_subcategory is present] Primary ML task category or categories for this dataset. Populate for AI-ready data; helps ML practitioners find relevant datasets in the catalog. e.g., classification | regression | segmentation | detection | generation | translation | summarization | ranking | anomaly_detection | clustering | reinforcement_learning | other" ;
+    cco:ont00001982 llnl:task_subcategory .
+
+llnl:template_version rdfs:label "template_version" ;
+    bfo:BFO_0000176 llnl:datacard ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000649 ;
+    skos:definition "[discoverability_required] DO NOT MODIFY — used by parsers to apply version-specific logic" .
+
+llnl:title rdfs:label "title" ;
+    bfo:BFO_0000176 llnl:preferred_citation ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000686 ;
+    skos:definition "[reusability_if_applicable, required if preferred_citation is included] e.g., Neutron Scattering Data from SNS Beamline 1B, April 2023" ;
+    cco:ont00001916 iao:IAO_0000305 .
+
+llnl:training_use_conditions rdfs:label "training_use_conditions" ;
+    bfo:BFO_0000176 llnl:ai_usage ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[ai_usability_if_applicable, required if training_use_status is Conditional] e.g., Only for non-commercial research | Requires citation of SAND2024-XXXXX" .
+
+llnl:training_use_status rdfs:label "training_use_status" ;
+    bfo:BFO_0000176 llnl:ai_usage ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[ai_usability_required] Yes | No | Conditional" .
+
+llnl:ucni_status rdfs:label "ucni_status" ;
+    bfo:BFO_0000176 llnl:sensitivity ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[discoverability_required] Yes | No description: Indicates whether the asset contains UCNI. UCNI is represented separately and should not be treated as an ordinary CUI category value." .
+
+llnl:uk_mda_status rdfs:label "uk_mda_status" ;
+    bfo:BFO_0000176 llnl:sensitivity ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[discoverability_if_applicable] Yes | No| Unknown | not_applicable Indicates whether the asset is subject to UK Ministry of Defence Assessment (MDA) controls." .
+
+llnl:uncertainty_notes rdfs:label "uncertainty_notes" ;
+    bfo:BFO_0000176 llnl:data_quality ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[reusability_if_applicable] e.g., Measurement uncertainty ±0.5% (k=2) per ISO/IEC Guide 98-3" ;
+    cco:ont00001982 llnl:PMD_0001036 .
+
+llnl:uncompressed_bytes rdfs:label "uncompressed_bytes" ;
+    bfo:BFO_0000176 llnl:dataset_scale ;
+    qudt:hasUnit unit:BYTE ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:integer ],
+        cco:ont00001163 ;
+    skos:definition "[accessibility_if_applicable] Total size when uncompressed, in bytes" .
+
+llnl:unit rdfs:label "unit" ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[interoperability_if_applicable] The unit of measurement for the value, if applicable." ;
+    cco:ont00001920 llnl:FIELD_NAME .
+
+llnl:update_frequency rdfs:label "update_frequency" ;
+    bfo:BFO_0000176 llnl:stewardship ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[reusability_if_applicable] None | Ad_Hoc | Monthly | Quarterly | Annually | Continuously | Other" ;
+    cco:ont00001916 terms:Frequency .
+
+llnl:updated_date rdfs:label "updated_date" ;
+    bfo:BFO_0000176 llnl:datacard ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:date ],
+        cco:ont00000529 ;
+    skos:definition "[discoverability_required] ISO 8601 date of most recent update; revise on every change" .
+
+llnl:url rdfs:label "url" ;
+    bfo:BFO_0000176 llnl:additional_licenses,
+        llnl:license,
+        llnl:preferred_citation ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:anyURI ],
+        cco:ont00000649 ;
+    skos:definition "[reusability_if_applicable] URL to license text or LICENSE.md for repo-local file" .
+
+llnl:valid_until rdfs:label "valid_until" ;
+    bfo:BFO_0000176 llnl:additional_contacts,
+        llnl:contact ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:date ],
+        cco:ont00000529 ;
+    skos:definition "[discoverability_if_applicable] Date after which this contact may no longer be valid. Use for project-bound contacts (students, postdocs, term staff)." .
+
+llnl:validation_methods rdfs:label "validation_methods" ;
+    bfo:BFO_0000176 llnl:data_quality ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[reusability_required] e.g., Cross-validated against NIST SRM 640f" ;
+    cco:ont00001982 obi:0302911 .
+
+llnl:version rdfs:label "version" ;
+    bfo:BFO_0000176 llnl:Software,
+        llnl:ai_model,
+        llnl:identification,
+        llnl:name ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000186 ;
+    skos:definition "[discoverability_required] Dataset version using semantic versioning: MAJOR.MINOR.PATCH Increment MAJOR for breaking changes, MINOR for additions, PATCH for corrections. Start at 1.0 for first release. See supersedes / superseded_by below for linking versions, and stewardship.versioning_strategy for how versions are managed." .
+
+llnl:versioning_strategy rdfs:label "versioning_strategy" ;
+    bfo:BFO_0000176 llnl:stewardship ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[reusability_if_applicable] e.g., Semantic versioning; all versions retained in Zenodo e.g., Major versions only; prior versions available on request" ;
+    cco:ont00001982 terms:ProvenanceStatement .
+
+llnl:view_count rdfs:label "view_count" ;
+    bfo:BFO_0000176 llnl:usage_metrics ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:integer ],
+        cco:ont00001163 ;
+    skos:definition "Field for view counts" .
+
+llnl:was_generated_by rdfs:label "was_generated_by" ;
+    bfo:BFO_0000176 llnl:provenance ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        iao:IAO_0000315 ;
+    skos:definition "[interoperability_required] High-level description of the generating process. Even a one-line answer dramatically improves catalog value. e.g., Neutron scattering experiment at SNS Beamline 1B e.g., Monte Carlo simulation using MCNP 6.2 e.g., Derived from raw telemetry via calibration pipeline v2.1" .
+
+llnl:westBoundLongitude rdfs:label "westBoundLongitude" ;
+    bfo:BFO_0000176 llnl:geo_location_box ;
+    qudt:hasUnit unit:DEG ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:decimal ],
+        cco:ont00001163 ;
+    skos:definition "aligns with datacite:westBoundLongitude" ;
+    cco:ont00001808 cco:ont00000469 .
+
+llnl:year rdfs:label "year" ;
+    bfo:BFO_0000176 llnl:preferred_citation ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:date ],
+        cco:ont00000529 ;
+    skos:definition "[reusability_if_applicable, required if preferred_citation is included] e.g., 2024" .
+
+<http://example.org/llnl/genesis> a owl:Ontology ;
+    owl:imports <http://example.org/llnl> ;
+    owl:versionIRI <http://example.org/llnl/genesis/4> ;
+    owl:versionInfo "4" .
+
+llnl:additional_ids rdfs:label "additional_ids" ;
+    bfo:BFO_0000176 llnl:identification ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000649 ;
+    skos:definition "[discoverability_if_applicable] Additional identifiers for this dataset. Aligns with adms:identifier and can include secondary identifiers, legacy identifiers, or identifiers for specific versions if primary_id is a collection-level identifier." .
+
+llnl:ai_usability rdfs:label "ai_usability" ;
+    bfo:BFO_0000101 llnl:genesis_datacard_merged_shared ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "Describes whether and how this dataset may be used in AI/ML workflows. Be explicit — these fields are read by automated pipeline tooling." .
+
+llnl:authors rdfs:label "authors" ;
+    bfo:BFO_0000176 llnl:discoverability ;
+    rdfs:subClassOf cco:ont00000686 ;
+    skos:definition "[discoverability_required]" .
+
+llnl:change_date rdfs:label "change_date" ;
+    bfo:BFO_0000176 llnl:change_log ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:date ],
+        cco:ont00000529 ;
+    skos:definition "[discoverability_required] ISO 8601 date of this change" .
+
+llnl:change_log rdfs:label "change_log" ;
+    bfo:BFO_0000176 llnl:datacard ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[discoverability_required] Running history of meaningful changes to this data card. Add a new entry every time the data card is updated. Do not overwrite or delete prior entries." .
+
+llnl:created_by rdfs:label "created_by" ;
+    bfo:BFO_0000176 llnl:datacard ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00001017 ;
+    skos:definition "[discoverability_required] All individuals, organizations, AI models, or software tools that created or updated this data card. List in chronological order of contribution — e.g., if an AI model generated the initial draft and a person then edited it, list the AI model first." .
+
+llnl:datasets rdfs:label "datasets" ;
+    bfo:BFO_0000176 llnl:related_resources ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "- name: __NAME__ identifier: type: __TYPE__                      # doi | ark | handle | url | local | other value: __VALUE__ relationship: __REL__                 # see vocabulary above" .
+
+llnl:domain_metadata rdfs:label "domain_metadata" ;
+    bfo:BFO_0000176 llnl:interoperability ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[interoperability_if_applicable] e.g., Accelerator Operations Metadata | Climate Data Variables" .
+
+llnl:record_unit rdfs:label "record_unit" ;
+    bfo:BFO_0000176 llnl:dataset_scale ;
+    rdfs:subClassOf cco:ont00000958 ;
+    skos:definition "[accessibility_if_applicable] samples | files | records | timesteps | images | tokens | other" .
+
+llnl:research_organizations rdfs:label "research_organizations" ;
+    bfo:BFO_0000176 llnl:discoverability ;
+    rdfs:subClassOf cco:ont00001180 ;
+    skos:definition "[discoverability_required] Organizations that created or collected the data." .
+
+llnl:review_provenance_companion rdfs:label "review_provenance_companion" ;
+    bfo:BFO_0000176 llnl:governed_use ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "Optional companion block for review/provenance data that the team has indicated should exist somewhere in the broader card/model. This block extends the Genesis Sensitivity V2 review_provenance_companion (which only accepts a single review) by allowing multiple review records to be captured in a structured format, which is especially useful for datasets that have undergone multiple reviews or have complex provenance histories." .
+
+llnl:source_data rdfs:label "source_data" ;
+    bfo:BFO_0000176 llnl:provenance ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[interoperability_if_applicable] Source datasets this dataset was derived from." .
+
+llnl:task_subcategory rdfs:label "task_subcategory" ;
+    bfo:BFO_0000176 llnl:dataset_description ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[discoverability_if_applicable] More specific ML task subcategory or subcategories. e.g., binary_classification | multi_class_classification | multi_label_classification | image_segmentation | object_detection | time_series_forecasting | named_entity_recognition | question_answering | other" .
+
+llnl:affiliation rdfs:label "affiliation" ;
+    bfo:BFO_0000176 llnl:Person ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "The agent where the human contributor is part of" ;
+    cco:ont00001808 cco:ont00000591 .
+
+llnl:contribution_date rdfs:label "contribution_date" ;
+    bfo:BFO_0000176 llnl:created_by ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[discoverability_required] ISO 8601 date of this specific contribution" .
+
+llnl:data_services rdfs:label "data_services" ;
+    bfo:BFO_0000176 llnl:_repository,
+        llnl:name ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[accessibility_if_applicable] Populate if Data Service / API endpoints exists for this dataset aligns with dcterms:DataService. If more than one data service or API endpoint exists, list them all." .
+
+llnl:datacard_checksum rdfs:label "datacard_checksum" ;
+    bfo:BFO_0000176 llnl:_repository ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[reference_only_do_not_include] Integrity record for this data card document file" .
+
+llnl:dataset_publisher rdfs:label "dataset_publisher" ;
+    bfo:BFO_0000176 llnl:discoverability ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00001017 ;
+    skos:definition "[discoverability_if_applicable, required when release_status = Approved | Published] Entity responsible for making this dataset available. Often the same as the primary research organization, but may differ if a separate publisher is involved." .
+
+llnl:id rdfs:label "id" ;
+    bfo:BFO_0000176 llnl:datacard ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000292 ;
+    skos:definition "[discoverability_if_applicable] Persistent identifier for this data card document itself, distinct from the dataset identifier. Assign if the data card is registered in a catalog or repository independently of the dataset." .
+
+llnl:missing_data_codes rdfs:label "missing_data_codes" ;
+    bfo:BFO_0000176 llnl:data_quality ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[reusability_if_applicable] - code: __CODE__                       # e.g., -999 | NaN | NULL description: __DESC__                # e.g., Sensor malfunction | Below detection limit" .
+
+llnl:parent_collection rdfs:label "parent_collection" ;
+    bfo:BFO_0000176 llnl:identification ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[discoverability_if_applicable] Parent collection or experimental campaign this dataset belongs to. Use when this dataset is one of many in a larger organized collection or ensemble." ;
+    cco:ont00001808 iao:IAO_0001000 .
+
+llnl:primary_id rdfs:label "primary_id" ;
+    bfo:BFO_0000176 llnl:identification ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:anyURI ],
+        cco:ont00000077 ;
+    skos:definition "[discoverability_required] Primary persistent identifier for this dataset. Aligns with dcterms:identifier and is the main identifier used in citations and references. Use ark or local if a DOI has not yet been assigned." .
+
+llnl:schema_reference rdfs:label "schema_reference" ;
+    rdfs:subClassOf cco:ont00000253 ;
+    skos:definition "[interoperability_if_applicable]" ;
+    cco:ont00001920 llnl:name .
+
+llnl:semantic_layer rdfs:label "semantic_layer" ;
+    bfo:BFO_0000176 llnl:interoperability ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "To support agentic-use, federated or cross-domain use, populate schema_url at minimum." ;
+    cco:ont00001982 iao:IAO_8000000 .
+
+llnl:spatial_coverage rdfs:label "spatial_coverage" ;
+    bfo:BFO_0000176 llnl:data_structure ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[interoperability_if_applicable] Geographic coverage of the dataset. Use for geospatial datasets or facility-based experiments." .
+
+llnl:sponsor_organizations rdfs:label "sponsor_organizations" ;
+    bfo:BFO_0000176 llnl:discoverability ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[discoverability_required] Organizations that funded or sponsored this dataset." ;
+    cco:ont00001808 cco:ont00000300 .
+
+llnl:superseded_by rdfs:label "superseded_by" ;
+    bfo:BFO_0000176 llnl:identification ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[discoverability_if_applicable] Identifier of the newer version that replaces this dataset. Populate when this version is deprecated." .
+
+llnl:supersedes rdfs:label "supersedes" ;
+    bfo:BFO_0000176 llnl:identification ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[discoverability_if_applicable] Identifier of the prior version this dataset replaces. See stewardship.versioning_strategy for how versions are managed." .
+
+llnl:access rdfs:label "access" ;
+    bfo:BFO_0000176 llnl:accessibility ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "Complete the fields you know at the time of data card creation. Repository-assigned fields (landing pages, accession numbers, access protocols) will be populated by the managing repository or catalog system at ingest — see the REPOSITORY-MANAGED block." .
+
+llnl:accessibility rdfs:label "accessibility" ;
+    bfo:BFO_0000101 llnl:genesis_datacard_merged_shared ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[accessibility_required] --- Access Policy ---------------------------------------------- Describes who can access this dataset and under what conditions. Access policy for the dataset. Describes the access level and any restrictions or requirements for accessing the dataset, which is critical information for users to understand how they can access the dataset and any potential barriers to access. Access policy is DISTINCT from sensitivity, which describes the nature of the data and its potential risks) and from release status (which describes the publication state of the dataset). access_policy.access_level is a required field that indicates the level of permissions required for users to access the dataset, following AccessLevelEnum. - open: no additional permissions required beyond standard account registration and agreement to terms of service. This indicates that the dataset is freely accessible to the public and can be used without any special permissions or restrictions. Note that open does not necessarily mean that the dataset is free of copyright or other legal restrictions, but rather that there are no additional access controls in place. Users may still need to comply with any applicable laws or regulations when using the dataset. - restricted: access may be granted to users who meet certain criteria, such as being part of a specific research community, having a legitimate research purpose, or agreeing to specific terms and conditions. This indicates that the dataset is not freely accessible to the public and that users must meet certain requirements or restrictions in order to access it. The specific criteria for access may vary depending on the dataset and the organization providing it, but could include things like institutional affiliation, research purpose, or agreement to specific terms and conditions. - controlled: access is tightly controlled and may require specific authorization, agreements, or approvals. This indicates that the dataset contains sensitive information and that only authorized users can access it." .
+
+llnl:compliance rdfs:label "compliance" ;
+    bfo:BFO_0000176 llnl:governed_use ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "Leave blank or omit for draft and in-workflow datasets." .
+
+llnl:contributors rdfs:label "contributors" ;
+    bfo:BFO_0000176 llnl:discoverability ;
+    rdfs:subClassOf cco:ont00000300 ;
+    skos:definition "[discoverability_if_applicable] Supporting contributors who are not primary authors. e.g., sample preparers, annotators, reviewers, submitters. Same structure as authors above." .
+
+llnl:export_control rdfs:label "export_control" ;
+    bfo:BFO_0000176 llnl:non_sensitivity_governance_metadata ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "Export Control & Foreign National Access" .
+
+llnl:maintainer rdfs:label "maintainer" ;
+    bfo:BFO_0000176 llnl:stewardship ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[reusability_if_applicable] Person or organization responsible for ongoing maintenance." ;
+    cco:ont00001982 cco:ont00001017 .
+
+llnl:non_sensitivity_governance_metadata rdfs:label "non_sensitivity_governance_metadata" ;
+    bfo:BFO_0000176 llnl:governed_use ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[governed_use_required] export control, privacy, right & release as it applies to the dataset as a whole, which may be distinct from the sensitivity or classification of the source data from which it was derived. Export Control & Foreign National Access." .
+
+llnl:reviewed_by rdfs:label "reviewed_by" ;
+    bfo:BFO_0000176 llnl:source_review_reference ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[governed_use_if_applicable] Delete the block that does not apply." .
+
+llnl:tags rdfs:label "tags" ;
+    bfo:BFO_0000176 llnl:dataset_description ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[discoverability_if_applicable] Structured tags for catalog filtering and discovery." .
+
+llnl:temporal_coverage rdfs:label "temporal_coverage" ;
+    bfo:BFO_0000176 llnl:data_structure ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[interoperability_if_applicable] Time period the dataset content represents. aligns with schema:temporalCoverage NOTE: distinct from dates.data_collection_start/end, which describe when collection occurred. Use temporal_coverage when the dataset describes a specific historical or projected time period that differs from when collection happened. e.g., Monthly climate averages 1950–2020 collected in 2024: temporal_coverage.start = 1950-01-01 dates.data_collection_start = 2024-01-01" .
+
+llnl:type rdfs:label "type" ;
+    bfo:BFO_0000176 llnl:Identifier,
+        llnl:additional_ids,
+        llnl:authors,
+        llnl:contributors,
+        llnl:datacard_checksum,
+        llnl:id,
+        llnl:maintainer,
+        llnl:primary_id,
+        llnl:reviewed_by,
+        llnl:schema_reference,
+        llnl:superseded_by,
+        llnl:supersedes ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "doi | ark | handle | url | local | other" .
+
+llnl:FIELD_NAME rdfs:label "FIELD_NAME" ;
+    bfo:BFO_0000101 llnl:genesis_datacard_merged_shared ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "${FIELD_NAME} [interoperability_if_applicable] The name of the domain-specific metadata field." .
+
+llnl:additional_contacts rdfs:label "additional_contacts" ;
+    bfo:BFO_0000176 llnl:discoverability ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00001017 ;
+    skos:definition "[discoverability_if_applicable] Additional contacts (e.g., instrument PI, data steward). Same structure as contact above: contact_details: - type: person | organization person: given_name: __GIVEN_NAME__ family_name: __FAMILY_NAME__ orcid: __ORCID__ # Required where DOE employee/contractor author policy applies, if locally applicable email: __EMAIL__ affiliation: name: __ORG_NAME__ ror_id: __ROR_ID__ valid_until: __YYYY-MM-DD__ succession_note: __NOTE__" .
+
+llnl:additional_licenses rdfs:label "additional_licenses" ;
+    bfo:BFO_0000176 llnl:reusability ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[reusability_if_applicable] List of additional licenses that apply to subsets of the dataset, if any. e.g., if a dataset contains third-party data with different licensing terms, those can be captured here. Each entry should include the same fields as the main license block above, along with a description of which subset of the data it applies to." .
+
+llnl:contact rdfs:label "contact" ;
+    bfo:BFO_0000176 llnl:discoverability ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[discoverability_required] Primary point of contact for questions about this DATASET." .
+
+llnl:dataset_scale rdfs:label "dataset_scale" ;
+    bfo:BFO_0000176 llnl:accessibility ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "These fields describe the scale of the dataset, which is important for users to understand the scope and potential resource requirements for using the dataset. record_count and record_unit provide a standardized way to describe the number of primary records, samples, files, or other relevant units in the dataset, which is critical for understanding the dataset's size and complexity. compressed_bytes and uncompressed_bytes provide information about the storage requirements for the dataset, which is important for users to plan" ;
+    cco:ont00001808 iao:IAO_0001000 .
+
+llnl:dates rdfs:label "dates" ;
+    bfo:BFO_0000176 llnl:interoperability ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "field regarding data collection dates" .
+
+llnl:facilities rdfs:label "facilities" ;
+    bfo:BFO_0000176 llnl:discoverability ;
+    rdfs:subClassOf cco:ont00000946 ;
+    skos:definition "[discoverability_if_applicable] User facilities, HPC centers, or research infrastructure used to collect, process, or store the dataset. - name: __FACILITY_NAME__               # e.g., Spallation Neutron Source | Summit | Frontier ror_id: __ROR_ID__ role: - ${ROLE}                           # [discoverability_if_applicable] list from roles extending the CRediT taxonomy: Conceptualization | Data_Curation | Formal_Analysis | Funding_Acquisition | Investigation | Methodology | Project_Administration | Resources | Software | Supervision | Validation | Visualization | Writing_Original_Draft | Writing_Review_Editing | Data_Collection | Other location:                             # [discoverability_if_applicable] Point location for facility-based experimental data. description: __DESC__               # e.g., SNS Beamline 1B, Oak Ridge National Laboratory, TN, USA ror_id: __ROR_ID__                  # ROR ID of the facility; cross-reference with name above" .
+
+llnl:geo_location_box rdfs:label "geo_location_box" ;
+    bfo:BFO_0000176 llnl:spatial_coverage ;
+    rdfs:subClassOf cco:ont00000358 ;
+    skos:definition "[interoperability_if_applicable] WGS84 decimal degrees; use for area coverage aligns with datacite:geoLocationBox" .
+
+llnl:governed_use rdfs:label "governed_use" ;
+    bfo:BFO_0000176 llnl:genesis_datacard_merged_shared ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[governed_use_required] For datasets that are actively being used in workflows, or where use governance is needed to manage risks, ensure responsible use, or enable discoverability for specific use cases. Populate the fields that are relevant to the dataset's current, intended, permitted, out_of_scope, and prohibited use. current_use is required for governed_use_required; the other fields are optional but recommended to support responsible use and discoverability." .
+
+llnl:integrity rdfs:label "integrity" ;
+    bfo:BFO_0000178 llnl:reusability ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "Checksums enable automated validation of data integrity after transfer or storage." .
+
+llnl:license rdfs:label "license" ;
+    bfo:BFO_0000176 llnl:reusability ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "A public/open license is not always the governing instrument for use, some controlled datasets may not have an SPDX-style reuse license at all, and use may instead be governed by contract, agreement, institutional review, or repository policy." ;
+    cco:ont00001982 terms:LicenseDocument .
+
+llnl:related_resources rdfs:label "related_resources" ;
+    bfo:BFO_0000176 llnl:interoperability ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "Links to related datasets, publications, software, and AI models. The base relationship vocabulary isshared across all resource types; extended terms are available for software and AI models." ;
+    cco:ont00001982 cco:ont00000740 .
+
+llnl:usage_metrics rdfs:label "usage_metrics" ;
+    bfo:BFO_0000176 llnl:_repository ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[reference_only_do_not_include] Populated by the managing repository; do not edit" .
+
+llnl:workflow rdfs:label "workflow" ;
+    bfo:BFO_0000176 llnl:discoverability ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "Describes the technical and processing lifecycle position of the dataset. See NOTE ON WORKFLOW STATE vs. RELEASE STATUS in the header for expected alignment with release_status." ;
+    cco:ont00001808 llnl:PMD_0000012 .
+
+llnl:ai_model rdfs:label "ai_model" ;
+    bfo:BFO_0000176 llnl:creator ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "use when an AI model generated or substantially contributed to this data card" ;
+    cco:ont00001808 cco:ont00001261 .
+
+llnl:creator rdfs:label "creator" ;
+    bfo:BFO_0000176 llnl:contribution_date ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[discoverability_required] person | organization | ai_model | software add one block per creator; list the block that corresponds to the parent {ROLE} contributed to the creation of this data card Delete the three blocks below that do not apply." .
+
+llnl:privacy rdfs:label "privacy" ;
+    bfo:BFO_0000176 llnl:non_sensitivity_governance_metadata ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "Privacy & Human Subjects" .
+
+llnl:repositories rdfs:label "repositories" ;
+    bfo:BFO_0000176 llnl:_repository ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[reference_only_do_not_include] Resolved repository records keyed to access.intended_repositories" .
+
+llnl:rights_release_records rdfs:label "rights_release_records" ;
+    bfo:BFO_0000176 llnl:non_sensitivity_governance_metadata ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "Rights & Agreements" ;
+    cco:ont00001982 terms:LicenseDocument .
+
+llnl:software_environment rdfs:label "software_environment" ;
+    bfo:BFO_0000176 llnl:provenance ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[interoperability_if_applicable] Software environment used to generate or process this dataset. Captures what is needed for computational reproducibility." .
+
+llnl:stewardship rdfs:label "stewardship" ;
+    bfo:BFO_0000176 llnl:reusability ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[reusability_if_applicable] Information about the stewardship of this dataset, including who is responsible for maintaining it and how versioning is managed over time." .
+
+llnl:data_quality rdfs:label "data_quality" ;
+    bfo:BFO_0000176 llnl:reusability ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "vague entries reduce trust and reuse." .
+
+llnl:datacard_capabilities rdfs:label "datacard_capabilities" ;
+    bfo:BFO_0000101 llnl:genesis_datacard_merged_shared ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "Describes the intended capabilities to be enabled for this data card, to guide authors, ensure completeness, and inform parsers." .
+
+llnl:intended_repositories rdfs:label "intended_repositories" ;
+    bfo:BFO_0000176 llnl:access ;
+    rdfs:subClassOf cco:ont00000292 ;
+    skos:definition "[accessibility_if_applicable] Repositories you intend to deposit or have deposited this dataset in. The managing repository or catalog system will resolve and populate repository-assigned fields at ingest (see REPOSITORY-MANAGED block). Repositories may be institutional, project-owned, community, or national (e.g., OSTI, Zenodo, institutional data repository, project data store)." ;
+    cco:ont00001808 iao:APOLLO_SV_00000522 .
+
+llnl:interoperability rdfs:label "interoperability" ;
+    bfo:BFO_0000101 llnl:genesis_datacard_merged_shared ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "Metadata elements that describe the interoperability of this dataset, such as context of data collection, data structure, provenance, related resource, schema, and integrity. This is important for users to understand how they can use the dataset and what tools or software they may need to work with it." .
+
+llnl:provenance rdfs:label "provenance" ;
+    bfo:BFO_0000176 llnl:interoperability ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "provenance information" .
+
+llnl:reusability rdfs:label "reusability" ;
+    bfo:BFO_0000101 llnl:genesis_datacard_merged_shared ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[reusability_required] Information about the reusability of this dataset, such as license and rights, stewardship, data_quality, integrity, citation and stewardship information. --- License & Rights ---------------------------------------------------- [reusability_if_applicable] Important: Required when release_status = Approved | Published. Use pending if not yet assigned. Includes information about the license governing use of the dataset, as well as any additional legal rights statements. NOTE ON LICENSES AND GOVERNANCE: A public/open license is not always the governing instrument for use, some controlled datasets may not have an SPDX-style reuse license at all, and use may instead be governed by contract, agreement, institutional review, or repository policy." .
+
+llnl:use_governance rdfs:label "use_governance" ;
+    bfo:BFO_0000176 llnl:governed_use ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[governed_use_required]" .
+
+llnl:access_policy rdfs:label "access_policy" ;
+    bfo:BFO_0000176 llnl:accessibility ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[accessibility_required]" .
+
+llnl:identification rdfs:label "identification" ;
+    bfo:BFO_0000176 llnl:discoverability ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[discoverability_required] Key metadata fields that uniquely identify this dataset." ;
+    cco:ont00001808 cco:ont00001261 .
+
+llnl:source_review_reference rdfs:label "source_review_reference" ;
+    bfo:BFO_0000176 llnl:review_provenance_companion ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "[governed_use_if_applicable] e.g., internal_qa | security | export_control | irb | partner | publication | other" .
+
+llnl:_repository rdfs:label "_repository" ;
+    bfo:BFO_0000101 llnl:genesis_datacard_merged_shared ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[reference_only_do_not_include] Repository-managed metadata fields. Do not edit manually, nor include in completed data card." .
+
+llnl:data_structure rdfs:label "data_structure" ;
+    bfo:BFO_0000176 llnl:interoperability ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[interoperability_required]" ;
+    cco:ont00001808 iao:IAO_0001000 .
+
+llnl:genesis_datacard_merged_shared rdfs:label "genesis_datacard_merged_shared" ;
+    rdfs:subClassOf cco:ont00000253 ;
+    skos:definition "<INSTRUCTIONS: Considerations for filling out the data card: Deciding the appropriate resolution for documenting a scientific dataset in a data card can be complex. Data cards may describe single or multiple data files, datasets, or versions. Too granular, and there will be too many data cards; too broad, and details may be lost. Consider the use, audience, and documentation the data card needs to provide to maintain transparency without duplication. Reflect on these relationships to balance clarity, usability, and sustainability.>" .
+
+llnl:ai_usage rdfs:label "ai_usage" ;
+    bfo:BFO_0000176 llnl:ai_usability ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "field for ai usage" .
+
+llnl:dataset_description rdfs:label "dataset_description" ;
+    bfo:BFO_0000176 llnl:discoverability ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[discoverability_required] Descriptive metadata about the dataset to support discovery, understanding, and reuse." ;
+    cco:ont00001808 iao:IAO_0000027 .
+
+llnl:preferred_citation rdfs:label "preferred_citation" ;
+    bfo:BFO_0000176 qudt:Citation ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "[reusability_if_applicable]" ;
+    cco:ont00001808 iao:IAO_0000301 .
+
+llnl:datacard rdfs:label "datacard" ;
+    bfo:BFO_0000176 llnl:discoverability ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "Describes this document itself — not the dataset." .
+
+llnl:sensitivity rdfs:label "sensitivity" ;
+    bfo:BFO_0000176 llnl:datacard,
+        llnl:discoverability ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "Sensitivity of the DATA CARD itself, which may differ from the sensitivity of the dataset it describes. Populate based on the sensitivity of the data card content alone, not the dataset. See NOTE ON SENSITIVITY above." .
+
+llnl:discoverability rdfs:label "discoverability" ;
+    bfo:BFO_0000101 llnl:genesis_datacard_merged_shared ;
+    rdfs:subClassOf cco:ont00000853 ;
+    skos:definition "DATA CARD METADATA Describes this document itself — not the dataset." .
+
+llnl:name rdfs:label "name" ;
+    bfo:BFO_0000176 llnl:Organization,
+        llnl:Software,
+        llnl:additional_licenses,
+        llnl:affiliation,
+        llnl:ai_model,
+        llnl:data_services,
+        llnl:dataset_publisher,
+        llnl:datasets,
+        llnl:domain_metadata,
+        llnl:facilities,
+        llnl:identification,
+        llnl:intended_repositories,
+        llnl:license,
+        llnl:parent_collection,
+        llnl:repositories,
+        llnl:research_organizations,
+        llnl:source_data,
+        llnl:sponsor_organizations ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000686 ;
+    skos:definition "e.g., Claude 3.5 Sonnet | GPT-4o | Llama 3" .
+
+llnl:value a owl:DatatypeProperty ;
+    rdfs:label "value" ;
+    bfo:BFO_0000176 llnl:Identifier,
+        llnl:datacard_checksum,
+        llnl:id,
+        llnl:primary_id,
+        llnl:schema_reference,
+        llnl:superseded_by,
+        llnl:supersedes,
+        llnl:type ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty llnl:value ;
+            owl:someValuesFrom xsd:string ],
+        cco:ont00000853 ;
+    skos:definition "Link to model card or documentation if available" .
+

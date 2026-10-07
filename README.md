@@ -7,9 +7,14 @@ directory plus a reusable sidecar answers file.
 
 - `uv sync` to create virtual environment and install xcard_automation packages.
 - Confirm install with `uv pip list`
-  - should see `+ xcard-automation==0.2.0`
-- test inspect with `uv run xcard-cli inspect <path-to-data-folder> --output <path-to-test.json>`
-- test run with `uv run xcard-cli run  <path-to-data-folder> --profile core --answers <path-to-answers.json>  --output-root <path-to-output-root-folder>`
+  - should see 
+    - `+ xcard-automation==0.3.0`
+    - `+ prompt-toolkit==3.0.53`
+    - `+ questionary==2.1.1`
+    - `+ wcwidth==0.9.2`
+- test inspect with `uv run xcard-cli inspect <path-to-data-folder> --output-root <path-to-output-root-folder>`
+- test generate with `uv run xcard-cli generate  <path-to-data-folder> --profile core --answers <path-to-answers.json>  --output-root <path-to-output-root-folder>`
+- test configure with `uv run xcard-cli configure`
 
 ## Commands
 
@@ -21,15 +26,22 @@ python3 -m datacard_pipeline.cli validate <datacard.md>
 
 Artifacts are written under `runs/<dataset_slug>/` by default:
 
-- `input/source_manifest.json`
-- `input/introspection.json`
-- `input/answers.yaml`
-- `input/ontology_summary.json`
-- `automation_output/*.md`
-- `automation_output/normalized_metadata.json`
-- `automation_output/ontology_alignment.json`
-- `validation_output/validation_report.json`
-- `validation_output/validation_summary.md`
+```text
+.
+├── automation_output/
+│   ├── normalized_metadata.json # Processed and standardized metadata
+│   ├── ontology_alignment.json  # Results of the ontology alignment process
+│   └── *.md                     # Auto-generated documentation and reports
+├── input/
+│   ├── answers.yaml            # User-provided answers for project configuration
+│   ├── introspection.json      # Output from the `inspect` command
+│   ├── ontology_summary.json   # Summary of the dataset ontology
+│   └── source_manifest.json    # Manifest of all source files in the dataset
+└── validation_output/
+    ├── validation_report.json   # Detailed technical validation results
+    ├── validation_summary.md    # Human-readable quality and grading summary
+    └── *.md                     # Auto-generated documentation and reports
+```
 
 
 ## Installation
