@@ -2,7 +2,7 @@ import argparse
 import json
 from pathlib import Path
 
-from ...core.validator import validate_file
+from xcard_automation.core.validator import validate_file
 
 
 def add_command(

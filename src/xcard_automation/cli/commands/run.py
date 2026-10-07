@@ -1,8 +1,8 @@
 import argparse
 from pathlib import Path
 
-from ...core.contract import DEFAULT_TEMPLATE_PATH
-from ...core.pipeline import RunConfig, run_pipeline
+from xcard_automation.core.contract import DEFAULT_TEMPLATE_PATH
+from xcard_automation.core.pipeline import RunConfig, run_pipeline
 
 
 def add_command(

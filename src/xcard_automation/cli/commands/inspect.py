@@ -2,7 +2,7 @@ import argparse
 import json
 from pathlib import Path
 
-from ...core.introspect import inspect_dataset
+from xcard_automation.core.introspect import inspect_dataset
 
 
 def add_command(
