@@ -5,11 +5,32 @@ from pathlib import Path
 from ...core.validator import validate_file
 
 
-def add_command(subparsers: argparse._SubParsersAction):
-    parser = subparsers.add_parser("validate", help="Validate a rendered datacard")
-    parser.add_argument("datacard", type=Path)
-    parser.add_argument("--json", dest="emit_json", action="store_true")
-    return parser
+def add_command(
+    subparsers: argparse._SubParsersAction,
+    formatter_class: type[argparse.HelpFormatter] = argparse.HelpFormatter
+) -> argparse.ArgumentParser:
+    parser = subparsers.add_parser(
+        "validate",
+        help="Validate a rendered datacard",
+        formatter_class=formatter_class
+    )
+
+    # Positional Arguments
+    parser.add_argument(
+        "datacard",
+        type=Path,
+        metavar="DATACARD_FILE",
+        help="Path to the rendered datacard file to validate"
+    )
+
+    # Output Options
+    output_group = parser.add_argument_group("Output Options")
+    output_group.add_argument(
+        "--json",
+        dest="emit_json",
+        action="store_true",
+        help="Emit validation results as JSON for machine consumption"
+    )
 
 
 def handle(args: argparse.Namespace) -> int:

@@ -5,14 +5,60 @@ from ...core.contract import DEFAULT_TEMPLATE_PATH
 from ...core.pipeline import RunConfig, run_pipeline
 
 
-def add_command(subparsers: argparse._SubParsersAction):
-    parser = subparsers.add_parser("run", help="Run the datacard pipeline")
-    parser.add_argument("dataset_dir", type=Path)
-    parser.add_argument("--profile", required=True, choices=["core", "extended", "ai_ready", "sensitive"])
-    parser.add_argument("--output-root", type=Path)
-    parser.add_argument("--answers", type=Path)
-    parser.add_argument("--resume", action="store_true")
-    parser.add_argument("--template", type=Path, default=DEFAULT_TEMPLATE_PATH)
+def add_command(
+    subparsers: argparse._SubParsersAction,
+    formatter_class: type[argparse.HelpFormatter] = argparse.HelpFormatter
+) -> argparse.ArgumentParser:
+    parser = subparsers.add_parser(
+        "run",
+        help="Run the full datacard generation pipeline",
+        formatter_class=formatter_class
+    )
+
+    # 1. Positional Arguments
+    parser.add_argument(
+        "dataset_dir",
+        type=Path,
+        metavar="DATASET_DIR",  # Hint: Tells user what this is
+        help="Path to the directory containing the dataset to process"
+    )
+
+    # 2. Use Argument Groups to organize the --help output
+    config_group = parser.add_argument_group("Pipeline Configuration")
+
+    config_group.add_argument(
+        "--profile",
+        required=True,
+        choices=["core", "extended", "ai_ready", "sensitive"],
+        help="The compliance profile to use for generation"
+    )
+    config_group.add_argument(
+        "--template",
+        type=Path,
+        default=DEFAULT_TEMPLATE_PATH,
+        metavar="TEMPLATE_FILE",
+        help=f"Path to the Jinja2 template (default: {DEFAULT_TEMPLATE_PATH})"
+    )
+
+    output_group = parser.add_argument_group("Output Options")
+    output_group.add_argument(
+        "--output-root",
+        type=Path,
+        metavar="OUTPUT_DIR",
+        help="Root directory where generated cards will be saved"
+    )
+    output_group.add_argument(
+        "--answers",
+        type=Path,
+        metavar="ANSWERS_JSON",
+        help="Path to a JSON file containing pre-filled answers"
+    )
+    output_group.add_argument(
+        "--resume",
+        action="store_true",
+        help="Resume from the last successful checkpoint if available"
+    )
+
     return parser
 
 
