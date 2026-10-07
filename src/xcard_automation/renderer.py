@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from typing import Any
 
 from .utils import dump_yaml
@@ -12,148 +10,149 @@ def render_datacard(metadata: dict[str, Any]) -> str:
 
 
 def render_body(metadata: dict[str, Any]) -> str:
-    lines: list[str] = []
-    name = metadata["identification"]["name"]
-    lines.append(f"# Datacard for {name}")
-    lines.append(f"**Last Updated**: {metadata['datacard']['updated_date']}")
-    lines.append("")
-    lines.append(f"**Dataset Readiness Level:** {metadata['dataset_readiness']['level']}")
-    lines.append("")
-    lines.append("### Machine Usability Snapshot")
-    lines.append("| Aspect | Status |")
-    lines.append("|--------|--------|")
-    lines.append(f"| AI Ready | {_status_word(metadata['ai_usage'].get('ai_ready'))} |")
-    lines.append(f"| License Clarity | {'Yes' if metadata['license'].get('spdx_id') not in {'', 'pending'} else 'No'} |")
-    lines.append(f"| Machine Access | {'Yes' if metadata['access'].get('current_location') else 'No'} |")
-    lines.append(f"| Checksum / Fixity | {'Yes' if metadata['integrity'].get('checksum_available') else 'No'} |")
-    lines.append(f"| Semantic Context | {'Yes' if metadata['semantic_layer'].get('schema_url') or metadata['semantic_layer'].get('semantic_context') else 'No'} |")
-    lines.append("")
-    lines.append("# ---- Level 1: Discoverable ----")
-    lines.append("---")
-    lines.append("## Identification")
-    lines.append("")
-    lines.append("### Files & Structure")
-    lines.append(_files_and_structure(metadata))
-    lines.append("")
-    lines.append("---")
-    lines.append("## Description")
-    lines.append("")
-    lines.append("### Dataset Description [required]")
-    lines.append(metadata["description"]["summary"])
-    lines.append("")
-    lines.append("### Keywords [strongly recommended]")
-    lines.append(", ".join(metadata["description"]["keywords"]) or "Not provided")
-    lines.append("")
-    lines.append("### Citation")
-    lines.append(_code_or_text(metadata["citation"]["preferred_citation"]))
-    lines.append("")
-    lines.append("---")
-    lines.append("")
-    lines.append("# ---- Level 2: Interoperable and Reusable ----")
-    lines.append("")
-    lines.append("### Sharing & Access")
-    lines.append(_sharing_access(metadata))
-    lines.append("")
-    lines.append("### Security / Marking Considerations")
-    lines.append(_security_summary(metadata))
-    lines.append("")
-    lines.append("---")
-    lines.append("### Access and Permissions")
-    lines.append(_permissions_summary(metadata))
-    lines.append("")
-    lines.append("### Access conditions")
-    lines.append(_access_conditions(metadata))
-    lines.append("")
-    lines.append("### Release review process")
-    lines.append(_review_process(metadata))
-    lines.append("")
-    lines.append("---")
-    lines.append("## Context")
-    lines.append("")
-    lines.append("### Domain and Purpose")
-    lines.append(_domain_and_purpose(metadata))
-    lines.append("")
-    lines.append("### Resources used, including funding and facilities, to create the dataset")
-    lines.append(_resources_summary(metadata))
-    lines.append("")
-    lines.append("---")
-    lines.append("## Provenance")
-    lines.append("")
-    lines.append("### Developed by")
-    lines.append(_people_list(metadata["authors"]))
-    lines.append("")
-    lines.append("### Contributed by")
-    lines.append(_people_list(metadata["contributors"]))
-    lines.append("")
-    lines.append("---")
-    lines.append("## Related Resources")
-    lines.append("")
-    lines.append("### Related datasets, standards, metadata, and ontologies")
-    lines.append(_related_resources(metadata["related_resources"]["datasets"]))
-    lines.append("")
-    lines.append("### Related publications")
-    lines.append(_related_resources(metadata["related_resources"]["publications"]))
-    lines.append("")
-    lines.append("### Related software")
-    lines.append(_related_resources(metadata["related_resources"]["software"]))
-    lines.append("")
-    lines.append("### Related ai model")
-    lines.append(_related_resources(metadata["related_resources"]["ai_models"]))
-    lines.append("")
-    lines.append("---")
-    lines.append("## Methods")
-    lines.append("")
-    lines.append("### Dataset generation, collection, and procedures")
-    lines.append(_methods_summary(metadata))
-    lines.append("")
-    lines.append("### Maintenance & Updates")
-    lines.append(_maintenance_summary(metadata))
-    lines.append("")
-    lines.append("# ---- Level 3: Understandable & Trustworthy ----")
-    lines.append("")
-    lines.append("### Data Characteristics")
-    lines.append(_data_characteristics(metadata))
-    lines.append("")
-    lines.append("### Data Quality & Limitations")
-    lines.append(_quality_summary(metadata))
-    lines.append("")
-    lines.append("### Related Schemas or Ontologies")
-    lines.append(_semantic_summary(metadata))
-    lines.append("")
-    lines.append("### List of variable name(s), description(s), unit(s), and value labels for each variable in the dataset/file.")
-    lines.append(_feature_table(metadata["dataset_info"]["features"]))
-    lines.append("")
-    lines.append("### Codes used for missing data")
-    lines.append(_missing_code_table(metadata["data_quality"]["missing_data_codes"]))
-    lines.append("")
-    lines.append("### Specialized formats or other abbreviations used")
-    lines.append(", ".join(metadata["dataset_info"]["formats"]) or "Not provided")
-    lines.append("")
-    lines.append("### Example of the contents")
-    lines.append(_example_summary(metadata))
-    lines.append("")
-    lines.append("### Data Processing")
-    lines.append(str(metadata["provenance"]["processing_steps"]))
-    lines.append("")
-    lines.append("### Software used to preprocess/ clean/ label the data")
-    lines.append(_software_summary(metadata))
-    lines.append("")
-    lines.append("## Integrity & Versioning")
-    lines.append(_integrity_summary(metadata))
-    lines.append("")
-    lines.append("## Semantic / Schema Information")
-    lines.append(_semantic_summary(metadata))
-    lines.append("")
-    lines.append("## AI / Machine Learning Considerations")
-    lines.append(_ai_summary(metadata))
-    lines.append("")
-    lines.append("---")
-    lines.append("")
-    lines.append("## Additional Information")
-    lines.append(str(metadata["description"].get("limitations", "Not provided")))
-    lines.append("")
-    lines.append("---")
-    return "\n".join(lines)
+
+    return f"""
+        # Datacard for {metadata["identification"]["name"]}
+        **Last Updated**: {metadata['datacard']['updated_date']}
+
+        **Dataset Readiness Level:** {metadata['dataset_readiness']['level']}
+
+        "### Machine Usability Snapshot",
+        "| Aspect | Status |",
+        "|--------|--------|",
+        | AI Ready | {_status_word(metadata['ai_usage'].get('ai_ready'))} |
+        | License Clarity | {'Yes' if metadata['license'].get('spdx_id') not in {'', 'pending'} else 'No'} |
+        | Machine Access | {'Yes' if metadata['access'].get('current_location') else 'No'} |
+        | Checksum / Fixity | {'Yes' if metadata['integrity'].get('checksum_available') else 'No'} |
+        | Semantic Context | {'Yes' if metadata['semantic_layer'].get('schema_url') or metadata['semantic_layer'].get('semantic_context') else 'No'} |
+
+        # ---- Level 1: Discoverable ----
+        ---
+        ## Identification
+
+        ### Files & Structure
+        {_files_and_structure(metadata)}
+
+        ---
+        ## Description
+
+        ### Dataset Description [required]
+        {metadata["description"]["summary"]}
+
+        ### Keywords [strongly recommended]
+        {", ".join(metadata["description"]["keywords"]) or "Not provided"}
+
+        ### Citation
+        {_code_or_text(metadata["citation"]["preferred_citation"])}
+
+        ---
+
+        # ---- Level 2: Interoperable and Reusable ----
+
+        ### Sharing & Access
+        {_sharing_access(metadata)}
+
+        ### Security / Marking Considerations
+        {_security_summary(metadata)}
+
+        ---
+        ### Access and Permissions
+        {_permissions_summary(metadata)}
+
+        ### Access conditions
+        {_access_conditions(metadata)}
+
+        ### Release review process
+        {_review_process(metadata)}
+
+        ---
+        ## Context
+
+        ### Domain and Purpose
+        {_domain_and_purpose(metadata)}
+
+        ### Resources used, including funding and facilities, to create the dataset
+        {_resources_summary(metadata)}
+
+        ---
+        ## Provenance
+
+        ### Developed by
+        {_people_list(metadata["authors"])}
+
+        ### Contributed by
+        {_people_list(metadata["contributors"])}
+
+        ---
+        ## Related Resources
+
+        ### Related datasets, standards, metadata, and ontologies
+        {_related_resources(metadata["related_resources"]["datasets"])}
+
+        ### Related publications
+        {_related_resources(metadata["related_resources"]["publications"])}
+
+        ### Related software
+        {_related_resources(metadata["related_resources"]["software"])}
+
+        ### Related ai model
+        {_related_resources(metadata["related_resources"]["ai_models"])}
+
+        ---
+        ## Methods
+
+        ### Dataset generation, collection, and procedures
+        {_methods_summary(metadata)}
+
+        ### Maintenance & Updates
+        {_maintenance_summary(metadata)}
+
+        # ---- Level 3: Understandable & Trustworthy ----
+
+        ### Data Characteristics
+        {_data_characteristics(metadata)}
+
+        ### Data Quality & Limitations
+        {_quality_summary(metadata)}
+
+        ### Related Schemas or Ontologies
+        {_semantic_summary(metadata)}
+
+        ### List of variable name(s), description(s), unit(s), and value labels for each variable in the dataset/file.
+        {_feature_table(metadata["dataset_info"]["features"])}
+
+        ### Codes used for missing data
+        {_missing_code_table(metadata["data_quality"]["missing_data_codes"])}
+
+        ### Specialized formats or other abbreviations used
+        {", ".join(metadata["dataset_info"]["formats"]) or "Not provided"}
+
+        ### Example of the contents
+        {_example_summary(metadata)}
+
+        ### Data Processing
+        {str(metadata["provenance"]["processing_steps"])}
+
+        ### Software used to preprocess/ clean/ label the data
+        {_software_summary(metadata)}
+
+        ## Integrity & Versioning
+        {_integrity_summary(metadata)}
+
+        ## Semantic / Schema Information
+        {_semantic_summary(metadata)}
+
+        ## AI / Machine Learning Considerations
+        {_ai_summary(metadata)}
+
+        ---
+
+        ## Additional Information
+        {str(metadata["description"].get("limitations", "Not provided"))}
+
+        ---
+
+    """
 
 
 def _status_word(value: Any) -> str:
@@ -183,10 +182,10 @@ def _sharing_access(metadata: dict[str, Any]) -> str:
 
 def _security_summary(metadata: dict[str, Any]) -> str:
     security = metadata["security"]
-    return (
-        f"Classification `{security['classification']}` with dataset sensitivity `{security['sensitivity_tier']}` "
-        f"and export control `{security['export_control']}`. Handling notes: {security['handling_instructions']}."
-    )
+    return f"""
+        Classification `{security['classification']}` with dataset sensitivity `{security['sensitivity_tier']}`.
+        and export control `{security['export_control']}`. Handling notes: {security['handling_instructions']}.
+    """
 
 
 def _permissions_summary(metadata: dict[str, Any]) -> str:
@@ -264,19 +263,20 @@ def _related_resources(entries: list[dict[str, Any]]) -> str:
 
 def _methods_summary(metadata: dict[str, Any]) -> str:
     provenance = metadata["provenance"]
-    return (
-        f"Generated by: {provenance['was_generated_by']}. "
-        f"Collection methodology: {metadata['description']['collection_methodology']}. "
-        f"Instrumentation: {provenance['instrumentation']}."
-    )
+    return f"""
+        Generated by: {provenance['was_generated_by']}.
+        Collection methodology: {metadata['description']['collection_methodology']}.
+        Instrumentation: {provenance['instrumentation']}.
+    """
 
 
 def _maintenance_summary(metadata: dict[str, Any]) -> str:
     stewardship = metadata["stewardship"]
-    return (
-        f"Stewardship level `{stewardship['level']}` with update frequency `{stewardship['update_frequency']}`. "
-        f"Versioning strategy: {stewardship['versioning_strategy']}."
-    )
+    return f"""
+        Stewardship level `{stewardship['level']}` with update frequency `{stewardship['update_frequency']}`.
+        Versioning strategy: {stewardship['versioning_strategy']}.
+    """
+
 
 
 def _data_characteristics(metadata: dict[str, Any]) -> str:
@@ -288,11 +288,11 @@ def _data_characteristics(metadata: dict[str, Any]) -> str:
 
 def _quality_summary(metadata: dict[str, Any]) -> str:
     quality = metadata["data_quality"]
-    return (
-        f"Completeness: {quality['completeness']}. Known issues: {quality['known_issues']}. "
-        f"Validation methods: {quality['validation_methods']}. "
-        f"Limitations: {metadata['description']['limitations']}."
-    )
+    return f"""
+        Completeness: {quality['completeness']}. Known issues: {quality['known_issues']}.
+        Validation methods: {quality['validation_methods']}.
+        Limitations: {metadata['description']['limitations']}.
+    """
 
 
 def _semantic_summary(metadata: dict[str, Any]) -> str:
@@ -352,25 +352,25 @@ def _software_summary(metadata: dict[str, Any]) -> str:
 def _integrity_summary(metadata: dict[str, Any]) -> str:
     integrity = metadata["integrity"]
     stewardship = metadata["stewardship"]
-    return (
-        f"Checksums available: {integrity['checksum_available']}. "
-        f"Checksum type: {integrity['checksum_type']}. "
-        f"Checksum value: {integrity['checksum_value']}. "
-        f"Fixity policy: {integrity['fixity_policy']}. "
-        f"Versioning: {stewardship['versioning_strategy']}."
-    )
+    return f"""
+        Checksums available: {integrity['checksum_available']}.
+        Checksum type: {integrity['checksum_type']}.
+        Checksum value: {integrity['checksum_value']}.
+        Fixity policy: {integrity['fixity_policy']}.
+        Versioning: {stewardship['versioning_strategy']}.
+    """
 
 
 def _ai_summary(metadata: dict[str, Any]) -> str:
     usage = metadata["ai_usage"]
-    return (
-        f"AI-ready: {_status_word(usage['ai_ready'])}. "
-        f"Training: {_status_word(usage['training_use_allowed'])}. "
-        f"Inference: {_status_word(usage['inference_use_allowed'])}. "
-        f"Evaluation: {_status_word(usage['evaluation_use_allowed'])}. "
-        f"Restrictions: {usage['restrictions']}. Bias risks: {usage['bias_risks']}. "
-        f"Safety considerations: {usage['safety_considerations']}. Human review required: {usage['human_review_required']}."
-    )
+    return f"""
+        AI-ready: {_status_word(usage['ai_ready'])}.
+        Training: {_status_word(usage['training_use_allowed'])}.
+        Inference: {_status_word(usage['inference_use_allowed'])}.
+        Evaluation: {_status_word(usage['evaluation_use_allowed'])}.
+        Restrictions: {usage['restrictions']}. Bias risks: {usage['bias_risks']}.
+        Safety considerations: {usage['safety_considerations']}. Human review required: {usage['human_review_required']}.
+    """
 
 
 def _name_list(entries: list[dict[str, Any]]) -> str:
