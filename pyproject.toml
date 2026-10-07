@@ -1,0 +1,95 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "xcard-automation"
+version = "0.2.0"
+description = "Tooling to provide to agent with harness to automation xCard generation"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = []
+
+[project.scripts]
+xcard-cli = "xcard_automation.cli:main"
+
+[tool.setuptools]
+include-package-data = false
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["xcard_automation*"]
+
+[tool.ruff]
+line-length = 79
+target-version = "py314"
+
+[tool.ruff.lint]
+ignore = ["multi-line-summary-first-line"]
+preview = true
+extend-select = [
+    "A",
+    "AIR",
+    "ANN",
+    "ARG",
+    "ASYNC",
+    "B",
+    "BLE",
+    "C4",
+    "C90",
+    "D",
+    "DJ",
+    "DOC",
+    "DTZ",
+    "E",
+    "EM",
+    "ERA",
+    "EXE",
+    "F",
+    "FA",
+    "FBT",
+    "FIX",
+    "FLY",
+    "FURB",
+    "G",
+    "I",
+    "ICN",
+    "INP",
+    "INT",
+    "ISC",
+    "LOG",
+    "N",
+    "NPY",
+    "PD",
+    "PERF",
+    "PGH",
+    "PIE",
+    "PL",
+    "PT",
+    "PTH",
+    "PYI",
+    "Q",
+    "RET",
+    "RSE",
+    "RUF",
+    "S",
+    "SIM",
+    "SLF",
+    "SLOT",
+    "T10",
+    "T20",
+    "TC",
+    "TD",
+    "TID",
+    "TCH",
+    "TRY",
+    "UP",
+    "W",
+    "YTT",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"**/test_*.py" = ["assert", "pytest-unittest-assertion"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
