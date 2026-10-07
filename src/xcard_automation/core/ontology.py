@@ -2,7 +2,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
-TOOLS_ROOT = Path(__file__).resolve().parents[2]
+TOOLS_ROOT = Path(__file__).resolve().parents[1]
 ONTOLOGY_ROOT = TOOLS_ROOT / "ontology"
 ONTOLOGY_YAML_PATH = ONTOLOGY_ROOT / "genesis.yaml"
 ONTOLOGY_TTL_PATH = ONTOLOGY_ROOT / "genesis.ttl"
