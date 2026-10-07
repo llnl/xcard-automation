@@ -5,10 +5,10 @@ import json
 import sys
 from pathlib import Path
 
-from .contract import DEFAULT_TEMPLATE_PATH
-from .introspect import inspect_dataset
-from .pipeline import RunConfig, run_pipeline
-from .validator import validate_file
+from ..core.contract import DEFAULT_TEMPLATE_PATH
+from ..core.introspect import inspect_dataset
+from ..core.pipeline import RunConfig, run_pipeline
+from ..core.validator import validate_file
 
 
 def build_parser() -> argparse.ArgumentParser:
