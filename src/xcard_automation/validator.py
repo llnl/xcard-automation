@@ -132,11 +132,9 @@ def validate_file(path: Path) -> ValidationResult:
 
 def render_validation_summary(result: ValidationResult) -> str:
     lines = ["# Validation Summary", ""]
-    lines.append("Status: PASS" if result.ok else "Status: FAIL")
-    lines.append("")
+    lines.extend(("Status: PASS" if result.ok else "Status: FAIL", ""))
     if not result.findings:
         lines.append("No findings.")
         return "\n".join(lines) + "\n"
-    for finding in result.findings:
-        lines.append(f"- [{finding.severity}] {finding.code} `{finding.field}`: {finding.message}")
+    lines.extend(f"- [{f.severity}] {f.code} `{f.field}`: {f.message}" for f in result.findings)
     return "\n".join(lines) + "\n"
