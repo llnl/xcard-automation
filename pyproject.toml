@@ -8,7 +8,9 @@ version = "0.3.0"
 description = "Tooling to provide to agent with harness to automation xCard generation"
 readme = "README.md"
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "questionary>=2.1.1",
+]
 
 [project.scripts]
 xcard-cli = "xcard_automation.cli.main:main"
@@ -25,7 +27,7 @@ line-length = 79
 target-version = "py314"
 
 [tool.ruff.lint]
-ignore = ["multi-line-summary-first-line"]
+ignore = ["multi-line-summary-first-line", "print"]
 preview = true
 extend-select = [
     "A",
