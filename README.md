@@ -31,7 +31,7 @@ Artifacts are written under `runs/<dataset_slug>/` by default:
 ├── automation_output/
 │   ├── normalized_metadata.json # Processed and standardized metadata
 │   ├── ontology_alignment.json  # Results of the ontology alignment process
-│   └── *.md                    # Auto-generated documentation and reports
+│   └── *.md                     # Auto-generated documentation and reports
 ├── input/
 │   ├── answers.yaml            # User-provided answers for project configuration
 │   ├── introspection.json      # Output from the `inspect` command
@@ -39,7 +39,8 @@ Artifacts are written under `runs/<dataset_slug>/` by default:
 │   └── source_manifest.json    # Manifest of all source files in the dataset
 └── validation_output/
     ├── validation_report.json   # Detailed technical validation results
-    └── validation_summary.md    # Human-readable quality and grading summary
+    ├── validation_summary.md    # Human-readable quality and grading summary
+    └── *.md                     # Auto-generated documentation and reports
 ```
 
 
