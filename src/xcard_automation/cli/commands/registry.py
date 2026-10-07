@@ -1,7 +1,8 @@
-from . import inspect, run, validate
+from . import configure, evaluate, generate, inspect
 
 COMMANDS = {
+    "configure": configure,
+    "evaluate": evaluate,
+    "generate": generate,
     "inspect": inspect,
-    "run": run,
-    "validate": validate,
 }

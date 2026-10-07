@@ -8,7 +8,7 @@ directory plus a reusable sidecar answers file.
 - `uv sync` to create virtual environment and install xcard_automation packages.
 - Confirm install with `uv pip list`
   - should see `+ xcard-automation==0.2.0`
-- test inspect with `uv run xcard-cli inspect <path-to-data-folder> --output <path-to-test.json>`
+- test inspect with `uv run xcard-cli inspect <path-to-data-folder> --output-root <path-to-output-root-folder>`
 - test run with `uv run xcard-cli run  <path-to-data-folder> --profile core --answers <path-to-answers.json>  --output-root <path-to-output-root-folder>`
 
 ## Commands

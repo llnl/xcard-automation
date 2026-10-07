@@ -10,7 +10,7 @@ def add_command(
     formatter_class: type[argparse.HelpFormatter] = argparse.HelpFormatter
 ) -> argparse.ArgumentParser:
     parser = subparsers.add_parser(
-        "run",
+        "generate",
         help="Run the full datacard generation pipeline",
         formatter_class=formatter_class
     )

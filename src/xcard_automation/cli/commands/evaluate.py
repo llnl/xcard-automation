@@ -10,8 +10,8 @@ def add_command(
     formatter_class: type[argparse.HelpFormatter] = argparse.HelpFormatter
 ) -> argparse.ArgumentParser:
     parser = subparsers.add_parser(
-        "validate",
-        help="Validate a rendered datacard",
+        "evaluate",
+        help="Evaluate a rendered datacard",
         formatter_class=formatter_class
     )
 
