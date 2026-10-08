@@ -7,7 +7,6 @@ from shutil import copy2
 from typing import Any
 
 from .artifacts import prepare_run_dirs, write_run_inputs
-from .contract import DEFAULT_TEMPLATE_PATH
 from .introspect import build_checksum_manifest, inspect_dataset
 from .mapper import build_metadata
 from .ontology import alignment_report, load_ontology_summary
@@ -28,7 +27,6 @@ class RunConfig:
     output_root: Path | None = None
     answers_path: Path | None = None
     resume: bool = False
-    template_path: Path = DEFAULT_TEMPLATE_PATH
 
 
 def run_pipeline(config: RunConfig) -> int:
@@ -50,7 +48,6 @@ def run_pipeline(config: RunConfig) -> int:
     source_manifest = {
         "dataset_dir": str(dataset_dir),
         "profile": config.profile,
-        "template_path": str(config.template_path),
         "output_root": str(run_dirs["root"]),
         "resume": config.resume,
         "ontology_yaml": load_ontology_summary()["paths"]["yaml"],

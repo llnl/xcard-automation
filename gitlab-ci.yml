@@ -1,0 +1,17 @@
+stages:
+  - test
+
+tests:
+  stage: test
+  image: python:3.14
+  script:
+    - python -m pip install --upgrade pip
+    - python -m pip install ".[dev]"
+    - python -m pytest
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
+    paths:
+      - coverage.xml

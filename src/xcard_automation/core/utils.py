@@ -5,6 +5,8 @@ from datetime import date
 from pathlib import Path
 from typing import Any
 
+import yaml
+
 PLACEHOLDER_RE = re.compile(r"\$\{[^}]+\}|__[^_\n][^_\n]*__|\[!TODO\]|<REPLACE:|<INSTRUCTIONS:|<metadata_key:")
 
 
@@ -30,7 +32,7 @@ def load_yaml_file(path: Path, default: Any) -> Any:
     try:
         data = json.loads(text)
     except json.JSONDecodeError:
-        data = _simple_yaml_parse(text)
+        data = yaml.safe_load(text)
     return deepcopy(default) if data is None else data
 
 
@@ -153,30 +155,3 @@ def _split_path(path: str) -> list[str | int]:
         indices = re.findall(r"\[(\d+)\]", "[" + rest)
         parts.extend(int(idx) for idx in indices)
     return parts
-
-
-def _simple_yaml_parse(text: str) -> Any:
-    result: dict[str, Any] = {}
-    for line in text.splitlines():
-        if not line.strip() or line.lstrip().startswith("#"):
-            continue
-        if ":" not in line:
-            continue
-        key, value = line.split(":", 1)
-        result[key.strip()] = _coerce_scalar(value.strip())
-    return result
-
-
-def _coerce_scalar(value: str) -> Any:
-    if value in {"true", "True"}:
-        return True
-    if value in {"false", "False"}:
-        return False
-    if value in {"null", "None", ""}:
-        return None
-    try:
-        if "." in value:
-            return float(value)
-        return int(value)
-    except ValueError:
-        return value.strip("'\"")

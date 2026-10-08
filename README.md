@@ -16,6 +16,18 @@ directory plus a reusable sidecar answers file.
 - test generate with `uv run xcard-cli generate  <path-to-data-folder> --profile core --answers <path-to-answers.json>  --output-root <path-to-output-root-folder>`
 - test configure with `uv run xcard-cli configure`
 
+## Testing
+
+Install the development dependencies and run the test suite with coverage:
+
+```bash
+uv sync --extra dev
+uv run pytest
+```
+
+The terminal output includes the coverage summary and `coverage.xml` is created
+for GitLab CI. GitLab runs the same test command on every push.
+
 ## Commands
 
 ```bash
