@@ -12,6 +12,12 @@ dependencies = [
     "questionary>=2.1.1",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+]
+
 [project.scripts]
 xcard-cli = "xcard_automation.cli.main:main"
 
@@ -95,3 +101,7 @@ extend-select = [
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+
+[tool.pytest.ini_options]
+addopts = "--cov=xcard_automation --cov-report=term-missing --cov-report=xml"
+testpaths = ["tests"]
