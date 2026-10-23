@@ -3,12 +3,11 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from pathlib import Path
 
-from .contract import DEFAULT_OUTPUT_ROOT
 from .utils import ensure_dir, write_json_file, write_yaml_file
 
 
-def prepare_run_dirs(output_root: Path | None, dataset_slug: str) -> dict[str, Path]:
-    root = ensure_dir((output_root or DEFAULT_OUTPUT_ROOT) / dataset_slug)
+def prepare_run_dirs(output_root: Path, dataset_slug: str) -> dict[str, Path]:
+    root = ensure_dir(output_root / dataset_slug)
     input_dir = ensure_dir(root / "input")
     automation_dir = ensure_dir(root / "automation_output")
     validation_dir = ensure_dir(root / "validation_output")

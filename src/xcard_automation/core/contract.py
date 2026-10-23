@@ -9,9 +9,6 @@ DEFAULT_TEMPLATE_PATH = (
         .joinpath("data")
         .joinpath("template.md")
 )
-DEFAULT_OUTPUT_ROOT = REPO_ROOT / "runs"
-
-
 ENUMS = {
     "datacard.profile": {"core", "extended", "ai_ready", "sensitive"},
     "datacard.sensitivity_tier": {
