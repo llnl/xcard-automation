@@ -195,6 +195,7 @@ def test_run_accepts_all_cli_options(monkeypatch: MonkeyPatch, tmp_path: Path) -
     [
         (["inspect"], "dataset_dir is required"),
         (["run", "dataset"], "profile is required"),
+        (["run", "dataset", "--profile", "core"], "output_root is required"),
     ],
 )
 def test_commands_report_missing_required_configuration(

@@ -25,7 +25,7 @@ from .validator import (
 class RunConfig:
     dataset_dir: Path
     profile: str
-    output_root: Path | None = None
+    output_root: Path
     answers_path: Path | None = None
     resume: bool = False
     template_path: Path = DEFAULT_TEMPLATE_PATH

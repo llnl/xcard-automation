@@ -85,6 +85,8 @@ def handle(args: argparse.Namespace) -> int:
         raise ConfigError("dataset_dir is required (pass it or set it in --config)")
     if args.profile is None:
         raise ConfigError("profile is required (pass it or set it in --config)")
+    if args.output_root is None:
+        raise ConfigError("output_root is required (pass it or set it in --config)")
     if args.profile not in {"core", "extended", "ai_ready", "sensitive"}:
         raise ConfigError(f"Invalid profile: {args.profile}")
     config = RunConfig(
