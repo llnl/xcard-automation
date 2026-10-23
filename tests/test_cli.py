@@ -1,11 +1,12 @@
 import json
+import subprocess
 import sys
 from pathlib import Path
 
 from pytest import MonkeyPatch
 
-from xcard_automation.cli.main import main
-from xcard_automation.cli.commands import generate
+from xcard_automation.main import main
+from xcard_automation.cli import run
 from xcard_automation.core.pipeline import RunConfig
 
 
@@ -91,12 +92,26 @@ def test_generate_reads_config_and_cli_overrides_it(
         captured["config"] = run_config
         return 0
 
-    monkeypatch.setattr(generate, "run_pipeline", run_pipeline)
+    monkeypatch.setattr(run, "run_pipeline", run_pipeline)
 
-    assert main(["generate", "other-data", "--config", str(config), "--profile", "extended"]) == 0
+    assert main(["run", "other-data", "--config", str(config), "--profile", "extended"]) == 0
     run_config = captured["config"]
     assert run_config.dataset_dir == Path("other-data")
     assert run_config.profile == "extended"
     assert run_config.output_root == tmp_path / "output"
     assert run_config.answers_path == tmp_path / "answers.json"
     assert run_config.project_name == "sample-project"
+
+    assert main(["generate", "other-data", "--config", str(config), "--profile", "extended"]) == 0
+
+
+def test_module_entry_point_displays_help() -> None:
+    result = subprocess.run(
+        [sys.executable, "-m", "xcard_automation", "--help"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert result.returncode == 0
+    assert "{configure-project,configure,evaluate,run,generate,inspect}" in result.stdout

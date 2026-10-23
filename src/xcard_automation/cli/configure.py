@@ -4,18 +4,18 @@ from typing import Literal
 
 from xcard_automation.core.utils import write_json_file
 
-from ..config import ConfigError, validate_project_name
+from .config import ConfigError, validate_project_name
 
 
 def add_command(
     subparsers: argparse._SubParsersAction,
-    formatter_class: type[argparse.HelpFormatter] = argparse.HelpFormatter
+    formatter_class: type[argparse.HelpFormatter] = argparse.HelpFormatter,
 ) -> argparse.ArgumentParser:
     parser = subparsers.add_parser(
         "configure-project",
         aliases=["configure"],
         help="Interactively configure project settings",
-        formatter_class=formatter_class
+        formatter_class=formatter_class,
     )
 
     # Optional Argument
@@ -24,7 +24,7 @@ def add_command(
         type=Path,
         default=Path("config.json"),
         metavar="CONFIG_FILE",
-        help="Path to the configuration file to save (default: config.json)"
+        help="Path to the configuration file to save (default: config.json)",
     )
 
     return parser

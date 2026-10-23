@@ -7,12 +7,12 @@ from xcard_automation.core.validator import validate_file
 
 def add_command(
     subparsers: argparse._SubParsersAction,
-    formatter_class: type[argparse.HelpFormatter] = argparse.HelpFormatter
+    formatter_class: type[argparse.HelpFormatter] = argparse.HelpFormatter,
 ) -> argparse.ArgumentParser:
     parser = subparsers.add_parser(
         "evaluate",
         help="Evaluate a rendered datacard",
-        formatter_class=formatter_class
+        formatter_class=formatter_class,
     )
 
     # Positional Arguments
@@ -20,7 +20,7 @@ def add_command(
         "datacard",
         type=Path,
         metavar="DATACARD_FILE",
-        help="Path to the rendered datacard file to validate"
+        help="Path to the rendered datacard file to validate",
     )
 
     # Output Options
@@ -29,7 +29,7 @@ def add_command(
         "--json",
         dest="emit_json",
         action="store_true",
-        help="Emit validation results as JSON for machine consumption"
+        help="Emit validation results as JSON for machine consumption",
     )
 
 

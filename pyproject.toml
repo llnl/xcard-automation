@@ -19,7 +19,7 @@ dev = [
 ]
 
 [project.scripts]
-xcard-cli = "xcard_automation.cli.main:main"
+xcard-cli = "xcard_automation.main:main"
 
 [tool.setuptools]
 include-package-data = false

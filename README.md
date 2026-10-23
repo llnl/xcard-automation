@@ -13,7 +13,7 @@ directory plus a reusable sidecar answers file.
     - `+ questionary==2.1.1`
     - `+ wcwidth==0.9.2`
 - test inspect with `uv run xcard-cli inspect <path-to-data-folder> --output-root <path-to-output-root-folder>`
-- test generate with `uv run xcard-cli generate  <path-to-data-folder> --profile core --answers <path-to-answers.json>  --output-root <path-to-output-root-folder>`
+- test generation with `uv run xcard-cli run <path-to-data-folder> --profile core --answers <path-to-answers.json> --output-root <path-to-output-root-folder>`
 - create a project config with `uv run xcard-cli configure-project`
 
 Project inputs can also live in one JSON or simple YAML config file. Relative
@@ -31,7 +31,7 @@ profile: core
 
 ```bash
 uv run xcard-cli inspect --config config.yaml
-uv run xcard-cli generate --config config.yaml --profile core
+uv run xcard-cli run --config config.yaml --profile core
 ```
 
 `configure-project` prompts for the project name, dataset root, and output
@@ -53,9 +53,9 @@ for GitLab CI. GitLab runs the same test command on every push.
 ## Commands
 
 ```bash
-python3 -m datacard_pipeline.cli inspect <dataset_dir>
-python3 -m datacard_pipeline.cli run <dataset_dir> --profile core
-python3 -m datacard_pipeline.cli validate <datacard.md>
+python -m xcard_automation inspect <dataset_dir>
+python -m xcard_automation run <dataset_dir> --profile core
+python -m xcard_automation evaluate <datacard.md>
 ```
 
 Artifacts are written under `runs/<dataset_slug>/` by default:
