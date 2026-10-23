@@ -1,6 +1,7 @@
 import argparse
 from pathlib import Path
 
+from xcard_automation.core.contract import DEFAULT_TEMPLATE_PATH
 from xcard_automation.core.pipeline import RunConfig, run_pipeline
 
 
@@ -31,6 +32,14 @@ def add_command(
         choices=["core", "extended", "ai_ready", "sensitive"],
         help="The compliance profile to use for generation"
     )
+    config_group.add_argument(
+        "--template",
+        type=Path,
+        default=DEFAULT_TEMPLATE_PATH,
+        metavar="TEMPLATE_FILE",
+        help=f"Path to the Jinja2 template (default: {DEFAULT_TEMPLATE_PATH})"
+    )
+
     output_group = parser.add_argument_group("Output Options")
     output_group.add_argument(
         "--output-root",
@@ -60,5 +69,6 @@ def handle(args: argparse.Namespace) -> int:
         output_root=args.output_root,
         answers_path=args.answers,
         resume=args.resume,
+        template_path=args.template,
     )
     return run_pipeline(config)

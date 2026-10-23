@@ -9,7 +9,6 @@ description = "Tooling to provide to agent with harness to automation xCard gene
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
-    "PyYAML>=6.0",
     "questionary>=2.1.1",
 ]
 
@@ -22,12 +21,12 @@ dev = [
 [project.scripts]
 xcard-cli = "xcard_automation.cli.main:main"
 
+[tool.setuptools]
+include-package-data = false
+
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["xcard_automation*"]
-
-[tool.setuptools.package-data]
-xcard_automation = ["ontology/*", "templates/data/*"]
 
 [tool.ruff]
 line-length = 79

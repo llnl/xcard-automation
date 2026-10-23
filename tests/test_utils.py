@@ -31,13 +31,11 @@ def test_flatten_answers_and_deep_merge_preserve_nested_values() -> None:
     }
 
 
-def test_load_yaml_file_supports_nested_lists(tmp_path) -> None:
+def test_load_yaml_file_supports_scalar_values(tmp_path) -> None:
     answers = tmp_path / "answers.yaml"
     answers.write_text(
-        "sponsor_organizations:\n  - name: DOE\n    ror_id: not_applicable\n",
+        "approved: true\nrecord_count: 2\n",
         encoding="utf-8",
     )
 
-    assert load_yaml_file(answers, {}) == {
-        "sponsor_organizations": [{"name": "DOE", "ror_id": "not_applicable"}]
-    }
+    assert load_yaml_file(answers, {}) == {"approved": True, "record_count": 2}

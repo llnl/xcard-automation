@@ -2,7 +2,13 @@ from dataclasses import dataclass
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_TEMPLATE_PATH = REPO_ROOT / "templates" / "data" / "template.md"
+DATA_STEWARDSHIP_ROOT = Path(__file__).resolve()
+DEFAULT_TEMPLATE_PATH = (
+    DATA_STEWARDSHIP_ROOT
+        .joinpath("templates")
+        .joinpath("data")
+        .joinpath("template.md")
+)
 DEFAULT_OUTPUT_ROOT = REPO_ROOT / "runs"
 
 

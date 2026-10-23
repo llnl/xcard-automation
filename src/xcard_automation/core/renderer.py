@@ -1,4 +1,3 @@
-from textwrap import dedent
 from typing import Any
 
 from .utils import dump_yaml
@@ -11,15 +10,16 @@ def render_datacard(metadata: dict[str, Any]) -> str:
 
 
 def render_body(metadata: dict[str, Any]) -> str:
-    return dedent(f"""
+
+    return f"""
         # Datacard for {metadata["identification"]["name"]}
         **Last Updated**: {metadata['datacard']['updated_date']}
 
         **Dataset Readiness Level:** {metadata['dataset_readiness']['level']}
 
-        ### Machine Usability Snapshot
-        | Aspect | Status |
-        |--------|--------|
+        "### Machine Usability Snapshot",
+        "| Aspect | Status |",
+        "|--------|--------|",
         | AI Ready | {_status_word(metadata['ai_usage'].get('ai_ready'))} |
         | License Clarity | {'Yes' if metadata['license'].get('spdx_id') not in {'', 'pending'} else 'No'} |
         | Machine Access | {'Yes' if metadata['access'].get('current_location') else 'No'} |
@@ -152,7 +152,7 @@ def render_body(metadata: dict[str, Any]) -> str:
 
         ---
 
-    """).replace("\n        ", "\n")
+    """
 
 
 def _status_word(value: Any) -> str:
