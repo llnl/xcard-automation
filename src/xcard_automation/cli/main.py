@@ -2,6 +2,7 @@ import argparse
 import sys
 
 from .commands.registry import COMMANDS
+from .config import ConfigError
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -23,7 +24,7 @@ and validating them against organizational compliance rules.
     )
 
     # Register all commands from the COMMANDS map
-    for cmd_module in COMMANDS.values():
+    for cmd_module in dict.fromkeys(COMMANDS.values()):
         cmd_module.add_command(
             subparsers,
             formatter_class=argparse.RawDescriptionHelpFormatter
@@ -39,7 +40,11 @@ def main(argv: list[str] | None = None) -> int:
     # Dispatch to the appropriate handler
     handler_module = COMMANDS.get(args.command)
     if handler_module:
-        return handler_module.handle(args)
+        try:
+            return handler_module.handle(args)
+        except ConfigError as error:
+            print(f"xcard-cli: error: {error}", file=sys.stderr)
+            return 2
 
     return 1
 

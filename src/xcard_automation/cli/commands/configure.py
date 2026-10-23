@@ -63,9 +63,15 @@ def _run_config_wizard(config_path: Path):
         validate=validate_dir
     ).ask()
 
-    config_data["answers_file"] = questionary.text(
+    config_data["answers"] = questionary.text(
         "Enter the filename/path for the answers file:", 
         default="answers.json"
+    ).ask()
+
+    config_data["profile"] = questionary.select(
+        "Select the compliance profile:",
+        choices=["core", "extended", "ai_ready", "sensitive"],
+        default="core",
     ).ask()
 
     print("\n--- Configuration Summary ---")
