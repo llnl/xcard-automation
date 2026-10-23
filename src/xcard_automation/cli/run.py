@@ -4,17 +4,18 @@ from pathlib import Path
 from xcard_automation.core.contract import DEFAULT_TEMPLATE_PATH
 from xcard_automation.core.pipeline import RunConfig, run_pipeline
 
-from ..config import ConfigError, apply_config
+from .config import ConfigError, apply_config
 
 
 def add_command(
     subparsers: argparse._SubParsersAction,
-    formatter_class: type[argparse.HelpFormatter] = argparse.HelpFormatter
+    formatter_class: type[argparse.HelpFormatter] = argparse.HelpFormatter,
 ) -> argparse.ArgumentParser:
     parser = subparsers.add_parser(
-        "generate",
+        "run",
+        aliases=["generate"],
         help="Run the full datacard generation pipeline",
-        formatter_class=formatter_class
+        formatter_class=formatter_class,
     )
 
     # 1. Positional Arguments
@@ -23,7 +24,7 @@ def add_command(
         type=Path,
         nargs="?",
         metavar="DATASET_DIR",  # Hint: Tells user what this is
-        help="Path to the directory containing the dataset to process"
+        help="Path to the directory containing the dataset to process",
     )
 
     # 2. Use Argument Groups to organize the --help output
@@ -32,14 +33,14 @@ def add_command(
     config_group.add_argument(
         "--profile",
         choices=["core", "extended", "ai_ready", "sensitive"],
-        help="The compliance profile to use for generation"
+        help="The compliance profile to use for generation",
     )
     config_group.add_argument(
         "--template",
         type=Path,
         default=DEFAULT_TEMPLATE_PATH,
         metavar="TEMPLATE_FILE",
-        help=f"Path to the Jinja2 template (default: {DEFAULT_TEMPLATE_PATH})"
+        help=f"Path to the Jinja2 template (default: {DEFAULT_TEMPLATE_PATH})",
     )
 
     output_group = parser.add_argument_group("Output Options")
@@ -47,24 +48,24 @@ def add_command(
         "--output-root",
         type=Path,
         metavar="OUTPUT_DIR",
-        help="Root directory where generated cards will be saved"
+        help="Root directory where generated cards will be saved",
     )
     output_group.add_argument(
         "--answers",
         type=Path,
         metavar="ANSWERS_JSON",
-        help="Path to a JSON file containing pre-filled answers"
+        help="Path to a JSON file containing pre-filled answers",
     )
     output_group.add_argument(
         "--resume",
         action="store_true",
-        help="Resume from the last successful checkpoint if available"
+        help="Resume from the last successful checkpoint if available",
     )
     parser.add_argument(
         "--config",
         type=Path,
         metavar="CONFIG_FILE",
-        help="Path to a project configuration file"
+        help="Path to a project configuration file",
     )
 
     return parser

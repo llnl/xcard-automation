@@ -1,9 +1,10 @@
-from . import configure, evaluate, generate, inspect
+from . import configure, evaluate, inspect, run
 
 COMMANDS = {
     "configure": configure,
     "configure-project": configure,
     "evaluate": evaluate,
-    "generate": generate,
+    "generate": run,
     "inspect": inspect,
+    "run": run,
 }
