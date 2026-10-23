@@ -39,9 +39,3 @@ def test_generate_reads_config_and_cli_overrides_it(
     assert run_config.profile == "extended"
     assert run_config.output_root == tmp_path / "output"
     assert run_config.answers_path == tmp_path / "answers.json"
-
-
-def test_run_is_an_alias_for_generate() -> None:
-    from xcard_automation.cli.main import build_parser
-
-    assert build_parser().parse_args(["run", "--config", "config.yaml"]).command == "run"

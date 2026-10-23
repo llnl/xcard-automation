@@ -31,8 +31,6 @@ profile: core
 ```bash
 uv run xcard-cli inspect --config config.yaml
 uv run xcard-cli generate --config config.yaml
-# `run` is an alias for `generate`
-uv run xcard-cli run --config config.yaml
 ```
 
 ## Testing

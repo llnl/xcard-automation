@@ -13,7 +13,6 @@ def add_command(
 ) -> argparse.ArgumentParser:
     parser = subparsers.add_parser(
         "generate",
-        aliases=["run"],
         help="Run the full datacard generation pipeline",
         formatter_class=formatter_class
     )
