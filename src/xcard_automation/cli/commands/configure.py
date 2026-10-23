@@ -4,13 +4,16 @@ from typing import Literal
 
 from xcard_automation.core.utils import write_json_file
 
+from ..config import ConfigError, validate_project_name
+
 
 def add_command(
     subparsers: argparse._SubParsersAction,
     formatter_class: type[argparse.HelpFormatter] = argparse.HelpFormatter
 ) -> argparse.ArgumentParser:
     parser = subparsers.add_parser(
-        "configure",
+        "configure-project",
+        aliases=["configure"],
         help="Interactively configure project settings",
         formatter_class=formatter_class
     )
@@ -39,7 +42,15 @@ def _run_config_wizard(config_path: Path):
     print("\n🚀 Project Configuration Wizard")
     print(f"Settings will be saved to: {config_path.absolute()}\n")
 
-    def validate_dir(text: str) -> str | Literal[True]:
+    def validate_name(text: str) -> str | Literal[True]:
+        try:
+            validate_project_name(text)
+        except ConfigError as error:
+            return str(error)
+        else:
+            return True
+
+    def validate_dataset_dir(text: str) -> str | Literal[True]:
         if not text:
             return "Directory path cannot be empty."
         if not Path(text).is_dir():
@@ -47,31 +58,22 @@ def _run_config_wizard(config_path: Path):
         return True
 
     config_data = {}
-
     config_data["project_name"] = questionary.text(
-        "What is the name of this project?", 
-        default="my_project"
-    ).ask()
-
-    config_data["output_root"] = questionary.text(
-        "Enter the output root directory (where results will be saved):", 
-        default="./output"
+        "Project name (no spaces):",
+        validate=validate_name,
     ).ask()
 
     config_data["dataset_dir"] = questionary.text(
-        "Enter the dataset directory:", 
-        validate=validate_dir
+        "Dataset root folder:",
+        validate=validate_dataset_dir,
     ).ask()
 
-    config_data["answers"] = questionary.text(
-        "Enter the filename/path for the answers file:", 
-        default="answers.json"
-    ).ask()
-
-    config_data["profile"] = questionary.select(
-        "Select the compliance profile:",
-        choices=["core", "extended", "ai_ready", "sensitive"],
-        default="core",
+    config_data["output_root"] = questionary.text(
+        "Output root folder:",
+        default="./output",
+        validate=lambda text: (
+            True if text else "Directory path cannot be empty."
+        ),
     ).ask()
 
     print("\n--- Configuration Summary ---")

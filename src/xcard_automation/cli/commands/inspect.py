@@ -47,14 +47,20 @@ def add_command(
 
 
 def handle(args: argparse.Namespace) -> int:
-    apply_config(args, {"dataset_dir": ("dataset_dir",), "output_root": ("output_root",)})
+    apply_config(
+        args,
+        {"dataset_dir": ("dataset_dir",), "output_root": ("output_root",)},
+        value_fields=("project_name",),
+    )
     if args.dataset_dir is None:
         raise ConfigError("dataset_dir is required (pass it or set it in --config)")
     introspection = inspect_dataset(args.dataset_dir)
     dataset_slug = introspection["dataset_slug"]
 
     if args.output_root:
-        run_dirs = prepare_run_dirs(args.output_root, dataset_slug)
+        run_dirs = prepare_run_dirs(
+            args.output_root, getattr(args, "project_name", None) or dataset_slug
+        )
 
         output_path = run_dirs["input"] / "introspection.json"
         write_json_file(output_path, introspection)

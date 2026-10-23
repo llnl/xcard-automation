@@ -14,14 +14,15 @@ directory plus a reusable sidecar answers file.
     - `+ wcwidth==0.9.2`
 - test inspect with `uv run xcard-cli inspect <path-to-data-folder> --output-root <path-to-output-root-folder>`
 - test generate with `uv run xcard-cli generate  <path-to-data-folder> --profile core --answers <path-to-answers.json>  --output-root <path-to-output-root-folder>`
-- test configure with `uv run xcard-cli configure`
+- create a project config with `uv run xcard-cli configure-project`
 
 Project inputs can also live in one JSON or simple YAML config file. Relative
 paths are resolved from the config file, and explicit command flags override
-its values. The supported fields are `dataset_dir`, `output_root`, `answers`,
-and `profile`:
+its values. The wizard writes `project_name`, `dataset_dir`, and `output_root`;
+`answers` and `profile` are optional supported fields:
 
 ```yaml
+project_name: my-project
 dataset_dir: data
 output_root: output
 answers: answers.json
@@ -30,8 +31,12 @@ profile: core
 
 ```bash
 uv run xcard-cli inspect --config config.yaml
-uv run xcard-cli generate --config config.yaml
+uv run xcard-cli generate --config config.yaml --profile core
 ```
+
+`configure-project` prompts for the project name, dataset root, and output
+root. With a project name, inspection results are written consistently to
+`<output-root>/<project-name>/input/introspection.json`.
 
 ## Testing
 

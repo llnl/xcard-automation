@@ -78,7 +78,7 @@ def handle(args: argparse.Namespace) -> int:
             "output_root": ("output_root",),
             "answers": ("answers", "answers_file"),
         },
-        value_fields=("profile",),
+        value_fields=("profile", "project_name"),
     )
     if args.dataset_dir is None:
         raise ConfigError("dataset_dir is required (pass it or set it in --config)")
@@ -93,5 +93,6 @@ def handle(args: argparse.Namespace) -> int:
         answers_path=args.answers,
         resume=args.resume,
         template_path=args.template,
+        project_name=getattr(args, "project_name", None),
     )
     return run_pipeline(config)

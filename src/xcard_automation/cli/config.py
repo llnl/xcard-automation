@@ -11,6 +11,17 @@ class ConfigError(ValueError):
     """A project configuration could not be used."""
 
 
+def validate_project_name(value: object) -> str:
+    """Ensure a project name remains within the configured output root."""
+    if not isinstance(value, str) or not value:
+        raise ConfigError("project_name must be a non-empty string")
+    if any(char.isspace() for char in value):
+        raise ConfigError("project_name cannot contain spaces")
+    if value in {".", ".."} or "/" in value or "\\" in value:
+        raise ConfigError("project_name must be a single directory name")
+    return value
+
+
 def apply_config(
     args: Namespace,
     path_fields: dict[str, tuple[str, ...]],
@@ -43,7 +54,10 @@ def apply_config(
 
     for field in value_fields:
         if getattr(args, field, None) is None and field in config:
-            setattr(args, field, config[field])
+            value = config[field]
+            if field == "project_name":
+                value = validate_project_name(value)
+            setattr(args, field, value)
     return args
 
 

@@ -29,13 +29,14 @@ class RunConfig:
     answers_path: Path | None = None
     resume: bool = False
     template_path: Path = DEFAULT_TEMPLATE_PATH
+    project_name: str | None = None
 
 
 def run_pipeline(config: RunConfig) -> int:
     dataset_dir = config.dataset_dir.resolve()
     introspection = inspect_dataset(dataset_dir)
     dataset_slug = introspection["dataset_slug"]
-    run_dirs = prepare_run_dirs(config.output_root, dataset_slug)
+    run_dirs = prepare_run_dirs(config.output_root, config.project_name or dataset_slug)
     answers_path = config.answers_path or (run_dirs["input"] / "answers.yaml")
     answers = load_yaml_file(answers_path, {})
     checksum_info = build_checksum_manifest(dataset_dir, run_dirs["automation_output"] / "checksums.sha256")
@@ -52,6 +53,7 @@ def run_pipeline(config: RunConfig) -> int:
         "profile": config.profile,
         "template_path": str(config.template_path),
         "output_root": str(run_dirs["root"]),
+        "project_name": config.project_name,
         "resume": config.resume,
         "ontology_yaml": load_ontology_summary()["paths"]["yaml"],
         "ontology_shacl": load_ontology_summary()["paths"]["shacl"],
