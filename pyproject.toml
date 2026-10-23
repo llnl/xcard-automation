@@ -105,3 +105,6 @@ convention = "google"
 [tool.pytest.ini_options]
 addopts = "--cov=xcard_automation --cov-report=term-missing --cov-report=xml"
 testpaths = ["tests"]
+markers = [
+    "integration: exercises the pipeline across filesystem and harness boundaries",
+]
