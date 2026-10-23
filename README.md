@@ -4,7 +4,7 @@ CLI-first automation pipeline for generating Genesis datacards from a dataset
 directory plus a reusable sidecar answers file.
 
 ## Setup
-
+ 
 - `uv sync` to create virtual environment and install xcard_automation packages.
 - Confirm install with `uv pip list`
   - should see 
