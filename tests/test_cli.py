@@ -3,11 +3,13 @@ import subprocess
 import sys
 from pathlib import Path
 
+import pytest
 from pytest import MonkeyPatch
 
 from xcard_automation.main import main
-from xcard_automation.cli import run
+from xcard_automation.cli import configure, evaluate, run
 from xcard_automation.core.pipeline import RunConfig
+from xcard_automation.core.validator import Finding, ValidationResult
 
 
 def test_inspect_reads_paths_from_config(dataset_dir: Path, tmp_path: Path) -> None:
@@ -47,7 +49,10 @@ def test_inspect_rejects_project_name_outside_output_root(
 
 
 def test_configure_project_writes_the_project_paths(
-    dataset_dir: Path, monkeypatch: MonkeyPatch, tmp_path: Path
+    dataset_dir: Path,
+    monkeypatch: MonkeyPatch,
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
 ) -> None:
     class Answer:
         def __init__(self, value: str | bool) -> None:
@@ -75,6 +80,7 @@ def test_configure_project_writes_the_project_paths(
         "dataset_dir": str(dataset_dir),
         "output_root": "./output",
     }
+    assert "Configuration successfully saved to" in capsys.readouterr().out
 
 
 def test_generate_reads_config_and_cli_overrides_it(
@@ -115,3 +121,130 @@ def test_module_entry_point_displays_help() -> None:
 
     assert result.returncode == 0
     assert "{configure-project,configure,evaluate,run,generate,inspect}" in result.stdout
+
+
+def test_module_entry_point_reports_parser_errors() -> None:
+    result = subprocess.run(
+        [sys.executable, "-m", "xcard_automation", "unknown-command"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert result.returncode == 2
+    assert "invalid choice: 'unknown-command'" in result.stderr
+
+
+def test_configure_alias_returns_handler_exit_code(
+    monkeypatch: MonkeyPatch, tmp_path: Path
+) -> None:
+    monkeypatch.setattr(configure, "_run_config_wizard", lambda _: False)
+
+    assert main(["configure", "--config", str(tmp_path / "config.json")]) == 1
+
+
+def test_inspect_prints_results_to_stdout(
+    dataset_dir: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    assert main(["inspect", str(dataset_dir)]) == 0
+
+    output = json.loads(capsys.readouterr().out)
+    assert output["dataset_slug"] == "sample_dataset"
+    assert output["file_count"] == 3
+
+
+def test_run_accepts_all_cli_options(monkeypatch: MonkeyPatch, tmp_path: Path) -> None:
+    captured: dict[str, RunConfig] = {}
+
+    def run_pipeline(run_config: RunConfig) -> int:
+        captured["config"] = run_config
+        return 0
+
+    monkeypatch.setattr(run, "run_pipeline", run_pipeline)
+    template = tmp_path / "template.md"
+
+    assert (
+        main(
+            [
+                "run",
+                "dataset",
+                "--profile",
+                "core",
+                "--template",
+                str(template),
+                "--output-root",
+                "output",
+                "--answers",
+                "answers.json",
+                "--resume",
+            ]
+        )
+        == 0
+    )
+    config = captured["config"]
+    assert config.dataset_dir == Path("dataset")
+    assert config.profile == "core"
+    assert config.template_path == template
+    assert config.output_root == Path("output")
+    assert config.answers_path == Path("answers.json")
+    assert config.resume is True
+
+
+@pytest.mark.parametrize(
+    ("argv", "message"),
+    [
+        (["inspect"], "dataset_dir is required"),
+        (["run", "dataset"], "profile is required"),
+    ],
+)
+def test_commands_report_missing_required_configuration(
+    argv: list[str], message: str, capsys: pytest.CaptureFixture[str]
+) -> None:
+    assert main(argv) == 2
+    assert f"xcard-cli: error: {message}" in capsys.readouterr().err
+
+
+@pytest.mark.parametrize(
+    ("argv", "message"),
+    [
+        (["evaluate"], "the following arguments are required: DATACARD_FILE"),
+        (["run", "dataset", "--profile", "not-a-profile"], "invalid choice"),
+    ],
+)
+def test_argparse_rejects_missing_or_invalid_arguments(
+    argv: list[str], message: str, capsys: pytest.CaptureFixture[str]
+) -> None:
+    with pytest.raises(SystemExit) as error:
+        main(argv)
+
+    assert error.value.code == 2
+    assert message in capsys.readouterr().err
+
+
+def test_evaluate_reports_text_and_json_results(
+    monkeypatch: MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    valid = ValidationResult()
+    invalid = ValidationResult(
+        [
+            Finding(
+                "MISSING_REQUIRED",
+                "identification.name",
+                message="required value is missing",
+            )
+        ]
+    )
+    monkeypatch.setattr(evaluate, "validate_file", lambda _: valid)
+
+    assert main(["evaluate", "card.md"]) == 0
+    assert capsys.readouterr().out == "OK\n"
+
+    monkeypatch.setattr(evaluate, "validate_file", lambda _: invalid)
+    assert main(["evaluate", "card.md"]) == 1
+    assert capsys.readouterr().out == (
+        "FAIL\n"
+        "[error] MISSING_REQUIRED identification.name: required value is missing\n"
+    )
+
+    assert main(["evaluate", "card.md", "--json"]) == 1
+    assert json.loads(capsys.readouterr().out) == invalid.as_dict()
