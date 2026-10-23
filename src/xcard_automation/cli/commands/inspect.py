@@ -6,6 +6,8 @@ from xcard_automation.core.artifacts import prepare_run_dirs
 from xcard_automation.core.introspect import inspect_dataset
 from xcard_automation.core.utils import write_json_file
 
+from ..config import ConfigError, apply_config
+
 
 def add_command(
     subparsers: argparse._SubParsersAction,
@@ -21,6 +23,7 @@ def add_command(
     parser.add_argument(
         "dataset_dir",
         type=Path,
+        nargs="?",
         metavar="DATASET_DIR",
         help="Path to the directory containing the dataset to inspect"
     )
@@ -33,11 +36,20 @@ def add_command(
         metavar="OUTPUT_DIR",
         help="Write the inspection results to a inspect_results.jsonfile instead of stdout"
     )
+    parser.add_argument(
+        "--config",
+        type=Path,
+        metavar="CONFIG_FILE",
+        help="Path to a project configuration file"
+    )
 
     return parser
 
 
 def handle(args: argparse.Namespace) -> int:
+    apply_config(args, {"dataset_dir": ("dataset_dir",), "output_root": ("output_root",)})
+    if args.dataset_dir is None:
+        raise ConfigError("dataset_dir is required (pass it or set it in --config)")
     introspection = inspect_dataset(args.dataset_dir)
     dataset_slug = introspection["dataset_slug"]
 

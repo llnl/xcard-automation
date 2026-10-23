@@ -16,6 +16,25 @@ directory plus a reusable sidecar answers file.
 - test generate with `uv run xcard-cli generate  <path-to-data-folder> --profile core --answers <path-to-answers.json>  --output-root <path-to-output-root-folder>`
 - test configure with `uv run xcard-cli configure`
 
+Project inputs can also live in one JSON or simple YAML config file. Relative
+paths are resolved from the config file, and explicit command flags override
+its values. The supported fields are `dataset_dir`, `output_root`, `answers`,
+and `profile`:
+
+```yaml
+dataset_dir: data
+output_root: output
+answers: answers.json
+profile: core
+```
+
+```bash
+uv run xcard-cli inspect --config config.yaml
+uv run xcard-cli generate --config config.yaml
+# `run` is an alias for `generate`
+uv run xcard-cli run --config config.yaml
+```
+
 ## Testing
 
 Install the development dependencies and run the test suite with coverage:

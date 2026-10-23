@@ -5,4 +5,5 @@ COMMANDS = {
     "evaluate": evaluate,
     "generate": generate,
     "inspect": inspect,
+    "run": generate,
 }

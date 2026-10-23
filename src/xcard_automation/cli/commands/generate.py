@@ -4,6 +4,8 @@ from pathlib import Path
 from xcard_automation.core.contract import DEFAULT_TEMPLATE_PATH
 from xcard_automation.core.pipeline import RunConfig, run_pipeline
 
+from ..config import ConfigError, apply_config
+
 
 def add_command(
     subparsers: argparse._SubParsersAction,
@@ -11,6 +13,7 @@ def add_command(
 ) -> argparse.ArgumentParser:
     parser = subparsers.add_parser(
         "generate",
+        aliases=["run"],
         help="Run the full datacard generation pipeline",
         formatter_class=formatter_class
     )
@@ -19,6 +22,7 @@ def add_command(
     parser.add_argument(
         "dataset_dir",
         type=Path,
+        nargs="?",
         metavar="DATASET_DIR",  # Hint: Tells user what this is
         help="Path to the directory containing the dataset to process"
     )
@@ -28,7 +32,6 @@ def add_command(
 
     config_group.add_argument(
         "--profile",
-        required=True,
         choices=["core", "extended", "ai_ready", "sensitive"],
         help="The compliance profile to use for generation"
     )
@@ -58,11 +61,32 @@ def add_command(
         action="store_true",
         help="Resume from the last successful checkpoint if available"
     )
+    parser.add_argument(
+        "--config",
+        type=Path,
+        metavar="CONFIG_FILE",
+        help="Path to a project configuration file"
+    )
 
     return parser
 
 
 def handle(args: argparse.Namespace) -> int:
+    apply_config(
+        args,
+        {
+            "dataset_dir": ("dataset_dir",),
+            "output_root": ("output_root",),
+            "answers": ("answers", "answers_file"),
+        },
+        value_fields=("profile",),
+    )
+    if args.dataset_dir is None:
+        raise ConfigError("dataset_dir is required (pass it or set it in --config)")
+    if args.profile is None:
+        raise ConfigError("profile is required (pass it or set it in --config)")
+    if args.profile not in {"core", "extended", "ai_ready", "sensitive"}:
+        raise ConfigError(f"Invalid profile: {args.profile}")
     config = RunConfig(
         dataset_dir=args.dataset_dir,
         profile=args.profile,
