@@ -1,5 +1,6 @@
 stages:
   - test
+  - integration
 
 tests:
   stage: test
@@ -7,7 +8,7 @@ tests:
   script:
     - python -m pip install --upgrade pip
     - python -m pip install -e ".[dev]"
-    - python -m pytest
+    - python -m pytest -m "not integration"
   artifacts:
     reports:
       coverage_report:
@@ -15,3 +16,11 @@ tests:
         path: coverage.xml
     paths:
       - coverage.xml
+
+integration-tests:
+  stage: integration
+  image: python:3.14
+  script:
+    - python -m pip install --upgrade pip
+    - python -m pip install -e ".[dev]"
+    - python -m pytest -m integration
