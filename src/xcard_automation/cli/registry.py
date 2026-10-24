@@ -1,6 +1,7 @@
-from . import configure, evaluate, inspect, run
+from . import approve, configure, evaluate, inspect, run
 
 COMMANDS = {
+    "approve-proposals": approve,
     "configure": configure,
     "configure-project": configure,
     "evaluate": evaluate,

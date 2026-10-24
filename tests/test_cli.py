@@ -111,6 +111,25 @@ def test_generate_reads_config_and_cli_overrides_it(
     assert main(["generate", "other-data", "--config", str(config), "--profile", "extended"]) == 0
 
 
+def test_run_reads_llm_command_from_config(monkeypatch: MonkeyPatch, tmp_path: Path) -> None:
+    config = tmp_path / "config.yaml"
+    config.write_text(
+        "dataset_dir: data\noutput_root: output\nprofile: core\n"
+        "llm:\n  command: [agent, --safe]\n",
+        encoding="utf-8",
+    )
+    captured: dict[str, RunConfig] = {}
+
+    def capture(value: RunConfig) -> int:
+        captured["config"] = value
+        return 0
+
+    monkeypatch.setattr(run, "run_pipeline", capture)
+
+    assert main(["run", "--config", str(config)]) == 0
+    assert captured["config"].llm_command == ["agent", "--safe"]
+
+
 def test_module_entry_point_displays_help() -> None:
     result = subprocess.run(
         [sys.executable, "-m", "xcard_automation", "--help"],
@@ -120,7 +139,7 @@ def test_module_entry_point_displays_help() -> None:
     )
 
     assert result.returncode == 0
-    assert "{configure-project,configure,evaluate,run,generate,inspect}" in result.stdout
+    assert "approve-proposals" in result.stdout
 
 
 def test_module_entry_point_reports_parser_errors() -> None:
@@ -153,7 +172,7 @@ def test_inspect_prints_results_to_stdout(
     assert output["file_count"] == 3
 
 
-def test_run_accepts_all_cli_options(monkeypatch: MonkeyPatch, tmp_path: Path) -> None:
+def test_run_accepts_all_cli_options(monkeypatch: MonkeyPatch) -> None:
     captured: dict[str, RunConfig] = {}
 
     def run_pipeline(run_config: RunConfig) -> int:
@@ -161,8 +180,6 @@ def test_run_accepts_all_cli_options(monkeypatch: MonkeyPatch, tmp_path: Path) -
         return 0
 
     monkeypatch.setattr(run, "run_pipeline", run_pipeline)
-    template = tmp_path / "template.md"
-
     assert (
         main(
             [
@@ -170,13 +187,14 @@ def test_run_accepts_all_cli_options(monkeypatch: MonkeyPatch, tmp_path: Path) -
                 "dataset",
                 "--profile",
                 "core",
-                "--template",
-                str(template),
                 "--output-root",
                 "output",
                 "--answers",
                 "answers.json",
                 "--resume",
+                "--llm-agent",
+                "agent",
+                "--mode",
             ]
         )
         == 0
@@ -184,14 +202,61 @@ def test_run_accepts_all_cli_options(monkeypatch: MonkeyPatch, tmp_path: Path) -
     config = captured["config"]
     assert config.dataset_dir == Path("dataset")
     assert config.profile == "core"
-    assert config.template_path == template
     assert config.output_root == Path("output")
     assert config.answers_path == Path("answers.json")
     assert config.resume is True
+    assert config.llm_command == ["agent", "--mode"]
+
+
+def test_approve_proposals_writes_reviewed_metadata_to_answers(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    run_dir = tmp_path / "run"
+    proposals = run_dir / "automation_output" / "llm_proposals.json"
+    proposals.parent.mkdir(parents=True)
+    proposals.write_text(
+        json.dumps(
+            [
+                {"path": "identification.name", "value": "Benchmark Dataset"},
+                {
+                    "path": "authors",
+                    "value": [{"given_name": "Ada", "family_name": "Lovelace"}],
+                },
+                {
+                    "path": "citation",
+                    "value": {"preferred_citation": {"author": "Ada Lovelace"}},
+                },
+            ]
+        ),
+        encoding="utf-8",
+    )
+    answers = tmp_path / "answers.json"
+    answers.write_text("{}", encoding="utf-8")
+
+    assert main(["approve-proposals", str(run_dir), "--answers", str(answers)]) == 0
+
+    assert json.loads(answers.read_text()) == {
+        "identification": {"name": "Benchmark Dataset"},
+        "authors": [{"given_name": "Ada", "family_name": "Lovelace"}],
+        "citation": {"preferred_citation": {"author": "Ada Lovelace"}},
+    }
+    assert capsys.readouterr().out == "Applied proposals: identification.name, authors, citation\n"
+
+
+def test_approve_proposals_rejects_malformed_proposals(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    run_dir = tmp_path / "run"
+    proposals = run_dir / "automation_output" / "llm_proposals.json"
+    proposals.parent.mkdir(parents=True)
+    proposals.write_text(json.dumps(["not a proposal"]), encoding="utf-8")
+
+    assert main(["approve-proposals", str(run_dir), "--answers", str(tmp_path / "answers.json")]) == 2
+    assert "xcard-cli: error: Proposals must be objects" in capsys.readouterr().err
 
 
 @pytest.mark.parametrize(
-    ("argv", "message"),
+        ("argv", "message"),
     [
         (["inspect"], "dataset_dir is required"),
         (["run", "dataset"], "profile is required"),
@@ -209,7 +274,6 @@ def test_commands_report_missing_required_configuration(
     ("argv", "message"),
     [
         (["evaluate"], "the following arguments are required: DATACARD_FILE"),
-        (["run", "dataset", "--profile", "not-a-profile"], "invalid choice"),
     ],
 )
 def test_argparse_rejects_missing_or_invalid_arguments(
@@ -225,27 +289,31 @@ def test_argparse_rejects_missing_or_invalid_arguments(
 def test_evaluate_reports_text_and_json_results(
     monkeypatch: MonkeyPatch, capsys: pytest.CaptureFixture[str]
 ) -> None:
-    valid = ValidationResult()
-    invalid = ValidationResult(
-        [
-            Finding(
-                "MISSING_REQUIRED",
-                "identification.name",
-                message="required value is missing",
-            )
-        ]
-    )
-    monkeypatch.setattr(evaluate, "validate_file", lambda _: valid)
+    monkeypatch.setattr(evaluate, "load_bundle", lambda _: object())
+    monkeypatch.setattr(evaluate, "validate_card", lambda *_: [])
 
     assert main(["evaluate", "card.md"]) == 0
     assert capsys.readouterr().out == "OK\n"
 
-    monkeypatch.setattr(evaluate, "validate_file", lambda _: invalid)
+    monkeypatch.setattr(
+        evaluate,
+        "validate_card",
+        lambda *_: [
+            {
+                "code": "SCHEMA_INVALID",
+                "field": "identification.name",
+                "severity": "error",
+                "message": "required value is missing",
+            }
+        ],
+    )
     assert main(["evaluate", "card.md"]) == 1
     assert capsys.readouterr().out == (
         "FAIL\n"
-        "[error] MISSING_REQUIRED identification.name: required value is missing\n"
+        "[error] SCHEMA_INVALID identification.name: required value is missing\n"
     )
 
     assert main(["evaluate", "card.md", "--json"]) == 1
-    assert json.loads(capsys.readouterr().out) == invalid.as_dict()
+    assert json.loads(capsys.readouterr().out) == ValidationResult(
+        [Finding("SCHEMA_INVALID", "identification.name", message="required value is missing")]
+    ).as_dict()

@@ -1,0 +1,12 @@
+llm_safe_paths:
+  - description.summary
+  - description.keywords
+  - categorization.science_domain
+  - provenance.was_generated_by
+  - provenance.processing_steps
+  - dataset_info.schema_version
+  - dataset_info.language
+llm_review_paths:
+  - identification.name
+  - authors
+  - citation

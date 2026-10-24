@@ -2,7 +2,9 @@ import argparse
 import json
 from pathlib import Path
 
-from xcard_automation.core.validator import validate_file
+from xcard_automation.core.evaluation import validate_card
+from xcard_automation.core.schema_bundle import load_bundle
+from xcard_automation.core.validator import Finding, ValidationResult
 
 
 def add_command(
@@ -22,6 +24,12 @@ def add_command(
         metavar="DATACARD_FILE",
         help="Path to the rendered datacard file to validate",
     )
+    parser.add_argument(
+        "--schema-bundle",
+        type=Path,
+        metavar="BUNDLE_DIR",
+        help="Local schema bundle directory (default: packaged Genesis 1.2 bundle)",
+    )
 
     # Output Options
     output_group = parser.add_argument_group("Output Options")
@@ -34,7 +42,18 @@ def add_command(
 
 
 def handle(args: argparse.Namespace) -> int:
-    result = validate_file(args.datacard)
+    bundle = load_bundle(args.schema_bundle)
+    result = ValidationResult(
+        [
+            Finding(
+                finding["code"] or "SCHEMA_INVALID",
+                finding["field"] or "(document)",
+                finding["severity"] or "error",
+                finding["message"] or "",
+            )
+            for finding in validate_card(args.datacard, bundle)
+        ]
+    )
     if args.emit_json:
         print(json.dumps(result.as_dict(), indent=2))
     else:
