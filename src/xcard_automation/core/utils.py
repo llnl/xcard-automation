@@ -5,6 +5,8 @@ from datetime import date
 from pathlib import Path
 from typing import Any
 
+import yaml
+
 PLACEHOLDER_RE = re.compile(r"\$\{[^}]+\}|__[^_\n][^_\n]*__|\[!TODO\]|<REPLACE:|<INSTRUCTIONS:|<metadata_key:")
 
 
@@ -30,7 +32,7 @@ def load_yaml_file(path: Path, default: Any) -> Any:
     try:
         data = json.loads(text)
     except json.JSONDecodeError:
-        data = _simple_yaml_parse(text)
+        data = yaml.safe_load(text)
     return deepcopy(default) if data is None else data
 
 

@@ -1,0 +1,10 @@
+id: genesis_datacard
+version: "1.2"
+template: datacard.j2
+linkml_schema: ../../../../xcard-evaluation/bundles/genesis_datacard/1.2/schema/genesis_datacard.yaml
+ontology: ontology.yaml
+automation_policy: automation_policy.yaml
+root_class: GenesisDatacardClass
+mapping: mapping.yaml
+output_filename: genesis_datacard_{{ context.dataset.slug }}.md
+profiles: [core]
