@@ -1,0 +1,4539 @@
+id: http://example.org/llnl
+name: llnl_ontology
+title: llnl ontology
+description: llnl ontology.
+license: https://creativecommons.org/licenses/by/4.0/
+prefixes:
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  owl: http://www.w3.org/2002/07/owl#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  skos: http://www.w3.org/2004/02/skos/core#
+  skosxl: http://www.w3.org/2008/05/skos-xl#
+  dc: http://purl.org/dc/elements/1.1/
+  dcterms: http://purl.org/dc/terms/
+  dctype: http://purl.org/dc/dcmitype/
+  terms: http://purl.org/dc/terms/
+  foaf: http://xmlns.com/foaf/0.1/
+  prov: http://www.w3.org/ns/prov#
+  sh: http://www.w3.org/ns/shacl#
+  vann: http://purl.org/vocab/vann/
+  void: http://rdfs.org/ns/void#
+  dcat: http://www.w3.org/ns/dcat#
+  org: http://www.w3.org/ns/org#
+  time: http://www.w3.org/2006/time#
+  vcard: http://www.w3.org/2006/vcard/ns#
+  geo: http://www.w3.org/2003/01/geo/wgs84_pos#
+  sosa: http://www.w3.org/ns/sosa/
+  ssn: http://www.w3.org/ns/ssn/
+  qb: http://purl.org/linked-data/cube#
+  schema: https://schema.org/
+  qudt: http://qudt.org/schema/qudt/
+  unit: http://qudt.org/vocab/unit/
+  quantitykind: http://qudt.org/vocab/quantitykind/
+  cco: https://www.commoncoreontologies.org/
+  iof: https://spec.industrialontologies.org/ontology/core/Core/
+  pmd: https://w3id.org/pmd/co/
+  emmo: https://w3id.org/emmo#
+  obo: http://purl.obolibrary.org/obo/
+  bfo: http://purl.obolibrary.org/obo/BFO_
+  iao: http://purl.obolibrary.org/obo/IAO_
+  ro: http://purl.obolibrary.org/obo/RO_
+  pato: http://purl.obolibrary.org/obo/PATO_
+  go: http://purl.obolibrary.org/obo/GO_
+  chebi: http://purl.obolibrary.org/obo/CHEBI_
+  cl: http://purl.obolibrary.org/obo/CL_
+  uberon: http://purl.obolibrary.org/obo/UBERON_
+  obi: http://purl.obolibrary.org/obo/OBI_
+  envo: http://purl.obolibrary.org/obo/ENVO_
+  po: http://purl.obolibrary.org/obo/PO_
+  so: http://purl.obolibrary.org/obo/SO_
+  pr: http://purl.obolibrary.org/obo/PR_
+  uo: http://purl.obolibrary.org/obo/UO_
+  om: http://purl.obolibrary.org/obo/OM_
+  ncbitaxon: http://purl.obolibrary.org/obo/NCBITAXON_
+  doid: http://purl.obolibrary.org/obo/DOID_
+  hp: http://purl.obolibrary.org/obo/HP_
+  mondo: http://purl.obolibrary.org/obo/MONDO_
+  ncit: http://purl.obolibrary.org/obo/NCIT_
+  cheminf: http://purl.obolibrary.org/obo/CHEMINF_
+  mop: http://purl.obolibrary.org/obo/MOP_
+  stato: http://purl.obolibrary.org/obo/STATO_
+  bspo: http://purl.obolibrary.org/obo/BSPO_
+  caro: http://purl.obolibrary.org/obo/CARO_
+  chmo: http://purl.obolibrary.org/obo/CHMO_
+  duo: http://purl.obolibrary.org/obo/DUO_
+  efo: http://purl.obolibrary.org/obo/EFO_
+  fma: http://purl.obolibrary.org/obo/FMA_
+  ma: http://purl.obolibrary.org/obo/MA_
+  obcs: http://purl.obolibrary.org/obo/OBCS_
+  ogms: http://purl.obolibrary.org/obo/OGMS_
+  ogg: http://purl.obolibrary.org/obo/OGG_
+  peco: http://purl.obolibrary.org/obo/PECO_
+  to: http://purl.obolibrary.org/obo/TO_
+  vt: http://purl.obolibrary.org/obo/VT_
+  wbbt: http://purl.obolibrary.org/obo/WBBT_
+  zfa: http://purl.obolibrary.org/obo/ZFA_
+  clo: http://purl.obolibrary.org/obo/CLO_
+  cmo: http://purl.obolibrary.org/obo/CMO_
+  hsapdv: http://purl.obolibrary.org/obo/HSAPDV_
+  linkml: https://w3id.org/linkml/
+  llnl: http://example.org/llnl#
+  bibo: http://purl.org/ontology/bibo/
+  collections: http://purl.org/co/
+  cros: http://www.semanticweb.org/cao/ontologies/CROS#
+  datacite: http://purl.org/spar/datacite/
+  dqv: http://www.w3.org/ns/dqv#
+  iof-core: https://spec.industrialontologies.org/ontology/construct/
+  ma-ont: http://www.w3.org/ns/ma-ont#
+  mseo: https://purl.matolab.org/mseo/mid/
+  pmdco: https://w3id.org/pmd/co/
+  swo: http://www.ebi.ac.uk/swo/
+default_prefix: llnl
+default_range: string
+imports:
+- linkml:types
+classes:
+  genesis_datacard_merged_shared:
+    title: genesis_datacard_merged_shared
+    description: '<INSTRUCTIONS: Considerations for filling out the data card: Deciding
+      the appropriate resolution for documenting a scientific dataset in a data card
+      can be complex. Data cards may describe single or multiple data files, datasets,
+      or versions. Too granular, and there will be too many data cards; too broad,
+      and details may be lost. Consider the use, audience, and documentation the data
+      card needs to provide to maintain transparency without duplication. Reflect
+      on these relationships to balance clarity, usability, and sustainability.>'
+    is_a: ont00000253
+  supports_discoverability:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: datacard_capabilities
+      value:
+        range: YesNo
+    title: supports_discoverability
+    description: '[required] Yes is required as all data cards must support basic
+      discovery and identification of the dataset. Yes is required for all data cards.'
+    is_a: ont00000965
+  supports_interoperability:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: datacard_capabilities
+      value:
+        range: YesNo
+    title: supports_interoperability
+    description: '[required] Set to Yes if this data card includes the metadata to
+      support interoperability of the dataset. Does not necessary indicate that the
+      dataset itself is interoperable, only that the data card includes all the metadata
+      to support interoperability.'
+    is_a: ont00000965
+  supports_reusability:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: datacard_capabilities
+      value:
+        range: YesNo
+    title: supports_reusability
+    description: '[required] Set to Yes if this data card includes the metadata to
+      support reusability of the dataset. Does not necessary indicate that the dataset
+      itself is reusable, only that the data card includes some metadata to support
+      reusability.'
+    is_a: ont00000965
+  supports_governed_use:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: datacard_capabilities
+      value:
+        range: YesNo
+    title: supports_governed_use
+    description: '[required] Set to Yes if this data card includes the metadata to
+      support governed use of the dataset. Does not necessary indicate that the dataset
+      itself is cleared for governed use, only that the data card includes some metadata
+      to support governed use.'
+    is_a: ont00000965
+  supports_ai_usability:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: datacard_capabilities
+      value:
+        range: YesNo
+    title: supports_ai_usability
+    description: '[required] Set to Yes if this data card includes the metadata to
+      support AI usability of the dataset. Does not necessary indicate that the dataset
+      itself is AI-usable, only that the data card includes some metadata to support
+      AI usability.'
+    is_a: ont00000965
+  discoverability:
+    slots:
+    - bfo_BFO_0000101
+    slot_usage:
+      bfo_BFO_0000101:
+        range: genesis_datacard_merged_shared
+    title: discoverability
+    description: "DATA CARD METADATA Describes this document itself \u2014 not the\
+      \ dataset."
+    is_a: ont00000853
+  datacard:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: discoverability
+    title: datacard
+    description: "Describes this document itself \u2014 not the dataset."
+    is_a: ont00000853
+  template_version:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: datacard
+      value:
+        range: string
+    title: template_version
+    description: "[discoverability_required] DO NOT MODIFY \u2014 used by parsers\
+      \ to apply version-specific logic"
+    is_a: ont00000649
+  datacard_version:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: datacard
+      value:
+        range: string
+    title: datacard_version
+    description: "[discoverability_required] Version of this specific data card document.\
+      \ Increment when the data card is meaningfully updated. Use semantic versioning:\
+      \ MAJOR.MINOR.PATCH e.g., 1.0 \u2192 1.1 for content updates; 1.x \u2192 2.0\
+      \ for structural changes"
+    is_a: ont00000649
+  filename:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: datacard
+      value:
+        range: string
+    title: filename
+    description: '[discoverability_required] Follow naming convention; align with
+      identification.name'
+    is_a: ont00000649
+  language:
+    slots:
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: data_structure
+      value:
+        range: string
+    title: language
+    description: '[discoverability_required] ISO 639-1 language code for this data
+      card''s content'
+    is_a: ont00001175
+  id:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: datacard
+      value:
+        range: string
+    title: id
+    description: '[discoverability_if_applicable] Persistent identifier for this data
+      card document itself, distinct from the dataset identifier. Assign if the data
+      card is registered in a catalog or repository independently of the dataset.'
+    is_a: ont00000292
+  type:
+    slots:
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: contributors
+      value:
+        range: value_identifier_set
+    title: type
+    description: doi | ark | handle | url | local | other
+    is_a: ont00000853
+  value:
+    slots:
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: datacard_checksum
+      value:
+        range: string
+    title: value
+    description: Link to model card or documentation if available
+    is_a: ont00000853
+  sensitivity:
+    slots:
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: discoverability
+    title: sensitivity
+    description: Sensitivity of the DATA CARD itself, which may differ from the sensitivity
+      of the dataset it describes. Populate based on the sensitivity of the data card
+      content alone, not the dataset. See NOTE ON SENSITIVITY above.
+    is_a: ont00000853
+  overall_sensitivity:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: sensitivity
+      value:
+        range: security_set
+    title: overall_sensitivity
+    description: '[discoverability_required] The overall sensitivity of THE DATA CARD
+      only. Set based solely on the sensitivity of this data card. not the dataset
+      it describes. See NOTE ON SENSITIVITY above. The sensitivity of the data card
+      and the dataset are independent and will often differ. Uses a controlled vocabulary:
+      - Public: No sensitivity; publicly shareable. - Unclassified_Uncontrolled: Unclassified
+      but uncontrolled; may have minimal sensitivity; generally shareable with minimal
+      controls. - CUI: CUI (Controlled Unclassified Information); requires handling
+      per CUI guidelines; access controls required. - UCNI: UCNI (Unclassified Controlled
+      Nuclear Information); requires handling per UCNI guidelines; strict access controls
+      required. - Classified: Classified information; requires handling per classification
+      level and guide; strict access controls required. - Legacy_Controlled: Legacy
+      controlled information; may have specific handling requirements based on legacy
+      controls; access controls required. - Mixed: Mixed sensitivity; contains a combination
+      of sensitive and non-sensitive information; handling requirements depend on
+      the specific content; access controls required. - Other_Controlled: Other controlled
+      information; may have specific handling requirements based on other controls;
+      access controls required.'
+    is_a: ont00000965
+  source_marking_string:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001982
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: sensitivity
+      cco_ont00001982:
+        range: ont00000649
+      value:
+        range: string
+    title: source_marking_string
+    description: '[discoverability_required] If this data card has a source marking,
+      provide the marking string exactly as it appears on the data card.'
+    is_a: ont00000853
+  source_marking_scheme:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001982
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: sensitivity
+      cco_ont00001982:
+        range: ont00000649
+      value:
+        range: marking_set
+    title: source_marking_scheme
+    description: '[discoverability_required] If this data card has a source marking,
+      provide the marking scheme used. use vocabulary: DOE_CUI | DOE_UCNI | EO13526_Classified
+      | AEA_RD_FRD_TFNI | DOD_CUI | DHS_CUI | Legacy_OUO | Legacy_Site_Specific |
+      Other_Agency | None if a Legacy_OUO is unresolved to a current standard marking,
+      normalized_control_basis should be populated as Legacy_Needs_Mapping to indicate
+      that the control basis is legacy and needs interpretation for governance purposes.'
+    is_a: ont00000853
+  classified_status:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001942
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: sensitivity
+      cco_ont00001942:
+        range: ont00000751
+      value:
+        range: YesNo
+    title: classified_status
+    description: '[discoverability_required] Yes | No description: Indicates whether
+      the asset is classified.'
+    is_a: ont00000965
+  classification_level:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001942
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: sensitivity
+      cco_ont00001942:
+        range: ont00000751
+      value:
+        range: classification_level_set
+    title: classification_level
+    description: '[discoverability_if_applicable] For classified information, top_secret
+      | secret | confidential classification level'
+    is_a: ont00000965
+  classification_category:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001942
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: sensitivity
+      cco_ont00001942:
+        range: ont00000751
+      value:
+        range: classification_cat_set
+    title: classification_category
+    description: '[discoverability_if_applicable] For classified information, list
+      the classification category or categories, if applicable. use vocabulary: NSI
+      | RD | FRD | TFNI | Other_Classified'
+    is_a: ont00000965
+  classified_control_markings:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001942
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: sensitivity
+      cco_ont00001942:
+        range: ont00000751
+      value:
+        range: classification_set
+    title: classified_control_markings
+    description: '[discoverability_if_applicable] For classified information, list
+      the specific control markings that apply, if any. Provide as a list of unique
+      entries if multiple markings apply. e.g., - NOFORN - CNWDI - SIGMA 14 - REL
+      TO USA, CAN, GBR - ORCON'
+    is_a: ont00000965
+  cui_status:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001942
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: sensitivity
+      cco_ont00001942:
+        range: ont00000751
+      value:
+        range: YesNo
+    title: cui_status
+    description: '[discoverability_required] Yes | No description: Indicates whether
+      the asset is CUI.'
+    is_a: ont00000965
+  cui_basic_categories:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001982
+    slot_usage:
+      bfo_BFO_0000176:
+        range: sensitivity
+      cco_ont00001982:
+        range: ont00000751
+    title: cui_basic_categories
+    description: '[discoverability_if_applicable, at least one basic or specified
+      category is required if cui_status = Yes] For CUI, list the basic category or
+      categories that apply, if any. use DOE/ISOO-authoritative CUI Basic categories
+      or subcategories. provide as a list of unique entries if multiple categories
+      apply.'
+    is_a: ont00000853
+  cui_specified_categories:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001982
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: sensitivity
+      cco_ont00001982:
+        range: ont00000751
+      value:
+        range: string
+    title: cui_specified_categories
+    description: '[discoverability_if_applicable, at least one basic or specified
+      category is required if cui_status = Yes] For CUI, list the specified category
+      or categories that apply, if any. use DOE/ISOO-authoritative CUI Specified categories
+      or subcategories. provide as a list of unique entries if multiple categories
+      apply.'
+    is_a: ont00000853
+  cui_limited_dissemination_controls:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001942
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: sensitivity
+      cco_ont00001942:
+        range: ont00000751
+      value:
+        range: classification_set
+    title: cui_limited_dissemination_controls
+    description: '[discoverability_if_applicable] List the applicable CUI limited
+      dissemination controls, if any. provide as a list of unique entries if multiple
+      controls apply. e.g., - NOFORN - DL ONLY -  REL TO USA, GBR - DISPLAY ONLY USA,
+      GBR - RELIDO If cui_limited_dissemination_controls contains NOFORN, REL TO...,
+      DISPLAY ONLY..., or similar controls, foreign_national_access_status should
+      be consistent with those controls.'
+    is_a: ont00000965
+  ucni_status:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: sensitivity
+      value:
+        range: YesNo
+    title: ucni_status
+    description: '[discoverability_required] Yes | No description: Indicates whether
+      the asset contains UCNI. UCNI is represented separately and should not be treated
+      as an ordinary CUI category value.'
+    is_a: ont00000853
+  uk_mda_status:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: sensitivity
+      value:
+        range: YesNoMaybeso
+    title: uk_mda_status
+    description: '[discoverability_if_applicable] Yes | No| Unknown | not_applicable
+      Indicates whether the asset is subject to UK Ministry of Defence Assessment
+      (MDA) controls.'
+    is_a: ont00000686
+  legacy_label_source:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: sensitivity
+      value:
+        range: string
+    title: legacy_label_source
+    description: '[discoverability_if_applicable]  Preserves deprecated or local historical
+      control labels such as OUO, SBU, if source_marking_scheme = Legacy_OUO, legacy_label_source
+      should be populated or site-specific legacy markings as provenance/source information
+      only. Provide as a list of unique entries if multiple legacy labels apply. E.g.,
+      - OUO - SBU'
+    is_a: ont00000853
+  normalized_control_basis:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: sensitivity
+    title: normalized_control_basis
+    description: '[discoverability_if_applicable] Optional interpreted control basis
+      used for governance where source materials This does not replace authoritative
+      source markings. Provide as a list of unique entries if multiple control bases
+      apply. If source_marking_scheme = Legacy_OUO and the legacy marking is unresolved
+      to a current standard marking, this should be populated as Legacy_Needs_Mapping
+      to indicate that the control basis is legacy and needs interpretation for governance
+      purposes. Entries should use this controlled vocabulary: - Classified - CUI
+      - UCNI - Public_Release_Approved - Legacy_Needs_Mapping - Other_Controlled'
+    is_a: ont00000853
+  created_date:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: datacard
+      value:
+        range: date
+    title: created_date
+    description: '[discoverability_required] ISO 8601 date this data card was first
+      created'
+    is_a: ont00000529
+  updated_date:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: datacard
+      value:
+        range: date
+    title: updated_date
+    description: '[discoverability_required] ISO 8601 date of most recent update;
+      revise on every change'
+    is_a: ont00000529
+  change_log:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: datacard
+      value:
+        range: string
+    title: change_log
+    description: '[discoverability_required] Running history of meaningful changes
+      to this data card. Add a new entry every time the data card is updated. Do not
+      overwrite or delete prior entries.'
+    is_a: ont00000853
+  change_date:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: change_log
+      value:
+        range: date
+    title: change_date
+    description: '[discoverability_required] ISO 8601 date of this change'
+    is_a: ont00000529
+  summary:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: change_date
+      value:
+        range: string
+    title: summary
+    description: '[discoverability_required] Brief description of what changed and
+      why. Update this text for all subsequent revisions. e.g., Updated license to
+      CC-BY-4.0 e.g., Added checksum after file transfer to OSTI e.g., Corrected collection
+      end date'
+    is_a: ont00000853
+  creation_method:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: datacard
+    title: creation_method
+    description: '[discoverability_required] Method used to create or most recently
+      update this data card. '
+    is_a: ont00000853
+  created_by:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: datacard
+      value:
+        range: string
+    title: created_by
+    description: "[discoverability_required] All individuals, organizations, AI models,\
+      \ or software tools that created or updated this data card. List in chronological\
+      \ order of contribution \u2014 e.g., if an AI model generated the initial draft\
+      \ and a person then edited it, list the AI model first."
+    is_a: ont00001017
+  contribution_date:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: created_by
+    title: contribution_date
+    description: '[discoverability_required] ISO 8601 date of this specific contribution'
+    is_a: ont00000853
+  description:
+    slots:
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: missing_data_codes
+      value:
+        range: string
+    title: description
+    description: '[discoverability_if_applicable] Describe what this contributor did.
+      e.g., Automated generation of data card from dataset metadata e.g., Reviewed
+      and corrected AI-generated content'
+    is_a: ont00000853
+  creator:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: contribution_date
+    title: creator
+    description: '[discoverability_required] person | organization | ai_model | software
+      add one block per creator; list the block that corresponds to the parent {ROLE}
+      contributed to the creation of this data card Delete the three blocks below
+      that do not apply.'
+    is_a: ont00000853
+  agent_type:
+    slots:
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: additional_contacts
+      value:
+        range: string
+    title: agent_type
+    description: "[discoverability_required] person | organization | ai_model | software\
+      \ TYPE: person \u2014 use for a human contributor"
+    is_a: ont00001017
+  person:
+    slots:
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: contributors
+      cco_ont00001808:
+        range: ont00001261
+    title: person
+    description: human contributor information
+    is_a: ont00000853
+  orcid:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: Person
+      value:
+        range: string
+    title: orcid
+    description: '[discoverability_if_applicable] Format: https://orcid.org/0000-0000-0000-0000
+      Required where DOE employee/contractor author policy applies, if locally applicable
+      Register at https://orcid.org if needed'
+    is_a: IAO_0000708
+  name:
+    slots:
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: additional_licenses
+      value:
+        range: string
+    title: name
+    description: e.g., Claude 3.5 Sonnet | GPT-4o | Llama 3
+    is_a: ont00000686
+  ror_id:
+    slots:
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: Location
+      value:
+        range: uri
+    title: ror_id
+    description: '[discoverability_if_applicable] Format: https://ror.org/XXXXXXX
+      Look up at https://ror.org'
+    is_a: ont00000649
+  organization:
+    slots:
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: contributors
+      cco_ont00001808:
+        range: ont00001261
+    title: organization
+    description: use when a team or org created the data card without a named individual
+    is_a: ont00000853
+  ai_model:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    slot_usage:
+      bfo_BFO_0000176:
+        range: creator
+      cco_ont00001808:
+        range: ont00001261
+    title: ai_model
+    description: use when an AI model generated or substantially contributed to this
+      data card
+    is_a: ont00000853
+  version:
+    slots:
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: name
+      value:
+        range: string
+    title: version
+    description: '[discoverability_required] Dataset version using semantic versioning:
+      MAJOR.MINOR.PATCH Increment MAJOR for breaking changes, MINOR for additions,
+      PATCH for corrections. Start at 1.0 for first release. See supersedes / superseded_by
+      below for linking versions, and stewardship.versioning_strategy for how versions
+      are managed.'
+    is_a: ont00000186
+  accessed_date:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: ai_model
+      value:
+        range: date
+    title: accessed_date
+    description: Date when AI model was accessed
+    is_a: ont00000529
+  identifier:
+    slots:
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: parent_collection
+    title: identifier
+    description: field for specifying identifiers
+    is_a: ont00000686
+  relationship:
+    slots:
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: name
+      value:
+        range: relationship_set
+    title: relationship
+    description: '[discoverability_if_applicable, required for ai_model] select from:
+      used_to_create | used_to_process | used_to_analyze | recorded_by | trained_on
+      | evaluated_on | other; relationship of AI model to the  data card creation
+      process. e.g., used_to_create if the AI model generated the initial draft of
+      the data card, used_to_analyze if the AI model analyzed dataset metadata to
+      populate the data card, evaluated_on if the AI model was used to evaluate or
+      validate the data card content, or other if none of the predefined relationships
+      apply.'
+    is_a: ont00000853
+  software:
+    slots:
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    slot_usage:
+      bfo_BFO_0000176:
+        range: related_resources
+      cco_ont00001808:
+        range: ont00001261
+    title: software
+    description: '- name: __NAME__ version: __VERSION__ identifier: type: __TYPE__                      #
+      doi | ark | handle | url | local | other value: __VALUE__ role: - ${ROLE}                           #
+      [interoperability_if_applicable] list from roles extending the CRediT taxonomy:
+      Conceptualization | Data_Curation | Formal_Analysis | Funding_Acquisition |
+      Investigation | Methodology | Project_Administration | Resources | Software
+      | Supervision | Validation | Visualization | Writing_Original_Draft | Writing_Review_Editing
+      | Data_Collection | Other relationship: __REL__                 # see vocabulary
+      above'
+    is_a: ont00000853
+  identification:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    slot_usage:
+      bfo_BFO_0000176:
+        range: discoverability
+      cco_ont00001808:
+        range: ont00001261
+    title: identification
+    description: '[discoverability_required] Key metadata fields that uniquely identify
+      this dataset.'
+    is_a: ont00000853
+  project:
+    slots:
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: tags
+    title: project
+    description: '[discoverability_required] Genesis project or sub-project this dataset
+      belongs to. e.g., genesis | genesis-fusion | genesis-lightsource'
+    is_a: ont00000292
+  primary_id:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: identification
+      value:
+        range: uri
+    title: primary_id
+    description: '[discoverability_required] Primary persistent identifier for this
+      dataset. Aligns with dcterms:identifier and is the main identifier used in citations
+      and references. Use ark or local if a DOI has not yet been assigned.'
+    is_a: ont00000077
+  additional_ids:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: identification
+      value:
+        range: string
+    title: additional_ids
+    description: '[discoverability_if_applicable] Additional identifiers for this
+      dataset. Aligns with adms:identifier and can include secondary identifiers,
+      legacy identifiers, or identifiers for specific versions if primary_id is a
+      collection-level identifier.'
+    is_a: ont00000649
+  supersedes:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: identification
+    title: supersedes
+    description: '[discoverability_if_applicable] Identifier of the prior version
+      this dataset replaces. See stewardship.versioning_strategy for how versions
+      are managed.'
+    is_a: ont00000853
+  superseded_by:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: identification
+    title: superseded_by
+    description: '[discoverability_if_applicable] Identifier of the newer version
+      that replaces this dataset. Populate when this version is deprecated.'
+    is_a: ont00000853
+  parent_collection:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    slot_usage:
+      bfo_BFO_0000176:
+        range: identification
+      cco_ont00001808:
+        range: IAO_0001000
+    title: parent_collection
+    description: '[discoverability_if_applicable] Parent collection or experimental
+      campaign this dataset belongs to. Use when this dataset is one of many in a
+      larger organized collection or ensemble.'
+    is_a: ont00000853
+  dataset_description:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    slot_usage:
+      bfo_BFO_0000176:
+        range: discoverability
+      cco_ont00001808:
+        range: IAO_0000027
+    title: dataset_description
+    description: '[discoverability_required] Descriptive metadata about the dataset
+      to support discovery, understanding, and reuse.'
+    is_a: ont00000853
+  science_domain:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001920
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: dataset_description
+      cco_ont00001920:
+        range: name
+      value:
+        range: OSTI_subject_set
+    title: science_domain
+    description: '[discoverability_if_applicable] Extends the the list of OSTI Subject
+      Areas with an Other category for datasets that do not fit into the OSTI list.
+      Controlled vocabulary: Biology and Medicine | Chemistry | Energy Storage, Conversion,
+      and Utilization | Engineering | Environmental Sciences | Fission and Nuclear
+      Technologies | Fossil Fuels | Geosciences | Materials | Mathematics and Computing
+      | National Defense | Physics | Power Generation and Distribution | Renewable
+      Energy | Other'
+    is_a: ont00000853
+  dataset_summary:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: dataset_description
+      value:
+        range: string
+    title: dataset_summary
+    description: "[discoverability_required] 1\u20133 sentence plain-language description\
+      \ of the dataset. Write for a broad scientific audience unfamiliar with your\
+      \ project."
+    is_a: IAO_0000315
+  purpose:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: dataset_description
+      value:
+        range: string
+    title: purpose
+    description: '[discoverability_if_applicable] Why was this dataset created? What
+      gap does it fill?'
+    is_a: IAO_0000315
+  collection_methodology:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: dataset_description
+      cco_ont00001808:
+        range: IAO_0001000
+      value:
+        range: collection_method_set
+    title: collection_methodology
+    description: '[discoverability_if_applicable] How was data acquired? e.g., experimental
+      sensors | computational simulation | human annotation | derived from prior datasets'
+    is_a: ont00000853
+  data_characteristics:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: dataset_description
+      value:
+        range: string
+    title: data_characteristics
+    description: '[discoverability_if_applicable] Key structural and content characteristics:
+      scale, dimensionality, temporal coverage, spatial resolution'
+    is_a: ont00000853
+  limitations:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: dataset_description
+      value:
+        range: string
+    title: limitations
+    description: '[discoverability_if_applicable] Known limitations, gaps, or caveats
+      users should be aware of before using this dataset.'
+    is_a: ont00000853
+  tags:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: dataset_description
+    title: tags
+    description: '[discoverability_if_applicable] Structured tags for catalog filtering
+      and discovery.'
+    is_a: ont00000853
+  science:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: tags
+      value:
+        range: string
+    title: science
+    description: e.g., lightsource | fusion | materials | biology
+    is_a: ont00000853
+  object_type:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: tags
+      value:
+        range: object_type_set
+    title: object_type
+    description: 'select one of: Dataset | Model | Software | AI_Agent | Eval | Framework
+      | Software'
+    is_a: ont00000853
+  task_category:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001982
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: dataset_description
+      cco_ont00001982:
+        range: task_subcategory
+      value:
+        range: string
+    title: task_category
+    description: '[discoverability_if_applicable, at least one value required if task_subcategory
+      is present] Primary ML task category or categories for this dataset. Populate
+      for AI-ready data; helps ML practitioners find relevant datasets in the catalog.
+      e.g., classification | regression | segmentation | detection | generation |
+      translation | summarization | ranking | anomaly_detection | clustering | reinforcement_learning
+      | other'
+    is_a: ont00000853
+  task_subcategory:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: dataset_description
+      value:
+        range: string
+    title: task_subcategory
+    description: '[discoverability_if_applicable] More specific ML task subcategory
+      or subcategories. e.g., binary_classification | multi_class_classification |
+      multi_label_classification | image_segmentation | object_detection | time_series_forecasting
+      | named_entity_recognition | question_answering | other'
+    is_a: ont00000853
+  keywords:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: dataset_description
+      value:
+        range: string
+    title: keywords
+    description: '[discoverability_required] Terms that describe this dataset and
+      aid discovery. Include domain terms, methods, instruments, and relevant ontology
+      terms.'
+    is_a: ont00000853
+  product_type:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: discoverability
+      value:
+        range: string
+    title: product_type
+    description: '[discoverability_required] Primary type of product type described
+      by this data card. These align with and extend the STI Product Types to support
+      interoperability with STI catalogs and OSTI DOE Data Explorer. Select the single
+      best-fit: Technical_Report | Paper_or_Proceedings | Journal_Article | Software_Manual
+      | Data | Collection | Computer_Related | Model | Agent Data is expected here
+      for a data card describing a dataset, but select the best fit if this data card
+      describes a different type of product.'
+    is_a: ont00000686
+  dataset_type:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: discoverability
+      value:
+        range: string
+    title: dataset_type
+    description: "[discoverability_if_applicable] OSTI DOE Data Explorer type code.\
+      \ Select the single best-fit: GD  Genome/Genetic Data     \u2014 DNA/RNA sequences,\
+      \ genomic annotations IM  Image                   \u2014 photographs, scans,\
+      \ microscopy, visualizations ND  Numeric Data            \u2014 measurements,\
+      \ time series, tabular, sensor readings SM  Specialized Mix         \u2014 multiple\
+      \ data types combined FP  Figure/Plot             \u2014 charts, graphs, plots\
+      \ as primary deliverable I   Interactive Resource    \u2014 web apps, interactive\
+      \ visualizations, dashboards MM  Multimedia              \u2014 audio, video,\
+      \ combined media MD  Model                   \u2014 computational models, simulations,\
+      \ trained ML models AS  Automated Software      \u2014 scripts, analysis pipelines,\
+      \ workflows IP  Instrumentation/Protocols \u2014 experimental protocols, instrument\
+      \ specs IG  Integrated Genomic Resources \u2014 combined genomic databases and\
+      \ tools"
+    is_a: ont00000686
+  release_status:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: discoverability
+      value:
+        range: release_status_set
+    title: release_status
+    description: "[discoverability_required] Current publication and governance state\
+      \ of this dataset. See NOTE ON WORKFLOW STATE vs. RELEASE STATUS in the header\
+      \ for expected alignment with workflow.state. Draft         \u2014 work in progress;\
+      \ not ready for sharing Under_Review  \u2014 submitted for formal review Approved\
+      \      \u2014 review complete; cleared for release Published     \u2014 publicly\
+      \ released and accessible Deprecated    \u2014 superseded or retired; no longer\
+      \ recommended for use"
+    is_a: ont00000686
+  dataset_publisher:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: discoverability
+      value:
+        range: string
+    title: dataset_publisher
+    description: '[discoverability_if_applicable, required when release_status = Approved
+      | Published] Entity responsible for making this dataset available. Often the
+      same as the primary research organization, but may differ if a separate publisher
+      is involved.'
+    is_a: ont00001017
+  contact:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: discoverability
+    title: contact
+    description: '[discoverability_required] Primary point of contact for questions
+      about this DATASET.'
+    is_a: ont00000853
+  valid_until:
+    slots:
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: additional_contacts
+      value:
+        range: date
+    title: valid_until
+    description: '[discoverability_if_applicable] Date after which this contact may
+      no longer be valid. Use for project-bound contacts (students, postdocs, term
+      staff).'
+    is_a: ont00000529
+  succession_note:
+    slots:
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: additional_contacts
+      value:
+        range: string
+    title: succession_note
+    description: '[discoverability_if_applicable] Who to contact if this contact is
+      no longer reachable. e.g., Contact the ORNL data management office at data@ornl.gov'
+    is_a: ont00001017
+  additional_contacts:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: discoverability
+      value:
+        range: string
+    title: additional_contacts
+    description: '[discoverability_if_applicable] Additional contacts (e.g., instrument
+      PI, data steward). Same structure as contact above: contact_details: - type:
+      person | organization person: given_name: __GIVEN_NAME__ family_name: __FAMILY_NAME__
+      orcid: __ORCID__ # Required where DOE employee/contractor author policy applies,
+      if locally applicable email: __EMAIL__ affiliation: name: __ORG_NAME__ ror_id:
+      __ROR_ID__ valid_until: __YYYY-MM-DD__ succession_note: __NOTE__'
+    is_a: ont00001017
+  authors:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: discoverability
+    title: authors
+    description: '[discoverability_required]'
+    is_a: ont00000686
+  contributors:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: discoverability
+    title: contributors
+    description: '[discoverability_if_applicable] Supporting contributors who are
+      not primary authors. e.g., sample preparers, annotators, reviewers, submitters.
+      Same structure as authors above.'
+    is_a: ont00000300
+  sponsor_organizations:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    slot_usage:
+      bfo_BFO_0000176:
+        range: discoverability
+      cco_ont00001808:
+        range: ont00000300
+    title: sponsor_organizations
+    description: '[discoverability_required] Organizations that funded or sponsored
+      this dataset.'
+    is_a: ont00000853
+  award_number:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: name
+      value:
+        range: string
+    title: award_number
+    description: '[discoverability_if_applicable] e.g., DE-AC05-00OR22725'
+    is_a: ont00000292
+  funding_source:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: name
+      cco_ont00001808:
+        range: ont00001180
+      value:
+        range: funding_source_set
+    title: funding_source
+    description: '[discoverability_if_applicable] Identifies the funding source from
+      a controlled vocabulary: DOE_Program_SC | DOE_Program_NNSA | LDRD | WFO | CRADA
+      | Other_Federal | State_Government | Subcontract | Industry | Nonprofit | Internal
+      | Other'
+    is_a: ont00000686
+  program:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: sponsor_organizations
+      value:
+        range: string
+    title: program
+    description: '[discoverability_if_applicable] e.g., Advanced Scientific Computing
+      Research'
+    is_a: ont00001180
+  sponsoring_doe_program_office:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: discoverability
+      value:
+        range: string
+    title: sponsoring_doe_program_office
+    description: '[discoverability_if_applicable] DOE program office that sponsored
+      this dataset, if applicable.'
+    is_a: ont00001180
+  sponsoring_doe_subprogram:
+    slots:
+    - cco_ont00001920
+    - value
+    slot_usage:
+      cco_ont00001920:
+        range: discoverability
+      value:
+        range: string
+    title: sponsoring_doe_subprogram
+    description: '[discoverability_if_applicable] DOE subprogram that sponsored this
+      dataset, if applicable.'
+    is_a: ont00001180
+  research_organizations:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: discoverability
+    title: research_organizations
+    description: '[discoverability_required] Organizations that created or collected
+      the data.'
+    is_a: ont00001180
+  facilities:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: discoverability
+    title: facilities
+    description: '[discoverability_if_applicable] User facilities, HPC centers, or
+      research infrastructure used to collect, process, or store the dataset. - name:
+      __FACILITY_NAME__               # e.g., Spallation Neutron Source | Summit |
+      Frontier ror_id: __ROR_ID__ role: - ${ROLE}                           # [discoverability_if_applicable]
+      list from roles extending the CRediT taxonomy: Conceptualization | Data_Curation
+      | Formal_Analysis | Funding_Acquisition | Investigation | Methodology | Project_Administration
+      | Resources | Software | Supervision | Validation | Visualization | Writing_Original_Draft
+      | Writing_Review_Editing | Data_Collection | Other location:                             #
+      [discoverability_if_applicable] Point location for facility-based experimental
+      data. description: __DESC__               # e.g., SNS Beamline 1B, Oak Ridge
+      National Laboratory, TN, USA ror_id: __ROR_ID__                  # ROR ID of
+      the facility; cross-reference with name above'
+    is_a: ont00000946
+  workflow:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    slot_usage:
+      bfo_BFO_0000176:
+        range: discoverability
+      cco_ont00001808:
+        range: PMD_0000012
+    title: workflow
+    description: Describes the technical and processing lifecycle position of the
+      dataset. See NOTE ON WORKFLOW STATE vs. RELEASE STATUS in the header for expected
+      alignment with release_status.
+    is_a: ont00000853
+  state:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: workflow
+      value:
+        range: workflow_state_set
+    title: state
+    description: "[discoverability_required] Current lifecycle position: Raw     \
+      \   \u2014 data as collected; no processing applied Processing \u2014 actively\
+      \ being cleaned, transformed, or reduced QA         \u2014 undergoing quality\
+      \ assurance or validation Analysis   \u2014 in active scientific analysis Review\
+      \     \u2014 under formal review (security, export, IRB, etc.) Embargo    \u2014\
+      \ complete but intentionally withheld from release Published  \u2014 publicly\
+      \ released Archived   \u2014 preserved; no longer actively maintained not_applicable\
+      \ - use when workflow state is not applicable or not yet determined"
+    is_a: ont00000853
+  is_intermediate:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: workflow
+      value:
+        range: YesNo
+    title: is_intermediate
+    description: '[discoverability_if_applicable] Yes | No if this is an intermediate
+      processing artifact rather than a final deliverable. No if this is final.'
+    is_a: ont00000853
+  pipeline_stage:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: workflow
+      value:
+        range: string
+    title: pipeline_stage
+    description: '[discoverability_if_applicable] Freetext position in processing
+      pipeline. e.g., post-detector, pre-reconstruction e.g., raw telemetry, pre-calibration'
+    is_a: ont00000853
+  embargo_until:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: workflow
+      value:
+        range: date
+    title: embargo_until
+    description: '[discoverability_if_applicable] Required if state=embargo. ISO 8601
+      date after which release is permitted.'
+    is_a: ont00000529
+  accessibility:
+    slots:
+    - bfo_BFO_0000101
+    slot_usage:
+      bfo_BFO_0000101:
+        range: genesis_datacard_merged_shared
+    title: accessibility
+    description: '[accessibility_required] --- Access Policy ----------------------------------------------
+      Describes who can access this dataset and under what conditions. Access policy
+      for the dataset. Describes the access level and any restrictions or requirements
+      for accessing the dataset, which is critical information for users to understand
+      how they can access the dataset and any potential barriers to access. Access
+      policy is DISTINCT from sensitivity, which describes the nature of the data
+      and its potential risks) and from release status (which describes the publication
+      state of the dataset). access_policy.access_level is a required field that indicates
+      the level of permissions required for users to access the dataset, following
+      AccessLevelEnum. - open: no additional permissions required beyond standard
+      account registration and agreement to terms of service. This indicates that
+      the dataset is freely accessible to the public and can be used without any special
+      permissions or restrictions. Note that open does not necessarily mean that the
+      dataset is free of copyright or other legal restrictions, but rather that there
+      are no additional access controls in place. Users may still need to comply with
+      any applicable laws or regulations when using the dataset. - restricted: access
+      may be granted to users who meet certain criteria, such as being part of a specific
+      research community, having a legitimate research purpose, or agreeing to specific
+      terms and conditions. This indicates that the dataset is not freely accessible
+      to the public and that users must meet certain requirements or restrictions
+      in order to access it. The specific criteria for access may vary depending on
+      the dataset and the organization providing it, but could include things like
+      institutional affiliation, research purpose, or agreement to specific terms
+      and conditions. - controlled: access is tightly controlled and may require specific
+      authorization, agreements, or approvals. This indicates that the dataset contains
+      sensitive information and that only authorized users can access it.'
+    is_a: ont00000853
+  access_policy:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: accessibility
+    title: access_policy
+    description: '[accessibility_required]'
+    is_a: ont00000853
+  access_level:
+    slots:
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: name
+      value:
+        range: access_level_set
+    title: access_level
+    description: '[accessibility_required] Open | Restricted | Controlled'
+    is_a: ont00000686
+  access_restrictions:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: access_policy
+      value:
+        range: string
+    title: access_restrictions
+    description: '[accessibility_if_applicable] Freetext description of access restrictions.
+      e.g., Requires signed DUA | None - publicly accessible'
+    is_a: ont00000853
+  authorization_required:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: access_policy
+    title: authorization_required
+    description: "[accessibility_if_applicable] Required if access_level is not open.\
+      \ List of authorization needed to access this dataset: Account             \
+      \  \u2014 registered account required User_Agreement        \u2014 user agreement\
+      \ or terms of service Data_Use_Agreement    \u2014 formal DUA required Sponsor_Approval\
+      \      \u2014 sponsor or PI approval required Export_Control_Review \u2014 export\
+      \ control review required IRB_Approval          \u2014 IRB approval required\
+      \ Other                 \u2014 describe in access_restrictions"
+    is_a: ont00000686
+  intended_partner_classes:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: access_policy
+      value:
+        range: partner_class_set
+    title: intended_partner_classes
+    description: '[accessibility_if_applicable] List of intended partner classes or
+      user groups for this dataset, if any. from controlled vocabulary: Internal_Team
+      | Tri_Lab | DOE_NNSA_Lab | Federal_Partner | Contractor | Academic_Researchers
+      | External_Research_Partner | Public | Industry_Partner | Other If absent, or
+      null, this field is not yet known or determined. Use an empty list if definitively
+      no specific partner classes are targeted. Use public if this dataset is intended
+      for broad public use without restrictions.'
+    is_a: ont00000686
+  approved_environments:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: access_policy
+      value:
+        range: string
+    title: approved_environments
+    description: "[accessibility_if_applicable] Describe the approved environment\
+      \ for access. List of approved environments, if more than one \u2014 e.g., DOE\
+      \ HPC facilities with export control review | On-site access only at Oak Ridge\
+      \ National Laboratory [] means no explicitly approved environments; access may\
+      \ still be granted on a case-by-case basis. null or absent means it has not\
+      \ yet been determined whether approved environments are required."
+    is_a: ont00000853
+  policy_url:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: access_policy
+      value:
+        range: uri
+    title: policy_url
+    description: '[accessibility_if_applicable] URL to the full access policy document'
+    is_a: ont00000649
+  policy_text:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: access_policy
+      value:
+        range: string
+    title: policy_text
+    description: '[accessibility_if_applicable] Inline summary if no policy_url exists'
+    is_a: IAO_0000315
+  access:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: accessibility
+    title: access
+    description: "Complete the fields you know at the time of data card creation.\
+      \ Repository-assigned fields (landing pages, accession numbers, access protocols)\
+      \ will be populated by the managing repository or catalog system at ingest \u2014\
+      \ see the REPOSITORY-MANAGED block."
+    is_a: ont00000853
+  current_location:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: access
+      value:
+        range: uri
+    title: current_location
+    description: '[accessibility_required] Where the data physically resides right
+      now. Use for in-workflow data not yet deposited in a repository, or for any
+      dataset with a known internal or external storage path. e.g., /mnt/ecs/scientific-data/project/dataset/
+      e.g., /lustre/orion/proj-shared/dataset/ e.g., s3://genesis-bucket/dataset/'
+    is_a: ont00000649
+  publicly_facing_landing_page_url:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: access
+      value:
+        range: uri
+    title: publicly_facing_landing_page_url
+    description: '[accessibility_if_applicable] URL to the publicly facing landing
+      page for this dataset. This is the URL that should be shared publicly and included
+      in citations. It may differ from the current_location if the dataset is not
+      yet publicly released or if the current_location is an internal storage path.'
+    is_a: ont00000649
+  intended_repositories:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    slot_usage:
+      bfo_BFO_0000176:
+        range: access
+      cco_ont00001808:
+        range: APOLLO_SV_00000522
+    title: intended_repositories
+    description: '[accessibility_if_applicable] Repositories you intend to deposit
+      or have deposited this dataset in. The managing repository or catalog system
+      will resolve and populate repository-assigned fields at ingest (see REPOSITORY-MANAGED
+      block). Repositories may be institutional, project-owned, community, or national
+      (e.g., OSTI, Zenodo, institutional data repository, project data store).'
+    is_a: ont00000292
+  is_primary:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: name
+      cco_ont00001808:
+        range: intended_repositories
+      value:
+        range: YesNo
+    title: is_primary
+    description: "[accessibility_if_applicable] Yes | No \u2014 only one entry should\
+      \ be marked Yes"
+    is_a: ont00000853
+  date_deposited:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: name
+      cco_ont00001808:
+        range: intended_repositories
+      value:
+        range: date
+    title: date_deposited
+    description: '[accessibility_if_applicable]'
+    is_a: ont00000529
+  data_services:
+    slots:
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: repository
+      value:
+        range: string
+    title: data_services
+    description: '[accessibility_if_applicable] Populate if Data Service / API endpoints
+      exists for this dataset aligns with dcterms:DataService. If more than one data
+      service or API endpoint exists, list them all.'
+    is_a: ont00000853
+  endpoint:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: name
+      cco_ont00001808:
+        range: intended_repositories
+      value:
+        range: uri
+    title: endpoint
+    description: API endpoint
+    is_a: ont00000649
+  documentation_url:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: name
+      cco_ont00001808:
+        range: data_services
+      value:
+        range: uri
+    title: documentation_url
+    description: URL to locate the documentation
+    is_a: ont00000649
+  authentication:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: name
+      cco_ont00001808:
+        range: intended_repositories
+      value:
+        range: authentication_set
+    title: authentication
+    description: None | API_Key | OAuth2 | SAML | Certificate | OpenID_Connect | Basic_Auth
+      | Bearer_Token | Other
+    is_a: ont00000686
+  rate_limit:
+    slots:
+    - bfo_BFO_0000176
+    - qudt_hasUnit
+    - cco_ont00001808
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: name
+      qudt_hasUnit:
+        range: PER_HR
+      cco_ont00001808:
+        range: intended_repositories
+      value:
+        range: integer
+    title: rate_limit
+    description: e.g., 1000 requests/hour
+    is_a: ont00000853
+  dataset_scale:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    slot_usage:
+      bfo_BFO_0000176:
+        range: accessibility
+      cco_ont00001808:
+        range: IAO_0001000
+    title: dataset_scale
+    description: These fields describe the scale of the dataset, which is important
+      for users to understand the scope and potential resource requirements for using
+      the dataset. record_count and record_unit provide a standardized way to describe
+      the number of primary records, samples, files, or other relevant units in the
+      dataset, which is critical for understanding the dataset's size and complexity.
+      compressed_bytes and uncompressed_bytes provide information about the storage
+      requirements for the dataset, which is important for users to plan
+    is_a: ont00000853
+  record_count:
+    slots:
+    - bfo_BFO_0000176
+    - qudt_hasUnitSystem
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: dataset_scale
+      qudt_hasUnitSystem:
+        range: record_unit
+      value:
+        range: integer
+    title: record_count
+    description: '[accessibility_if_applicable] Number of primary records, samples,
+      or files'
+    is_a: ont00000539
+  record_unit:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: dataset_scale
+      value:
+        range: data_unit_set
+    title: record_unit
+    description: '[accessibility_if_applicable] samples | files | records | timesteps
+      | images | tokens | other'
+    is_a: ont00000958
+  compressed_bytes:
+    slots:
+    - bfo_BFO_0000176
+    - qudt_hasUnit
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: dataset_scale
+      qudt_hasUnit:
+        range: BYTE
+      value:
+        range: integer
+    title: compressed_bytes
+    description: '[accessibility_if_applicable] Total size when compressed, in bytes'
+    is_a: ont00001163
+  uncompressed_bytes:
+    slots:
+    - bfo_BFO_0000176
+    - qudt_hasUnit
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: dataset_scale
+      qudt_hasUnit:
+        range: BYTE
+      value:
+        range: integer
+    title: uncompressed_bytes
+    description: '[accessibility_if_applicable] Total size when uncompressed, in bytes'
+    is_a: ont00001163
+  interoperability:
+    slots:
+    - bfo_BFO_0000101
+    slot_usage:
+      bfo_BFO_0000101:
+        range: genesis_datacard_merged_shared
+    title: interoperability
+    description: Metadata elements that describe the interoperability of this dataset,
+      such as context of data collection, data structure, provenance, related resource,
+      schema, and integrity. This is important for users to understand how they can
+      use the dataset and what tools or software they may need to work with it.
+    is_a: ont00000853
+  data_structure:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    slot_usage:
+      bfo_BFO_0000176:
+        range: interoperability
+      cco_ont00001808:
+        range: IAO_0001000
+    title: data_structure
+    description: '[interoperability_required]'
+    is_a: ont00000853
+  formats:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: data_structure
+      value:
+        range: string
+    title: formats
+    description: '[interoperability_required] File formats in this dataset. e.g.,
+      [CSV, HDF5, NetCDF4, Parquet, TIFF, JSON]'
+    is_a: ont00000853
+  encoding:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: data_structure
+      value:
+        range: string
+    title: encoding
+    description: '[interoperability_if_applicable] Character encoding for text-based
+      formats. e.g., UTF-8 | ASCII | Latin-1 UTF-8 strongly recommended. Use not_applicable
+      for binary formats.'
+    is_a: ont00000853
+  schema_version:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: data_structure
+      value:
+        range: string
+    title: schema_version
+    description: '[interoperability_if_applicable] Version of the data schema used
+      in this dataset. Distinct from data card_version. Increment when field names,
+      types, or structure change between dataset versions.'
+    is_a: IAO_0000129
+  modalities:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: data_structure
+      value:
+        range: string
+    title: modalities
+    description: '[interoperability_required] Data modalities present. e.g., [tabular,
+      image, time-series, text, graph, point-cloud]'
+    is_a: ont00000853
+  features:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: data_structure
+      value:
+        range: string
+    title: features
+    description: "[interoperability_required] Primary variables, fields, or features.\
+      \ IMPORTANT: choose ONE form and use it consistently \u2014 do not mix. For\
+      \ basic documentation \u2014 flat string list: - name: temperature - name: pressure\
+      \ - name: timestamp - name: label To support  AI-ready data \u2014 structured\
+      \ form (replace flat list above): - name: temperature: data_type: float    \
+      \       # float | int | string | boolean | datetime | other unit: Kelvin description:\
+      \ Sample temperature at time of measurement range: 273.15 - 373.15"
+    is_a: ont00000853
+  splits:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: data_structure
+      value:
+        range: string
+    title: splits
+    description: '[interoperability_if_applicable] Dataset splits if pre-divided.
+      e.g., [train, test, validation]'
+    is_a: ont00000853
+  spatial_coverage:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: data_structure
+    title: spatial_coverage
+    description: '[interoperability_if_applicable] Geographic coverage of the dataset.
+      Use for geospatial datasets or facility-based experiments.'
+    is_a: ont00000853
+  geo_location_box:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: spatial_coverage
+    title: geo_location_box
+    description: '[interoperability_if_applicable] WGS84 decimal degrees; use for
+      area coverage aligns with datacite:geoLocationBox'
+    is_a: ont00000358
+  westBoundLongitude:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    - qudt_hasUnit
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: geo_location_box
+      cco_ont00001808:
+        range: ont00000469
+      qudt_hasUnit:
+        range: DEG
+      value:
+        range: decimal
+    title: westBoundLongitude
+    description: aligns with datacite:westBoundLongitude
+    is_a: ont00001163
+  eastBoundLongitude:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    - qudt_hasUnit
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: geo_location_box
+      cco_ont00001808:
+        range: ont00000469
+      qudt_hasUnit:
+        range: DEG
+      value:
+        range: decimal
+    title: eastBoundLongitude
+    description: aligns with datacite:eastBoundLongitude
+    is_a: ont00001163
+  southBoundLatitude:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    - qudt_hasUnit
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: geo_location_box
+      cco_ont00001808:
+        range: ont00000469
+      qudt_hasUnit:
+        range: DEG
+      value:
+        range: decimal
+    title: southBoundLatitude
+    description: aligns with datacite:southBoundLatitude
+    is_a: ont00001163
+  northBoundLatitude:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    - qudt_hasUnit
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: geo_location_box
+      cco_ont00001808:
+        range: ont00000469
+      qudt_hasUnit:
+        range: DEG
+      value:
+        range: decimal
+    title: northBoundLatitude
+    description: aligns with datacite:northBoundLatitude
+    is_a: ont00001163
+  temporal_coverage:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: data_structure
+    title: temporal_coverage
+    description: "[interoperability_if_applicable] Time period the dataset content\
+      \ represents. aligns with schema:temporalCoverage NOTE: distinct from dates.data_collection_start/end,\
+      \ which describe when collection occurred. Use temporal_coverage when the dataset\
+      \ describes a specific historical or projected time period that differs from\
+      \ when collection happened. e.g., Monthly climate averages 1950\u20132020 collected\
+      \ in 2024: temporal_coverage.start = 1950-01-01 dates.data_collection_start\
+      \ = 2024-01-01"
+    is_a: ont00000853
+  start_date:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: temporal_coverage
+      value:
+        range: date
+    title: start_date
+    description: '[interoperability_if_applicable] aligns with dcterms:coverage'
+    is_a: ont00000529
+  end_date:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: temporal_coverage
+      value:
+        range: date
+    title: end_date
+    description: '[interoperability_if_applicable] aligns with dcterms:coverage'
+    is_a: ont00000529
+  provenance:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: interoperability
+    title: provenance
+    description: provenance information
+    is_a: ont00000853
+  was_generated_by:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: provenance
+      value:
+        range: string
+    title: was_generated_by
+    description: '[interoperability_required] High-level description of the generating
+      process. Even a one-line answer dramatically improves catalog value. e.g., Neutron
+      scattering experiment at SNS Beamline 1B e.g., Monte Carlo simulation using
+      MCNP 6.2 e.g., Derived from raw telemetry via calibration pipeline v2.1'
+    is_a: IAO_0000315
+  source_data:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: provenance
+    title: source_data
+    description: '[interoperability_if_applicable] Source datasets this dataset was
+      derived from.'
+    is_a: ont00000853
+  processing_steps:
+    slots:
+    - bfo_BFO_0000176
+    - iao_IAO_0000136
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: provenance
+      iao_IAO_0000136:
+        range: BFO_0000144
+      value:
+        range: string
+    title: processing_steps
+    description: '[interoperability_required] Key processing, cleaning, calibration,
+      or transformation steps applied to produce this dataset.'
+    is_a: IAO_0000315
+  instrumentation:
+    slots:
+    - bfo_BFO_0000176
+    - iao_IAO_0000136
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: provenance
+      iao_IAO_0000136:
+        range: MeasurementCapability
+      value:
+        range: string
+    title: instrumentation
+    description: '[interoperability_if_applicable] Instruments, sensors, detectors,
+      or equipment used. Include make, model, and version where relevant.'
+    is_a: IAO_0000315
+  simulation_details:
+    slots:
+    - iao_IAO_0000136
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      iao_IAO_0000136:
+        range: PMD_0000933
+      bfo_BFO_0000176:
+        range: provenance
+      value:
+        range: string
+    title: simulation_details
+    description: '[interoperability_if_applicable] For simulation-derived data: code,
+      version, key parameters, and configuration. e.g., LAMMPS 23Jun2022, NVT ensemble,
+      300K, 10ns run, CHARMM36'
+    is_a: IAO_0000315
+  software_environment:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: provenance
+    title: software_environment
+    description: '[interoperability_if_applicable] Software environment used to generate
+      or process this dataset. Captures what is needed for computational reproducibility.'
+    is_a: ont00000853
+  os:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: software_environment
+      cco_ont00001808:
+        range: SWO_0000021
+      value:
+        range: string
+    title: os
+    description: '[interoperability_if_applicable] e.g., RHEL 8.6 | Ubuntu 22.04'
+    is_a: ont00000853
+  compiler:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: software_environment
+      cco_ont00001808:
+        range: ont00000932
+      value:
+        range: string
+    title: compiler
+    description: '[interoperability_if_applicable] e.g., GCC 11.3 | Intel oneAPI 2023.1'
+    is_a: ont00000853
+  container:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: software_environment
+      cco_ont00001808:
+        range: ont00000420
+      value:
+        range: uri
+    title: container
+    description: '[interoperability_if_applicable] e.g., docker://registry/image:tag'
+    is_a: ont00000649
+  hpc_environment:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001982
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: software_environment
+      cco_ont00001982:
+        range: ont00000420
+      value:
+        range: string
+    title: hpc_environment
+    description: '[interoperability_if_applicable] e.g., module load python/3.10 cuda/11.8
+      openmpi/4.1'
+    is_a: ont00000853
+  notes:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: software_environment
+      value:
+        range: string
+    title: notes
+    description: '[interoperability_if_applicable] Additional environment details,
+      key library versions, or reference to a full environment manifest. e.g., See
+      requirements.txt in dataset root e.g., numpy 1.24, pytorch 2.0.1, h5py 3.8.0'
+    is_a: ont00000853
+  dates:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: interoperability
+    title: dates
+    description: field regarding data collection dates
+    is_a: ont00000853
+  data_collection_start:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: dates
+      value:
+        range: date
+    title: data_collection_start
+    description: '[interoperability_if_applicable] ISO 8601 date data collection or
+      generation began'
+    is_a: ont00000529
+  data_collection_end:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: dates
+      value:
+        range: date
+    title: data_collection_end
+    description: '[interoperability_if_applicable] ISO 8601 date data collection or
+      generation ended'
+    is_a: ont00000529
+  issued:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: dates
+      value:
+        range: date
+    title: issued
+    description: '[interoperability_if_applicable] ISO 8601 date the dataset was first
+      publicly released'
+    is_a: ont00000529
+  modified:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: dates
+      value:
+        range: date
+    title: modified
+    description: '[interoperability_if_applicable] ISO 8601 date of most recent significant
+      modification'
+    is_a: ont00000529
+  semantic_layer:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001982
+    slot_usage:
+      bfo_BFO_0000176:
+        range: interoperability
+      cco_ont00001982:
+        range: IAO_8000000
+    title: semantic_layer
+    description: To support agentic-use, federated or cross-domain use, populate schema_url
+      at minimum.
+    is_a: ont00000853
+  schema_url:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: semantic_layer
+      value:
+        range: uri
+    title: schema_url
+    description: '[interoperability_if_applicable] URL to a formal schema for this
+      dataset. e.g., JSON Schema | XML Schema | NeXus application definition'
+    is_a: ont00000649
+  semantic_context:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: semantic_layer
+      value:
+        range: string
+    title: semantic_context
+    description: '[interoperability_if_applicable] Semantic conventions applied. e.g.,
+      NetCDF CF Conventions 1.10 | NeXus NXmonopd'
+    is_a: ont00000853
+  related_resources:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001982
+    slot_usage:
+      bfo_BFO_0000176:
+        range: interoperability
+      cco_ont00001982:
+        range: ont00000740
+    title: related_resources
+    description: Links to related datasets, publications, software, and AI models.
+      The base relationship vocabulary isshared across all resource types; extended
+      terms are available for software and AI models.
+    is_a: ont00000853
+  datasets:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: related_resources
+    title: datasets
+    description: '- name: __NAME__ identifier: type: __TYPE__                      #
+      doi | ark | handle | url | local | other value: __VALUE__ relationship: __REL__                 #
+      see vocabulary above'
+    is_a: ont00000853
+  publications:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001982
+    slot_usage:
+      bfo_BFO_0000176:
+        range: related_resources
+      cco_ont00001982:
+        range: IAO_0000311
+    title: publications
+    description: '- type: __TYPE__                        # doi | ark | arxiv | url
+      | report | other value: __VALUE__ relationship: __REL__                 # see
+      vocabulary above'
+    is_a: ont00000853
+  ai_models:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001982
+    slot_usage:
+      bfo_BFO_0000176:
+        range: related_resources
+      cco_ont00001982:
+        range: ont00000653
+    title: ai_models
+    description: '- name: __NAME__ version: __VERSION__ accessed_date: __YYYY-MM-DD__
+      identifier: type: __TYPE__                      # doi | ark | handle | url |
+      local | other value: __VALUE__ role: - ${ROLE}                           # [interoperability_if_applicable]
+      list from roles extending the CRediT taxonomy: Conceptualization | Data_Curation
+      | Formal_Analysis | Funding_Acquisition | Investigation | Methodology | Project_Administration
+      | Resources | Software | Supervision | Validation | Visualization | Writing_Original_Draft
+      | Writing_Review_Editing | Data_Collection | Other relationship: __REL__                 #
+      see vocabulary above'
+    is_a: ont00000853
+  domain_metadata:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: interoperability
+    title: domain_metadata
+    description: '[interoperability_if_applicable] e.g., Accelerator Operations Metadata
+      | Climate Data Variables'
+    is_a: ont00000853
+  schema_reference:
+    slots:
+    - cco_ont00001920
+    slot_usage:
+      cco_ont00001920:
+        range: name
+    title: schema_reference
+    description: '[interoperability_if_applicable]'
+    is_a: ont00000253
+  fields:
+    slots:
+    - cco_ont00001920
+    slot_usage:
+      cco_ont00001920:
+        range: name
+    title: fields
+    description: '[interoperability_if_applicable] Key-value pairs of domain-specific
+      metadata fields. The specific fields will depend on the domain and schema referenced
+      above.'
+    is_a: ont00000686
+  FIELD_NAME:
+    slots:
+    - bfo_BFO_0000101
+    - value
+    slot_usage:
+      bfo_BFO_0000101:
+        range: genesis_datacard_merged_shared
+      value:
+        range: string
+    title: FIELD_NAME
+    description: ${FIELD_NAME} [interoperability_if_applicable] The name of the domain-specific
+      metadata field.
+    is_a: ont00000853
+  field_value:
+    slots:
+    - cco_ont00001920
+    slot_usage:
+      cco_ont00001920:
+        range: FIELD_NAME
+    title: field_value
+    description: '[interoperability_if_applicable] The value for this domain-specific
+      metadata field. The specific value will depend on the field and schema referenced
+      above.'
+    is_a: ont00000686
+  data_type:
+    slots:
+    - cco_ont00001920
+    slot_usage:
+      cco_ont00001920:
+        range: FIELD_NAME
+    title: data_type
+    description: '[interoperability_if_applicable] The data type of the value (e.g.,
+      string, integer, float, boolean).'
+    is_a: ont00000686
+  unit:
+    slots:
+    - cco_ont00001920
+    slot_usage:
+      cco_ont00001920:
+        range: FIELD_NAME
+    title: unit
+    description: '[interoperability_if_applicable] The unit of measurement for the
+      value, if applicable.'
+    is_a: ont00000686
+  reusability:
+    slots:
+    - bfo_BFO_0000101
+    slot_usage:
+      bfo_BFO_0000101:
+        range: genesis_datacard_merged_shared
+    title: reusability
+    description: '[reusability_required] Information about the reusability of this
+      dataset, such as license and rights, stewardship, data_quality, integrity, citation
+      and stewardship information. --- License & Rights ----------------------------------------------------
+      [reusability_if_applicable] Important: Required when release_status = Approved
+      | Published. Use pending if not yet assigned. Includes information about the
+      license governing use of the dataset, as well as any additional legal rights
+      statements. NOTE ON LICENSES AND GOVERNANCE: A public/open license is not always
+      the governing instrument for use, some controlled datasets may not have an SPDX-style
+      reuse license at all, and use may instead be governed by contract, agreement,
+      institutional review, or repository policy.'
+    is_a: ont00000853
+  license:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001982
+    slot_usage:
+      bfo_BFO_0000176:
+        range: reusability
+      cco_ont00001982:
+        range: LicenseDocument
+    title: license
+    description: A public/open license is not always the governing instrument for
+      use, some controlled datasets may not have an SPDX-style reuse license at all,
+      and use may instead be governed by contract, agreement, institutional review,
+      or repository policy.
+    is_a: ont00000853
+  spdx_id:
+    slots:
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: additional_licenses
+      value:
+        range: string
+    title: spdx_id
+    description: '[reusability_if_applicable] SPDX license identifier: https://spdx.org/licenses/
+      e.g., CC-BY-4.0 | CC0-1.0 | Apache-2.0 | MIT Use Other if not in SPDX registry.
+      Use pending if not yet assigned.'
+    is_a: ont00000292
+  url:
+    slots:
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: additional_licenses
+      value:
+        range: uri
+    title: url
+    description: '[reusability_if_applicable] URL to license text or LICENSE.md for
+      repo-local file'
+    is_a: ont00000649
+  known_contractual_rights:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001982
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: additional_licenses
+      cco_ont00001982:
+        range: RightsStatement
+      value:
+        range: string
+    title: known_contractual_rights
+    description: '[reusability_if_applicable] Legal rights statement, separate from
+      license. Important because DOE/NNSA datasets may have complex contractual arrangements
+      that impact how the data can be used and shared beyond license terms. e.g.,
+      Government has unlimited rights'
+    is_a: ont00000853
+  additional_licenses:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: reusability
+      value:
+        range: string
+    title: additional_licenses
+    description: '[reusability_if_applicable] List of additional licenses that apply
+      to subsets of the dataset, if any. e.g., if a dataset contains third-party data
+      with different licensing terms, those can be captured here. Each entry should
+      include the same fields as the main license block above, along with a description
+      of which subset of the data it applies to.'
+    is_a: ont00000853
+  stewardship:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: reusability
+    title: stewardship
+    description: '[reusability_if_applicable] Information about the stewardship of
+      this dataset, including who is responsible for maintaining it and how versioning
+      is managed over time.'
+    is_a: ont00000853
+  level:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001916
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: stewardship
+      cco_ont00001916:
+        range: ProvenanceStatement
+      value:
+        range: stewardship_level_set
+    title: level
+    description: '[reusability_if_applicable] Select one: Project_Managed | Repository_Managed
+      | Externally_Managed | not_applicable'
+    is_a: ont00000686
+  maintainer:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001982
+    slot_usage:
+      bfo_BFO_0000176:
+        range: stewardship
+      cco_ont00001982:
+        range: ont00001017
+    title: maintainer
+    description: '[reusability_if_applicable] Person or organization responsible for
+      ongoing maintenance.'
+    is_a: ont00000853
+  update_frequency:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001916
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: stewardship
+      cco_ont00001916:
+        range: Frequency
+      value:
+        range: update_frequency_set
+    title: update_frequency
+    description: '[reusability_if_applicable] None | Ad_Hoc | Monthly | Quarterly
+      | Annually | Continuously | Other'
+    is_a: ont00000686
+  retention_policy:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001982
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: stewardship
+      cco_ont00001982:
+        range: Policy
+      value:
+        range: string
+    title: retention_policy
+    description: '[reusability_if_applicable] e.g., Retained for 10 years per DOE
+      data management policy'
+    is_a: ont00000853
+  versioning_strategy:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001982
+    slot_usage:
+      bfo_BFO_0000176:
+        range: stewardship
+      cco_ont00001982:
+        range: ProvenanceStatement
+    title: versioning_strategy
+    description: '[reusability_if_applicable] e.g., Semantic versioning; all versions
+      retained in Zenodo e.g., Major versions only; prior versions available on request'
+    is_a: ont00000853
+  data_quality:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: reusability
+    title: data_quality
+    description: vague entries reduce trust and reuse.
+    is_a: ont00000853
+  completeness:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001982
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: data_quality
+      cco_ont00001982:
+        range: ont00000575
+      value:
+        range: string
+    title: completeness
+    description: '[reusability_required] e.g., All detector channels present; 2% of
+      timesteps missing due to instrument downtime on 2023-04-12'
+    is_a: ont00000853
+  known_issues:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: data_quality
+      cco_ont00001808:
+        range: PATO_0000069
+      value:
+        range: string
+    title: known_issues
+    description: '[reusability_required] e.g., Sensor drift observed after 2023-06-01T12:00:00Z'
+    is_a: ont00000853
+  validation_methods:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001982
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: data_quality
+      cco_ont00001982:
+        range: OBI_0302911
+      value:
+        range: string
+    title: validation_methods
+    description: '[reusability_required] e.g., Cross-validated against NIST SRM 640f'
+    is_a: ont00000853
+  noise_characteristics:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: data_quality
+      value:
+        range: string
+    title: noise_characteristics
+    description: '[reusability_if_applicable]'
+    is_a: ont00000853
+  uncertainty_notes:
+    slots:
+    - cco_ont00001982
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      cco_ont00001982:
+        range: PMD_0001036
+      bfo_BFO_0000176:
+        range: data_quality
+      value:
+        range: string
+    title: uncertainty_notes
+    description: "[reusability_if_applicable] e.g., Measurement uncertainty \xB10.5%\
+      \ (k=2) per ISO/IEC Guide 98-3"
+    is_a: ont00000853
+  missing_data_codes:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: data_quality
+      value:
+        range: string
+    title: missing_data_codes
+    description: '[reusability_if_applicable] - code: __CODE__                       #
+      e.g., -999 | NaN | NULL description: __DESC__                # e.g., Sensor
+      malfunction | Below detection limit'
+    is_a: ont00000853
+  citation:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001982
+    slot_usage:
+      bfo_BFO_0000176:
+        range: reusability
+      cco_ont00001982:
+        range: IAO_0000301
+    title: citation
+    description: '[reusability_if_applicable] Important:Populate when dataset release_status
+      = Approved | Published. Replace ALL ${...} placeholders in the BibTeX block
+      below before publishing.'
+    is_a: ont00000853
+  report_number:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001916
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: Citation
+      cco_ont00001916:
+        range: ont00002043
+      value:
+        range: string
+    title: report_number
+    description: '[reusability_if_applicable] e.g., SAND2024-XXXXX | LAUR-XX-XXXXX
+      | ORNL/TM-2024/XXXXX'
+    is_a: ont00000686
+  preferred_citation:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    slot_usage:
+      bfo_BFO_0000176:
+        range: Citation
+      cco_ont00001808:
+        range: IAO_0000301
+    title: preferred_citation
+    description: '[reusability_if_applicable]'
+    is_a: ont00000853
+  author:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: preferred_citation
+    title: author
+    description: '[reusability_if_applicable, required if preferred_citation is included]
+      e.g., Smith, John A.; Doe, Jane B.'
+    is_a: ont00000853
+  title:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001916
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: preferred_citation
+      cco_ont00001916:
+        range: IAO_0000305
+      value:
+        range: string
+    title: title
+    description: '[reusability_if_applicable, required if preferred_citation is included]
+      e.g., Neutron Scattering Data from SNS Beamline 1B, April 2023'
+    is_a: ont00000686
+  year:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: preferred_citation
+      value:
+        range: date
+    title: year
+    description: '[reusability_if_applicable, required if preferred_citation is included]
+      e.g., 2024'
+    is_a: ont00000529
+  publisher:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001982
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: preferred_citation
+      cco_ont00001982:
+        range: IAO_0000311
+      value:
+        range: string
+    title: publisher
+    description: '[reusability_if_applicable, either preferred_citation or howpublished
+      is required] e.g., Oak Ridge National Laboratory | DOE NNSA | University of
+      X'
+    is_a: ont00000853
+  howpublished:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001982
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: preferred_citation
+      cco_ont00001982:
+        range: IAO_0000444
+      value:
+        range: string
+    title: howpublished
+    description: '[reusability_if_applicable, either preferred_citation or howpublished
+      is required] e.g., (Version v1) [Data set]. Zenodo | Available at https://doi.org/10.1234/zenodo.1234567'
+    is_a: ont00000853
+  doi:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: preferred_citation
+      value:
+        range: uri
+    title: doi
+    description: '[reusability_if_applicable, either doi or url is required] e.g.,
+      10.1234/zenodo.1234567'
+    is_a: ont00000649
+  eprinttype:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: preferred_citation
+      value:
+        range: string
+    title: eprinttype
+    description: '[reusability_if_applicable] e.g., arxiv | biorxiv | report_number
+      | other'
+    is_a: ont00000686
+  eprint:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: preferred_citation
+      value:
+        range: string
+    title: eprint
+    description: '[reusability_if_applicable] e.g., 1234.56789 | SAND2024-XXXXX'
+    is_a: ont00000686
+  note:
+    slots:
+    - cco_ont00001920
+    slot_usage:
+      cco_ont00001920:
+        range: preferred_citation
+    title: note
+    description: '[reusability_if_applicable] e.g., Available at \url{ark:/12345/abcde}
+      For legacy bibtex entries (that don''t accept eprinttype and eprint) and that
+      need to support an ark or other identifiers that don''t fit cleanly into the
+      existing fields, the note field can be used to capture this information in a
+      free-text format. include a note: field use this format for the note field:
+      note: Available at \url{ark:/12345/abcde} --- Integrity & Fixity -----------------------------------------
+      [reusability_if_applicable] Checksums enable automated validation of data integrity
+      after transfer or storage.'
+    is_a: ont00000853
+  integrity:
+    slots:
+    - bfo_BFO_0000178
+    slot_usage:
+      bfo_BFO_0000178:
+        range: reusability
+    title: integrity
+    description: Checksums enable automated validation of data integrity after transfer
+      or storage.
+    is_a: ont00000853
+  checksum_available:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: integrity
+      value:
+        range: YesNo
+    title: checksum_available
+    description: '[reusability_if_applicable] Yes | No'
+    is_a: ont00000853
+  checksum_type:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: integrity
+      value:
+        range: checksum_set
+    title: checksum_type
+    description: '[required if checksum_available=Yes] sha256 | sha512 | md5 | other
+      sha256 recommended; md5 not recommended for new datasets'
+    is_a: ont00000853
+  checksum_value:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: integrity
+      value:
+        range: uri
+    title: checksum_value
+    description: '[required if checksum_available=Yes] Checksum of primary data file(s).
+      For multi-file datasets, provide a checksum manifest and link here.'
+    is_a: ont00000853
+  fixity_policy:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001982
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: integrity
+      cco_ont00001982:
+        range: Policy
+      value:
+        range: string
+    title: fixity_policy
+    description: '[reusability_if_applicable] e.g., Monthly sha256 verification via
+      repository integrity service'
+    is_a: ont00000853
+  governed_use:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: genesis_datacard_merged_shared
+    title: governed_use
+    description: '[governed_use_required] For datasets that are actively being used
+      in workflows, or where use governance is needed to manage risks, ensure responsible
+      use, or enable discoverability for specific use cases. Populate the fields that
+      are relevant to the dataset''s current, intended, permitted, out_of_scope, and
+      prohibited use. current_use is required for governed_use_required; the other
+      fields are optional but recommended to support responsible use and discoverability.'
+    is_a: ont00000853
+  use_governance:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: governed_use
+    title: use_governance
+    description: '[governed_use_required]'
+    is_a: ont00000853
+  current_use:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: use_governance
+      value:
+        range: string
+    title: current_use
+    description: '[governed_use_required] For in-workflow data: what is this dataset
+      actively being used for right now? Distinct from intended_use.'
+    is_a: ont00000853
+  intended_use:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: use_governance
+      value:
+        range: string
+    title: intended_use
+    description: '[governed_use_if_applicable] Tasks or workflows this dataset is
+      designed to support. e.g., ML training | physics analysis | benchmarking | visualization'
+    is_a: ont00000853
+  permitted_use:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: use_governance
+      value:
+        range: string
+    title: permitted_use
+    description: '[governed_use_if_applicable] Uses this dataset is suitable for,
+      beyond the intended use. e.g., exploratory analysis | hypothesis generation
+      | educational use'
+    is_a: ont00000853
+  out_of_scope_use:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: use_governance
+      value:
+        range: string
+    title: out_of_scope_use
+    description: '[governed_use_if_applicable] Uses this dataset should NOT be applied
+      to. e.g., clinical decision-making | real-time control systems'
+    is_a: ont00000853
+  prohibited_use:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: use_governance
+      value:
+        range: string
+    title: prohibited_use
+    description: '[governed_use_if_applicable] Uses that are explicitly prohibited
+      for this dataset. e.g., any use involving human subjects | commercial applications
+      | use in high-risk domains'
+    is_a: ont00000853
+  need_to_know_basis:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: use_governance
+      value:
+        range: ntk_set
+    title: need_to_know_basis
+    description: '[governed_use_if_applicable] If access is restricted based on a
+      need-to-know basis, list the specific basis for the restriction. select one
+      from list: Mission_Need | Job_Duty | Project_Program_Association | Agreement_Defined
+      | DGB_Exception_Waiver'
+    is_a: ont00000686
+  non_sensitivity_governance_metadata:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: governed_use
+    title: non_sensitivity_governance_metadata
+    description: '[governed_use_required] export control, privacy, right & release
+      as it applies to the dataset as a whole, which may be distinct from the sensitivity
+      or classification of the source data from which it was derived. Export Control
+      & Foreign National Access.'
+    is_a: ont00000853
+  export_control:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: non_sensitivity_governance_metadata
+    title: export_control
+    description: Export Control & Foreign National Access
+    is_a: ont00000853
+  export_control_status:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: export_control
+      value:
+        range: YesNoPendUnk
+    title: export_control_status
+    description: '[governed_use_required] select one from list: Yes | No | Pending_Review
+      | Unknown'
+    is_a: ont00000686
+  export_control_basis:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: export_control
+      value:
+        range: export_control_set
+    title: export_control_basis
+    description: '[governed_use_if_applicable, required if export_control_status =
+      Yes] select one from: ITAR | EAR | DOE_Nuclear_Export_Control | Other | not_applicable'
+    is_a: ont00000686
+  foreign_national_access_status:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: export_control
+      value:
+        range: foreign_national_set
+    title: foreign_national_access_status
+    description: '[governed_use_if_applicable] select one from list: Allowed | Restricted
+      | Prohibited | Conditional | Unknown if cui_limited_dissemination_controls includes
+      NOFORN / REL TO / similar, foreign_national_access_status should be consistent'
+    is_a: ont00000686
+  privacy:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: non_sensitivity_governance_metadata
+    title: privacy
+    description: Privacy & Human Subjects
+    is_a: ont00000853
+  privacy_status:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: privacy
+      value:
+        range: export_control_set
+    title: privacy_status
+    description: '[governed_use_required] select one from list: Yes | No | Pending_Review
+      | Unknown'
+    is_a: ont00000686
+  pii_status:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: privacy
+      value:
+        range: YesNoPendUnk
+    title: pii_status
+    description: '[governed_use_required] select one from list: Yes | No | Pending_Review
+      | Unknown'
+    is_a: ont00000686
+  phi_status:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: privacy
+      value:
+        range: YesNoPendUnk
+    title: phi_status
+    description: '[governed_use_required] select one from list: Yes | No | Pending_Review
+      | Unknown'
+    is_a: ont00000686
+  privacy_control_basis:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: privacy
+      value:
+        range: privary_control_set
+    title: privacy_control_basis
+    description: '[governed_use_if_applicable] select all that apply: HIPPA | Privacy_Act
+      | Human_Subjects | Other_Regulated_Privacy | Site_Specific | not_applicable'
+    is_a: ont00000686
+  privacy_regime_notes:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: privacy
+    title: privacy_regime_notes
+    description: '[governed_use_if_applicable] Optional notes for privacy regimes
+      or handling nuances not captured by controlled values.'
+    is_a: ont00000853
+  rights_release_records:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001982
+    slot_usage:
+      bfo_BFO_0000176:
+        range: non_sensitivity_governance_metadata
+      cco_ont00001982:
+        range: LicenseDocument
+    title: rights_release_records
+    description: Rights & Agreements
+    is_a: ont00000853
+  ip_restriction_type:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: rights_release_records
+      value:
+        range: ip_restriction_set
+    title: ip_restriction_type
+    description: '[governed_use_if_applicable] select one from list: Proprietary |
+      Limited_Rights | Restricted_Rights | Government_Purpose_Rights | Unlimited_Rights
+      | Third_Party_Licensed | None'
+    is_a: ont00000686
+  agreement_required:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: rights_release_records
+      value:
+        range: YesNo
+    title: agreement_required
+    description: "[governed_use_required] select one from list: Yes | No \u2014 Is\
+      \ a rights release agreement required for use of this dataset?"
+    is_a: ont00000686
+  agreement_type:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: rights_release_records
+      value:
+        range: agreement_set
+    title: agreement_type
+    description: '[governed_use_if_applicable, required if agreement_required = Yes]
+      list all that apply: DUA | CRADA | MOU | NDA | LICENSE | WFO | OTHER'
+    is_a: ont00000686
+  public_release_status:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: rights_release_records
+      value:
+        range: public_release_set
+    title: public_release_status
+    description: '[governed_use_required] select one from list: Approved | Pending
+      | Not_Approved | Requires_STI_Review'
+    is_a: ont00000686
+  record_status:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: rights_release_records
+      value:
+        range: record_set
+    title: record_status
+    description: '[governed_use_required] select one from list: Federal_Record | Contractor_Record
+      | Non_Record | Mixed | Unknown'
+    is_a: ont00000686
+  compliance:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: governed_use
+    title: compliance
+    description: Leave blank or omit for draft and in-workflow datasets.
+    is_a: ont00000853
+  doe_data_management_plan:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: compliance
+      value:
+        range: YesNoUnk
+    title: doe_data_management_plan
+    description: "[governed_use_required] select one from list: Yes | No | Unknown\
+      \ \u2014 a DOE DMP is on file for this dataset"
+    is_a: ont00000686
+  osti_elink2_metadata_compliant:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: compliance
+      value:
+        range: YesNoUnk
+    title: osti_elink2_metadata_compliant
+    description: "[governed_use_required] select one from list: Yes | No | Unknown\
+      \ \u2014 metadata complies with OSTI E-Link 2 API specs"
+    is_a: ont00000686
+  irb_approved:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: compliance
+      value:
+        range: YesNoUnk
+    title: irb_approved
+    description: '[governed_use_required] select one from list: Yes | No | Unknown
+      | not_applicable - IRB approval is in place for this dataset, if applicable'
+    is_a: ont00000686
+  review_provenance_companion:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: governed_use
+    title: review_provenance_companion
+    description: Optional companion block for review/provenance data that the team
+      has indicated should exist somewhere in the broader card/model. This block extends
+      the Genesis Sensitivity V2 review_provenance_companion (which only accepts a
+      single review) by allowing multiple review records to be captured in a structured
+      format, which is especially useful for datasets that have undergone multiple
+      reviews or have complex provenance histories.
+    is_a: ont00000853
+  source_review_reference:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: review_provenance_companion
+      value:
+        range: string
+    title: source_review_reference
+    description: '[governed_use_if_applicable] e.g., internal_qa | security | export_control
+      | irb | partner | publication | other'
+    is_a: ont00000853
+  review_purpose:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: source_review_reference
+      value:
+        range: string
+    title: review_purpose
+    description: '[governed_use_if_applicable] e.g., Export control review prior to
+      public release'
+    is_a: ont00000853
+  source_review_authority:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: source_review_reference
+      value:
+        range: string
+    title: source_review_authority
+    description: '[governed_use_if_applicable] e.g., DOE Export Control Officer |
+      ORNL IRB'
+    is_a: ont00000853
+  review_contact_name:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: source_review_reference
+      value:
+        range: string
+    title: review_contact_name
+    description: '[governed_use_if_applicable] Name of the primary contact for this
+      review, if applicable.'
+    is_a: ont00001017
+  review_contact_email:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: source_review_reference
+      value:
+        range: string
+    title: review_contact_email
+    description: '[governed_use_if_applicable] Email of the primary contact for this
+      review, if applicable.'
+    is_a: ont00002070
+  reviewed_by:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: source_review_reference
+    title: reviewed_by
+    description: '[governed_use_if_applicable] Delete the block that does not apply.'
+    is_a: ont00000853
+  decontrol_or_declassify_on:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: source_review_reference
+      value:
+        range: date
+    title: decontrol_or_declassify_on
+    description: '[governed_use_if_applicable] If provided, use YYYY-MM-DD format
+      or not_applicable, for export-controlled or classified datasets, the date when
+      the dataset will be decontrolled or declassified, if known.'
+    is_a: ont00000529
+  review_date:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: source_review_reference
+      value:
+        range: date
+    title: review_date
+    description: '[governed_use_if_applicable] If provided, use YYYY-MM-DD format
+      or not_applicable'
+    is_a: ont00000529
+  comments:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: source_review_reference
+    title: comments
+    description: '[governed_use_if_applicable]'
+    is_a: ont00000853
+  ai_usability:
+    slots:
+    - bfo_BFO_0000101
+    slot_usage:
+      bfo_BFO_0000101:
+        range: genesis_datacard_merged_shared
+    title: ai_usability
+    description: "Describes whether and how this dataset may be used in AI/ML workflows.\
+      \ Be explicit \u2014 these fields are read by automated pipeline tooling."
+    is_a: ont00000853
+  ai_usage:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: ai_usability
+    title: ai_usage
+    description: field for ai usage
+    is_a: ont00000853
+  training_use_status:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: ai_usage
+      value:
+        range: YesNoCond
+    title: training_use_status
+    description: '[ai_usability_required] Yes | No | Conditional'
+    is_a: ont00000686
+  training_use_conditions:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: ai_usage
+      value:
+        range: string
+    title: training_use_conditions
+    description: '[ai_usability_if_applicable, required if training_use_status is
+      Conditional] e.g., Only for non-commercial research | Requires citation of SAND2024-XXXXX'
+    is_a: ont00000853
+  inference_use_status:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: ai_usage
+      value:
+        range: YesNoCond
+    title: inference_use_status
+    description: '[ai_usability_required] Yes | No | Conditional'
+    is_a: ont00000853
+  inference_use_conditions:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: ai_usage
+      value:
+        range: string
+    title: inference_use_conditions
+    description: '[ai_usability_if_applicable, required if inference_use_status is
+      Conditional] e.g., Only for non-commercial research | Requires citation of SAND2024-XXXXX'
+    is_a: ont00000853
+  evaluation_use_status:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: ai_usage
+      value:
+        range: YesNoCond
+    title: evaluation_use_status
+    description: '[ai_usability_required] Yes | No | Conditional'
+    is_a: ont00000686
+  evaluation_use_conditions:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: ai_usage
+      value:
+        range: string
+    title: evaluation_use_conditions
+    description: '[ai_usability_if_applicable, required if evaluation_use_status is
+      Conditional] e.g., Only for non-commercial research | Requires citation of SAND2024-XXXXX'
+    is_a: ont00000686
+  restrictions:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: ai_usage
+      value:
+        range: string
+    title: restrictions
+    description: '[ai_usability_required] e.g., Not for clinical decision-making |
+      None'
+    is_a: ont00000853
+  bias_risks:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: ai_usage
+      value:
+        range: string
+    title: bias_risks
+    description: '[ai_usability_required] e.g., Overrepresents samples from facility
+      X | None'
+    is_a: ont00000853
+  safety_considerations:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: ai_usage
+      value:
+        range: string
+    title: safety_considerations
+    description: '[ai_usability_required] e.g., Outputs may be export-controlled |
+      None'
+    is_a: ont00000853
+  human_review_required:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: ai_usage
+      value:
+        range: YesNo
+    title: human_review_required
+    description: '[ai_usability_required] Yes | No'
+    is_a: ont00000686
+  repository:
+    slots:
+    - bfo_BFO_0000101
+    slot_usage:
+      bfo_BFO_0000101:
+        range: genesis_datacard_merged_shared
+    title: _repository
+    description: '[reference_only_do_not_include] Repository-managed metadata fields.
+      Do not edit manually, nor include in completed data card.'
+    is_a: ont00000853
+  populated_by_repository:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: repository
+      value:
+        range: string
+    title: populated_by_repository
+    description: '[reference_only_do_not_include] Always true; signals to parsers
+      this block is system-owned'
+    is_a: ont00000853
+  ingest_date:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: repository
+      value:
+        range: date
+    title: ingest_date
+    description: '[reference_only_do_not_include] ISO 8601 date this data card was
+      ingested by the managing system'
+    is_a: ont00000529
+  repository_catalog_id:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: repository
+    title: repository_catalog_id
+    description: '[reference_only_do_not_include] Identifier assigned to this data
+      card by the managing catalog'
+    is_a: ont00000649
+  completeness_score:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: repository
+      value:
+        range: decimal
+    title: completeness_score
+    description: '[reference_only_do_not_include] Catalog-computed completeness score
+      against completeness of fields in declared inteded_capabilities'
+    is_a: ont00000853
+  datacard_checksum:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: repository
+      value:
+        range: string
+    title: datacard_checksum
+    description: '[reference_only_do_not_include] Integrity record for this data card
+      document file'
+    is_a: ont00000853
+  repositories:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: repository
+    title: repositories
+    description: '[reference_only_do_not_include] Resolved repository records keyed
+      to access.intended_repositories'
+    is_a: ont00000853
+  dataset_landing_page:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001982
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: name
+      cco_ont00001982:
+        range: repositories
+      value:
+        range: string
+    title: dataset_landing_page
+    description: '[reference_only_do_not_include] Human-readable dataset page assigned
+      by the repository'
+    is_a: ont00000853
+  dataset_download_url:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: name
+      cco_ont00001808:
+        range: repositories
+      value:
+        range: uri
+    title: dataset_download_url
+    description: '[reference_only_do_not_include] Direct download URL assigned by
+      the repository'
+    is_a: ont00000649
+  dataset_id_in_repo:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    slot_usage:
+      bfo_BFO_0000176:
+        range: name
+      cco_ont00001808:
+        range: repositories
+    title: dataset_id_in_repo
+    description: '[reference_only_do_not_include] Accession number or ID assigned
+      by this repository'
+    is_a: ont00000649
+  access_protocol:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001982
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: name
+      cco_ont00001982:
+        range: repositories
+      value:
+        range: access_protocol_set
+    title: access_protocol
+    description: '[reference_only_do_not_include] https | ftp | s3 | globus | nfs
+      | lustre | other'
+    is_a: ont00000853
+  usage_metrics:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: repository
+    title: usage_metrics
+    description: '[reference_only_do_not_include] Populated by the managing repository;
+      do not edit'
+    is_a: ont00000853
+  download_count:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: usage_metrics
+      value:
+        range: integer
+    title: download_count
+    description: field for download counts
+    is_a: ont00001163
+  view_count:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: usage_metrics
+      value:
+        range: integer
+    title: view_count
+    description: Field for view counts
+    is_a: ont00001163
+  citation_count:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: usage_metrics
+      cco_ont00001808:
+        range: IAO_0000301
+      value:
+        range: integer
+    title: citation_count
+    description: Field for citation counts
+    is_a: ont00001163
+  last_accessed:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: usage_metrics
+      value:
+        range: date
+    title: last_accessed
+    description: Date of last access
+    is_a: ont00000529
+  distributions:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: repository
+      value:
+        range: string
+    title: distributions
+    description: '[reference_only_do_not_include] Distribution records populated at
+      ingest'
+    is_a: ont00000853
+  supports_accessibility:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: datacard_capabilities
+      value:
+        range: YesNo
+    title: supports_accessibility
+    description: '[required] Set to Yes if this data card includes the metadata to
+      support accessibility of the dataset. Required for data cards describing datasets
+      that are shared or published. Does not necessary indicate that the dataset itself
+      is accessible, only that the data card includes all the metadata to support
+      accessibility.'
+    is_a: ont00000965
+  datacard_capabilities:
+    slots:
+    - bfo_BFO_0000101
+    slot_usage:
+      bfo_BFO_0000101:
+        range: genesis_datacard_merged_shared
+    title: datacard_capabilities
+    description: Describes the intended capabilities to be enabled for this data card,
+      to guide authors, ensure completeness, and inform parsers.
+    is_a: ont00000853
+  given_name:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: Person
+      value:
+        range: string
+    title: given_name
+    description: ${GIVEN_NAME}
+    is_a: ont00001014
+  family_name:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: Person
+      value:
+        range: string
+    title: family_name
+    description: ${FAMILY_NAME}
+    is_a: ont00001331
+  email:
+    slots:
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: Person
+      value:
+        range: string
+    title: email
+    description: ${EMAIL}
+    is_a: ont00002070
+  affiliation:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001808
+    slot_usage:
+      bfo_BFO_0000176:
+        range: Person
+      cco_ont00001808:
+        range: ont00000591
+    title: affiliation
+    description: The agent where the human contributor is part of
+    is_a: ont00000853
+  role:
+    slots:
+    - bfo_BFO_0000176
+    - bfo_BFO_0000176
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: facilities
+      value:
+        range: role_set
+    title: role
+    description: Human contributor's function
+    is_a: ont00000175
+  location:
+    slots:
+    - bfo_BFO_0000176
+    slot_usage:
+      bfo_BFO_0000176:
+        range: facilities
+    title: location
+    description: '[discoverability_if_applicable] Point location for facility-based
+      experimental data.'
+    is_a: ont00000487
+  code:
+    slots:
+    - bfo_BFO_0000176
+    - cco_ont00001982
+    - value
+    slot_usage:
+      bfo_BFO_0000176:
+        range: missing_data_codes
+      cco_ont00001982:
+        range: ont00000077
+      value:
+        range: string
+    title: code
+    description: code for missing data
+    is_a: ont00000853
+  ont00000253:
+    class_uri: cco:ont00000253
+  ont00000965:
+    class_uri: cco:ont00000965
+  ont00000853:
+    class_uri: cco:ont00000853
+  ont00000649:
+    class_uri: cco:ont00000649
+  ont00001175:
+    class_uri: cco:ont00001175
+  ont00000292:
+    class_uri: cco:ont00000292
+  Identifier:
+    class_uri: datacite:Identifier
+  ont00000751:
+    class_uri: cco:ont00000751
+  ont00000686:
+    class_uri: cco:ont00000686
+  ont00000529:
+    class_uri: cco:ont00000529
+  ont00001017:
+    class_uri: cco:ont00001017
+  Location:
+    class_uri: cros:Location
+  ont00001261:
+    class_uri: cco:ont00001261
+  Person:
+    class_uri: llnl:Person
+  IAO_0000708:
+    class_uri: iao:IAO_0000708
+  Organization:
+    class_uri: iof-core:Organization
+  Software:
+    class_uri: mseo:Software
+  ont00000186:
+    class_uri: cco:ont00000186
+  ont00000077:
+    class_uri: cco:ont00000077
+  IAO_0001000:
+    class_uri: iao:IAO_0001000
+  IAO_0000027:
+    class_uri: iao:IAO_0000027
+  IAO_0000315:
+    class_uri: iao:IAO_0000315
+  ont00000300:
+    class_uri: cco:ont00000300
+  ont00001180:
+    class_uri: cco:ont00001180
+  ont00000946:
+    class_uri: cco:ont00000946
+  PMD_0000012:
+    class_uri: pmdco:PMD_0000012
+  APOLLO_SV_00000522:
+    class_uri: iao:APOLLO_SV_00000522
+  PER_HR:
+    class_uri: unit:PER-HR
+  ont00000539:
+    class_uri: cco:ont00000539
+  ont00000958:
+    class_uri: cco:ont00000958
+  BYTE:
+    class_uri: unit:BYTE
+  ont00001163:
+    class_uri: cco:ont00001163
+  IAO_0000129:
+    class_uri: iao:IAO_0000129
+  ont00000358:
+    class_uri: cco:ont00000358
+  ont00000469:
+    class_uri: cco:ont00000469
+  DEG:
+    class_uri: unit:DEG
+  BFO_0000144:
+    class_uri: iao:BFO_0000144
+  MeasurementCapability:
+    class_uri: iof-core:MeasurementCapability
+  PMD_0000933:
+    class_uri: pmdco:PMD_0000933
+  SWO_0000021:
+    class_uri: swo:SWO_0000021
+  ont00000932:
+    class_uri: cco:ont00000932
+  ont00000420:
+    class_uri: cco:ont00000420
+  IAO_8000000:
+    class_uri: iao:IAO_8000000
+  ont00000740:
+    class_uri: cco:ont00000740
+  IAO_0000311:
+    class_uri: iao:IAO_0000311
+  ont00000653:
+    class_uri: cco:ont00000653
+  LicenseDocument:
+    class_uri: dcterms:LicenseDocument
+  RightsStatement:
+    class_uri: dcterms:RightsStatement
+  ProvenanceStatement:
+    class_uri: dcterms:ProvenanceStatement
+  Frequency:
+    class_uri: dcterms:Frequency
+  Policy:
+    class_uri: dcterms:Policy
+  ont00000575:
+    class_uri: cco:ont00000575
+  PATO_0000069:
+    class_uri: pato:PATO_0000069
+  OBI_0302911:
+    class_uri: obo:OBI_0302911
+  PMD_0001036:
+    class_uri: pmdco:PMD_0001036
+  IAO_0000301:
+    class_uri: iao:IAO_0000301
+  Citation:
+    class_uri: llnl:Citation
+  ont00002043:
+    class_uri: cco:ont00002043
+  IAO_0000305:
+    class_uri: iao:IAO_0000305
+  IAO_0000444:
+    class_uri: iao:IAO_0000444
+  ont00002070:
+    class_uri: cco:ont00002070
+  ont00001014:
+    class_uri: cco:ont00001014
+  ont00001331:
+    class_uri: cco:ont00001331
+  ont00000591:
+    class_uri: cco:ont00000591
+  ont00000175:
+    class_uri: cco:ont00000175
+  ont00000487:
+    class_uri: cco:ont00000487
+slots:
+  bfo_BFO_0000176:
+    slot_uri: bfo:BFO_0000176
+  value:
+    slot_uri: llnl:value
+  bfo_BFO_0000101:
+    slot_uri: bfo:BFO_0000101
+  cco_ont00001982:
+    slot_uri: cco:ont00001982
+  cco_ont00001942:
+    slot_uri: cco:ont00001942
+  cco_ont00001808:
+    slot_uri: cco:ont00001808
+  cco_ont00001920:
+    slot_uri: cco:ont00001920
+  qudt_hasUnit:
+    slot_uri: qudt:hasUnit
+  qudt_hasUnitSystem:
+    slot_uri: qudt:hasUnitSystem
+  iao_IAO_0000136:
+    slot_uri: iao:IAO_0000136
+  cco_ont00001916:
+    slot_uri: cco:ont00001916
+  bfo_BFO_0000178:
+    slot_uri: bfo:BFO_0000178
+enums:
+  YesNo:
+    permissible_values:
+      'Yes': {}
+      'No': {}
+    title: YesNo
+  security_set:
+    permissible_values:
+      Public: {}
+      Unclassified_uncontrolled: {}
+      CUI: {}
+      UCNI: {}
+      Classified: {}
+      Legacy_Controlled: {}
+      Mixed: {}
+      Other_Controlled: {}
+    title: security_set
+  marking_set:
+    permissible_values:
+      DOE_CUI: {}
+      DOE_UCNI: {}
+      EO13526_Classified: {}
+      AEA_RD_FRD_TFNI: {}
+      DOD_CUI: {}
+      DHS_CUI: {}
+      Legacy_OUO: {}
+      Legacy_Site_Specific: {}
+      Other_Agency: {}
+      None: {}
+    title: marking_set
+  classification_set:
+    permissible_values:
+      NOFORN: {}
+      CNWDI: {}
+      SIGMA 14: {}
+      REL TO USA, CAN, GBR: {}
+      ORCON: {}
+    title: classification_set
+  classification_cat_set:
+    permissible_values:
+      NSI: {}
+      RD: {}
+      FRD: {}
+      TFNI: {}
+      Other_Classified: {}
+    title: classification_cat_set
+  classification_level_set:
+    permissible_values:
+      classified information: {}
+      top_secret: {}
+      secret: {}
+      confidential: {}
+    title: classification_level_set
+  YesNoMaybeso:
+    permissible_values:
+      'Yes': {}
+      'No': {}
+      Unknown: {}
+      Not applicable: {}
+    title: YesNoMaybeso
+  agent_set:
+    permissible_values:
+      person: {}
+      organization: {}
+      ai_model: {}
+      software: {}
+    title: agent_set
+  role_set:
+    permissible_values:
+      Conceptualization: {}
+      Data_Curation: {}
+      Formal_Analysis: {}
+      Funding_Acquisition: {}
+      Investigation: {}
+      Methodology: {}
+      Project_Administration: {}
+      Resources: {}
+      Software: {}
+      Supervision: {}
+      Validation: {}
+      Visualization: {}
+      Writing_Original_Draft: {}
+      Writing_Review_Editing: {}
+      Data_Collection: {}
+      Other: {}
+    title: role_set
+  relationship_set:
+    permissible_values:
+      used_to_create: {}
+      used_to_process: {}
+      used_to_analyze: {}
+      recorded_by: {}
+      trained_on: {}
+      evaluated_on: {}
+      other: {}
+    title: relationship_set
+  value_identifier_set:
+    permissible_values:
+      doi: {}
+      ark: {}
+      handle: {}
+      url: {}
+      local: {}
+      other: {}
+    title: value_identifier_set
+  OSTI_subject_set:
+    permissible_values:
+      Biology and Medicine: {}
+      Chemistry: {}
+      Energy Storage, Conversion, and Utilization: {}
+      Engineering: {}
+      Environmental Sciences: {}
+      Fission and Nuclear Technologies: {}
+      Fossil Fuels: {}
+      Geosciences: {}
+      Materials: {}
+      Mathematics and Computing: {}
+      National Defense: {}
+      Physics: {}
+      Power Generation and Distribution: {}
+      Renewable Energy: {}
+      Other: {}
+    title: OSTI_subject_set
+  collection_method_set:
+    permissible_values:
+      sensors: {}
+      computational simulation: {}
+      human annotation: {}
+      derived from prior datasets: {}
+    title: collection_method_set
+  object_type_set:
+    permissible_values:
+      Dataset: {}
+      Model: {}
+      Software: {}
+      AI_Agent: {}
+      Eval: {}
+      Framework: {}
+    title: object_type_set
+  release_status_set:
+    permissible_values:
+      Draft: {}
+      Under Review: {}
+      Under_Review: {}
+      Approved: {}
+      Published: {}
+      Deprecated: {}
+    title: release_status_set
+  funding_source_set:
+    permissible_values:
+      DOE_Program_SC: {}
+      DOE_Program_NNSA: {}
+      LDRD: {}
+      WFO: {}
+      CRADA: {}
+      Other_Federal: {}
+      State_Government: {}
+      Subcontract: {}
+      Industry: {}
+      Nonprofit: {}
+      Internal: {}
+      Other: {}
+    title: funding_source_set
+  workflow_state_set:
+    permissible_values:
+      Raw: {}
+      Processing: {}
+      QA: {}
+      Analysis: {}
+      Embargo: {}
+      Published: {}
+      Archived: {}
+      Not-applicable: {}
+      Not Applicable: {}
+    title: workflow_state_set
+  access_level_set:
+    permissible_values:
+      Open: {}
+      Restricted: {}
+      Controlled: {}
+    title: access_level_set
+  partner_class_set:
+    permissible_values:
+      Internal_Team: {}
+      Tri_Lab: {}
+      DOE_NNSA_Lab: {}
+      Federal_Partner: {}
+      Contractor: {}
+      Academic_Researchers: {}
+      External_Research_Partner: {}
+      Public: {}
+      Industry_Partner: {}
+      Other: {}
+    title: partner_class_set
+  authentication_set:
+    permissible_values:
+      None: {}
+      API_Key: {}
+      OAuth2: {}
+      SAML: {}
+      Certificate: {}
+      OpenID_Connect: {}
+      Basic_Auth: {}
+      Bearer_Token: {}
+      Other: {}
+    title: authentication_set
+  data_unit_set:
+    permissible_values:
+      samples: {}
+      files: {}
+      records: {}
+      timesteps: {}
+      images: {}
+      tokens: {}
+      other: {}
+    title: data_unit_set
+  stewardship_level_set:
+    permissible_values:
+      Project_Managed: {}
+      Repository_Managed: {}
+      Externally_Managed: {}
+      not_applicable: {}
+    title: stewardship_level_set
+  update_frequency_set:
+    permissible_values:
+      None: {}
+      Ad_Hoc: {}
+      Monthly: {}
+      Quarterly: {}
+      Annually: {}
+      Continuously: {}
+      Other: {}
+    title: update_frequency_set
+  checksum_set:
+    permissible_values:
+      sha256: {}
+      sha512: {}
+      md5: {}
+      other: {}
+    title: checksum_set
+  ntk_set:
+    permissible_values:
+      Mission_Need: {}
+      Job_Duty: {}
+      Project_Program_Association: {}
+      Agreement_Defined: {}
+      DGB_Exception_Waiver: {}
+    title: ntk_set
+  export_control_set:
+    permissible_values:
+      ITAR: {}
+      EAR: {}
+      DOE_Nuclear_Export_Control: {}
+      Other: {}
+      not_applicable: {}
+    title: export_control_set
+  foreign_national_set:
+    permissible_values:
+      Allowed: {}
+      Restricted: {}
+      Prohibited: {}
+      Conditional: {}
+      Unknown: {}
+    title: foreign_national_set
+  privary_control_set:
+    permissible_values:
+      HIPPA: {}
+      Privacy_Act: {}
+      Human_Subjects: {}
+      Other_Regulated_Privacy: {}
+      Site_Specific: {}
+      not_applicable: {}
+    title: privary_control_set
+  ip_restriction_set:
+    permissible_values:
+      Proprietary: {}
+      Limited_Rights: {}
+      Restricted_Rights: {}
+      Government_Purpose_Rights: {}
+      Unlimited_Rights: {}
+      Third_Party_Licensed: {}
+      None: {}
+    title: ip_restriction_set
+  agreement_set:
+    permissible_values:
+      DUA: {}
+      CRADA: {}
+      MOU: {}
+      NDA: {}
+      LICENSE: {}
+      WFO: {}
+      OTHER: {}
+    title: agreement_set
+  public_release_set:
+    permissible_values:
+      Approved: {}
+      Pending: {}
+      Not_Approved: {}
+      Requires_STI_Review: {}
+    title: public_release_set
+  record_set:
+    permissible_values:
+      Federal_Record: {}
+      Contractor_Record: {}
+      Non_Record: {}
+      Mixed: {}
+      Unknown: {}
+    title: record_set
+  YesNoUnk:
+    permissible_values:
+      'Yes': {}
+      'No': {}
+      Unk: {}
+    title: YesNoUnk
+  source_review_set:
+    permissible_values:
+      internal_qa: {}
+      security: {}
+      export_control: {}
+      irb: {}
+      partner: {}
+      publication: {}
+      other: {}
+    title: source_review_set
+  YesNoCond:
+    permissible_values:
+      'Yes': {}
+      'No': {}
+      Conditional: {}
+    title: YesNoCond
+  access_protocol_set:
+    permissible_values:
+      https: {}
+      ftp: {}
+      s3: {}
+      globus: {}
+      nfs: {}
+      lustre: {}
+      other: {}
+    title: access_protocol_set
+  YesNoPendUnk:
+    permissible_values:
+      'Yes': {}
+      'No': {}
+      Pending Review: {}
+      Unknown: {}
+    title: YesNoPendUnk
+version: '4'

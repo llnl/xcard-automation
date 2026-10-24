@@ -1,0 +1,214 @@
+fields:
+  - target: supports_discoverability
+    value: {constant: "Yes"}
+  - target: supports_accessibility
+    value: {constant: "No"}
+  - target: supports_interoperability
+    value: {constant: "Yes"}
+  - target: supports_reusability
+    value: {constant: "Yes"}
+  - target: supports_governed_use
+    value: {constant: "No"}
+  - target: supports_ai_usability
+    value: {constant: "No"}
+  - target: discoverability.datacard.template_version
+    value: {constant: "1.2"}
+  - target: discoverability.datacard.datacard_version
+    value: {constant: "1.0"}
+  - target: discoverability.datacard.filename
+    value: {template: "genesis_datacard_{{ dataset.slug }}.md"}
+  - target: discoverability.datacard.language
+    value: {constant: en}
+  - target: discoverability.datacard.id
+    value: {object: {type: {constant: local}, value: {source: dataset.slug}}}
+  - target: discoverability.datacard.sensitivity
+    value:
+      object:
+        overall_sensitivity: {constant: Public}
+        source_marking_string: {constant: not_applicable}
+        source_marking_scheme: {constant: "None"}
+        classified_status: {constant: "No"}
+        cui_status: {constant: "No"}
+        ucni_status: {constant: "No"}
+  - target: discoverability.datacard.creation_method
+    value: {constant: Automated}
+  - target: discoverability.datacard.created_date
+    value: {source: run.date}
+  - target: discoverability.datacard.updated_date
+    value: {source: run.date}
+  - target: discoverability.datacard.change_log
+    value:
+      list:
+        - object:
+            change_date: {source: run.date}
+            datacard_version: {constant: "1.0"}
+            summary: {constant: "Initial automated draft"}
+  - target: discoverability.datacard.created_by
+    value: {source: llm.created_by}
+  - target: discoverability.identification
+    value:
+      object:
+        name:
+          first:
+            - {source: answers.identification.name}
+            - {source: introspection.citation.title}
+            - {source: introspection.readme_title}
+            - {source: dataset.name}
+        project: {source: answers.identification.project, default: genesis}
+        version: {source: answers.identification.version, default: "1.0"}
+        primary_id: {object: {type: {constant: local}, value: {source: dataset.slug}}}
+  - target: discoverability.dataset_description
+    value:
+      object:
+        science_domain:
+          source: answers.categorization.science_domain
+          default: Other
+          lookup:
+            materials_science: Materials
+            biology: Biology and Medicine
+            chemistry: Chemistry
+            climate: Environmental Sciences
+            physics: Physics
+            fusion: Physics
+            lightsource: Physics
+            computer_science: Mathematics and Computing
+            other: Other
+        dataset_summary:
+          first:
+            - {source: answers.description.summary}
+            - {source: introspection.readme_summary}
+            - {constant: "Dataset data card generated from local inspection."}
+        keywords:
+          first:
+            - {source: answers.description.keywords}
+            - {source: introspection.citation.keywords}
+            - {source: introspection.readme_keywords}
+            - {constant: [dataset]}
+  - target: discoverability.product_type
+    value: {constant: Data}
+  - target: discoverability.release_status
+    value: {constant: Draft}
+  - target: discoverability.contact
+    value:
+      object:
+        person:
+          object:
+            given_name: {source: answers.contact.person.given_name}
+            family_name: {source: answers.contact.person.family_name}
+            email: {source: answers.contact.person.email}
+  - target: discoverability.authors
+    value:
+      first:
+        - source: answers.authors
+          items:
+            object:
+              person:
+                object:
+                  given_name: {source: item.given_name}
+                  family_name: {source: item.family_name}
+                  email: {source: item.email}
+        - list:
+            - object:
+                person:
+                  object:
+                    given_name: {source: answers.contact.person.given_name}
+                    family_name: {source: answers.contact.person.family_name}
+                    email: {source: answers.contact.person.email}
+  - target: discoverability.dataset_publisher
+    value:
+      object:
+        name:
+          first:
+            - {source: "answers.sponsor_organizations[0].name"}
+            - {source: "answers.research_organizations[0].name"}
+            - {source: dataset.name}
+  - target: discoverability.sponsor_organizations
+    value:
+      source: answers.sponsor_organizations
+      items: {object: {name: {source: item.name}}}
+  - target: discoverability.research_organizations
+    value:
+      source: answers.research_organizations
+      items: {object: {name: {source: item.name}}}
+  - target: discoverability.sensitivity
+    value:
+      object:
+        overall_sensitivity: {constant: Public}
+        source_marking_string: {constant: not_applicable}
+        source_marking_scheme: {constant: "None"}
+        classified_status: {constant: "No"}
+        cui_status: {constant: "No"}
+        ucni_status: {constant: "No"}
+  - target: discoverability.workflow
+    value: {object: {state: {constant: Raw}}}
+  - target: interoperability.data_structure
+    value:
+      object:
+        formats: {source: interoperability.formats}
+        encoding: {source: answers.dataset_info.encoding, default: UTF-8}
+        schema_version: {source: answers.dataset_info.schema_version, default: not_applicable}
+        modalities: {source: interoperability.modalities}
+        features:
+          source: interoperability.features
+          items: {object: {name: {source: item}}}
+        splits: {source: introspection.splits_detected}
+        language: {source: answers.dataset_info.language, default: not_applicable}
+  - target: interoperability.provenance
+    value:
+      object:
+        was_generated_by:
+          first:
+            - {source: answers.provenance.was_generated_by}
+            - {constant: Not documented}
+        processing_steps:
+          first:
+            - {source: answers.provenance.processing_steps}
+            - {constant: Not documented}
+  - target: interoperability.dates
+    value: {object: {modified: {source: run.date}}}
+  - target: reusability.data_quality
+    value:
+      object:
+        completeness:
+          first:
+            - {source: answers.data_quality.completeness}
+            - {constant: "Not assessed during automated card generation."}
+        known_issues:
+          first:
+            - {source: answers.data_quality.known_issues}
+            - {constant: "No known issues documented during automated card generation."}
+        validation_methods:
+          first:
+            - {source: answers.data_quality.validation_methods}
+            - {constant: "Structural inspection and SHA-256 manifest generation."}
+        noise_characteristics: {source: answers.data_quality.noise_characteristics}
+        uncertainty_notes: {source: answers.data_quality.uncertainty_notes}
+  - target: reusability.integrity
+    value:
+      object:
+        checksum_available: {constant: "Yes"}
+        checksum_type: {source: checksums.type}
+        checksum_value: {source: checksums.value}
+        fixity_policy: {constant: "SHA-256 manifest generated during datacard creation."}
+  - target: reusability.license
+    value:
+      object:
+        spdx_id:
+          first:
+            - {source: answers.license.spdx_id}
+            - {source: introspection.license_guess}
+            - {constant: pending}
+        name:
+          first:
+            - {source: answers.license.name}
+            - {constant: "Pending license assignment"}
+        url: {source: answers.license.url}
+  - target: reusability.stewardship
+    value:
+      object:
+        level: {source: answers.stewardship.level}
+        update_frequency: {source: answers.stewardship.update_frequency}
+        retention_policy: {source: answers.stewardship.retention_policy}
+        versioning_strategy: {source: answers.stewardship.versioning_strategy}
+  - target: reusability.citation
+    value: {source: answers.citation}
