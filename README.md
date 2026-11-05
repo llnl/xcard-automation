@@ -178,8 +178,21 @@ You can also document commands to lint the code or run tests. These steps help t
 ## Authors and acknowledgment
 Show your appreciation to those who have contributed to the project.
 
+## Distribution
+
+Unclassified/Open-Source Distribution
+
+- LLNL-CODE-2026365
+- Title: *Genesis: Data Card Automation Tool (GEN-DataCard), 1.0*
+- Authors: Jayvic Christian Jimenez, Denver Higgins, and Jon Vogel
+- CP# 2027-026
+
+This code has been given an Open-Source Distribution under the terms of the
+BSD 3-Clause License.
+
 ## License
-For open source projects, say how it is licensed.
+Copyright (c) 2027, Lawrence Livermore National Security, LLC. See
+[LICENSE](LICENSE) for the BSD 3-Clause License.
 
 ## Project status
 If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
