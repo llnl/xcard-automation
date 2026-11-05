@@ -1,0 +1,43 @@
+---
+{{ model | tojson(indent=2) }}
+---
+
+# Datacard for {{ model.discoverability.identification.name }}
+
+## Description
+
+{{ model.discoverability.dataset_description.dataset_summary }}
+
+## Discovery
+
+- Project: {{ model.discoverability.identification.project }}
+- Version: {{ model.discoverability.identification.version }}
+- Domain: {{ model.discoverability.dataset_description.science_domain }}
+- Keywords: {{ model.discoverability.dataset_description.keywords | join(", ") }}
+
+## Sensitivity and Lifecycle
+
+- Overall sensitivity: {{ model.discoverability.sensitivity.overall_sensitivity }}
+- Lifecycle state: {{ model.discoverability.workflow.state }}
+- Release status: {{ model.discoverability.release_status }}
+
+## Contact
+
+{{ model.discoverability.contact.person.given_name }} {{ model.discoverability.contact.person.family_name }}
+({{ model.discoverability.contact.person.email }})
+
+{% if model.supports_interoperability == "Yes" %}
+## Interoperability
+
+- Formats: {{ model.interoperability.data_structure.formats | join(", ") }}
+- Modalities: {{ model.interoperability.data_structure.modalities | join(", ") }}
+- Features: {{ model.interoperability.data_structure.features | map(attribute="name") | join(", ") }}
+- Provenance: {{ model.interoperability.provenance.was_generated_by }}
+{% endif %}
+
+{% if model.supports_reusability == "Yes" %}
+## Reusability
+
+- Checksum: {{ model.reusability.integrity.checksum_type }} {{ model.reusability.integrity.checksum_value }}
+- License: {{ model.reusability.license.spdx_id }}
+{% endif %}

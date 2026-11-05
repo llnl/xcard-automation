@@ -3,8 +3,19 @@
 CLI-first automation pipeline for generating Genesis datacards from a dataset
 directory plus a reusable sidecar answers file.
 
+## Current status
+
+The Genesis 1.2 `core` bundle automates Discoverability, Interoperability, and
+Reusability from local inspection, supplied answers, and optional cited LLM
+evidence. Accessibility, Governed Use, and AI Usability remain disabled until
+their authoritative inputs are supplied and mapped.
+
+Canonical Genesis 1.2 validation is pending the `xcard-evaluation` module's
+review and release. It is not currently included in this repository.
+
 ## Setup
 
+- Clone with `git clone ...`.
 - `uv sync` to create virtual environment and install xcard_automation packages.
 - Confirm install with `uv pip list`
   - should see 
@@ -29,10 +40,74 @@ answers: answers.json
 profile: core
 ```
 
+### LLM-assisted repository crawl
+
+Configure an external agent to inspect the dataset repository and return cited
+metadata evidence. The command receives a JSON request on standard input and
+must write one JSON evidence object to standard output; the shipped
+`repository-crawl` skill defines that contract.
+
+```yaml
+llm:
+  command: [my-agent, crawl]
+```
+
+The pipeline applies only cited, high-confidence descriptive facts approved by
+the bundle policy. The policy currently permits summary, keywords,
+science-domain, provenance, schema-version, and dataset-language suggestions.
+Access, security, governance, release, legal, identity, and AI-use claims
+always require an explicit answer or trusted system-of-record input.
+
+Title, author, and citation suggestions are instead written to
+`automation_output/llm_proposals.json` for review. After reviewing its cited
+values, apply all proposals—or only selected fields—to the answers file used
+for the next generation:
+
+```bash
+uv run xcard-cli approve-proposals <run-dir> --answers answers.json
+uv run xcard-cli approve-proposals <run-dir> --answers answers.json \
+  --field identification.name --field authors
+uv run xcard-cli run <dataset-dir> --profile core --answers answers.json \
+  --output-root <output-dir>
+```
+
+The command refuses to replace an existing answer unless `--force` is passed.
+Approval is explicit: proposals are never added to a card until they are
+written to the answers file and the pipeline is run again.
+
+Use `--llm-agent <command> [arguments...]` as the final CLI option to override
+the configured command for one run. Because the command is an external process,
+deploy it in an environment that enforces the skill's file and network limits;
+the pipeline validates evidence but cannot sandbox that process itself.
+
 ```bash
 uv run xcard-cli inspect --config config.yaml
 uv run xcard-cli run --config config.yaml --profile core
 ```
+
+To run a different schema, point the command at a local bundle containing its
+`bundle.yaml`, runtime LinkML YAML, mapping, and Jinja template. A bundle may
+also include an `ontology` YAML asset for traceability.
+
+```bash
+uv run xcard-cli run <dataset_dir> --profile <bundle-profile> \
+  --schema-bundle <bundle-dir> --output-root <output-dir>
+```
+
+`profiles` is optional bundle metadata: when omitted, any profile name is
+accepted. A bundle’s generated card must include YAML frontmatter containing
+the projected model so it can be checked later:
+
+```bash
+uv run xcard-cli evaluate card.md --schema-bundle <bundle-dir>
+```
+
+`evaluate` validates cards against the selected local schema bundle. Canonical
+Genesis 1.2 validation will return when the `xcard-evaluation` module completes
+review and is released. The packaged Genesis `core` profile generates a card
+with Discoverability, Interoperability, and Reusability sections. It explicitly declares
+Accessibility, Governed Use, and AI Usability unsupported because access and
+governance claims require authoritative user input.
 
 `configure-project` prompts for the project name, dataset root, and output
 root. With a project name, inspection results are written consistently to
@@ -56,6 +131,7 @@ for GitLab CI. GitLab runs the same test command on every push.
 python -m xcard_automation inspect <dataset_dir>
 python -m xcard_automation run <dataset_dir> --profile core
 python -m xcard_automation evaluate <datacard.md>
+python -m xcard_automation approve-proposals <run-dir> --answers answers.json
 ```
 
 Artifacts are written under `runs/<dataset_slug>/` by default:
@@ -64,11 +140,14 @@ Artifacts are written under `runs/<dataset_slug>/` by default:
 .
 ├── automation_output/
 │   ├── normalized_metadata.json # Processed and standardized metadata
-│   ├── ontology_alignment.json  # Results of the ontology alignment process
+│   ├── llm_evidence.json        # Raw external-agent response, when enabled
+│   ├── llm_proposals.json       # Human-reviewed title, author, and citation suggestions
+│   ├── llm_resolution.json      # Accepted/rejected LLM candidates
 │   └── *.md                     # Auto-generated documentation and reports
 ├── input/
 │   ├── answers.yaml            # User-provided answers for project configuration
 │   ├── introspection.json      # Output from the `inspect` command
+│   ├── llm_crawl_request.json  # Redacted agent request, when enabled
 │   ├── ontology_summary.json   # Summary of the dataset ontology
 │   └── source_manifest.json    # Manifest of all source files in the dataset
 └── validation_output/
@@ -78,17 +157,16 @@ Artifacts are written under `runs/<dataset_slug>/` by default:
 ```
 
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
 ## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+
+- Map the remaining canonical Genesis 1.2 fields, including facilities,
+  structured resources, spatial/temporal coverage, citations, and stewardship.
+- Add trusted adapters and structured attestations for Accessibility, Governed
+  Use, and AI Usability; then enable `extended`, `sensitive`, and `ai_ready`.
+- Produce a schema-coverage report that classifies every canonical field as
+  deterministic, LLM-safe, attested, repository-managed, or unsupported.
+- Add actual process/network sandboxing for external crawl agents, plus
+  URL-response provenance and schema-drift checks in CI.
 
 ## Contributing
 State if you are open to contributions and what your requirements are for accepting them.
@@ -100,8 +178,21 @@ You can also document commands to lint the code or run tests. These steps help t
 ## Authors and acknowledgment
 Show your appreciation to those who have contributed to the project.
 
+## Distribution
+
+Unclassified/Open-Source Distribution
+
+- LLNL-CODE-2026365
+- Title: *Genesis: Data Card Automation Tool (GEN-DataCard), 1.0*
+- Authors: Jayvic Christian Jimenez, Denver Higgins, and Jon Vogel
+- CP# 2027-026
+
+This code has been given an Open-Source Distribution under the terms of the
+BSD 3-Clause License.
+
 ## License
-For open source projects, say how it is licensed.
+Copyright (c) 2027, Lawrence Livermore National Security, LLC. See
+[LICENSE](LICENSE) for the BSD 3-Clause License.
 
 ## Project status
 If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.

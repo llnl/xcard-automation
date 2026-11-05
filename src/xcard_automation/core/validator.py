@@ -7,6 +7,7 @@ if TYPE_CHECKING:
     from pathlib import Path
 from typing import Any
 
+import yaml
 from .contract import ENUMS, SCIENCE_DOMAINS, required_fields
 from .ontology import FIELD_TO_ONTOLOGY_ENUM, alignment_report
 from .utils import get_path, has_placeholders, is_missing, snake_case
@@ -45,13 +46,15 @@ def load_datacard(path: Path) -> tuple[dict[str, Any], str]:
     parts = re.split(r"^---\s*$", text, maxsplit=2, flags=re.MULTILINE)
     if len(parts) < 3:
         raise ValueError(f"{path} does not contain standard YAML frontmatter")
-    data = json.loads(parts[1]) if parts[1].strip() else {}
+    data = yaml.safe_load(parts[1]) if parts[1].strip() else {}
     if not isinstance(data, dict):
         raise ValueError(f"{path} frontmatter is not a mapping")
     return data, text
 
 
 def validate_metadata(metadata: dict[str, Any], raw_text: str | None = None) -> ValidationResult:
+    if "discoverability" in metadata:
+        return _validate_v1_2_metadata(metadata, raw_text)
     findings: list[Finding] = []
     profile = metadata.get("datacard", {}).get("profile", "core")
     for path in required_fields(profile, metadata):
@@ -120,6 +123,54 @@ def validate_metadata(metadata: dict[str, Any], raw_text: str | None = None) -> 
                 )
             )
 
+    return ValidationResult(findings)
+
+
+def _validate_v1_2_metadata(metadata: dict[str, Any], raw_text: str | None) -> ValidationResult:
+    findings: list[Finding] = []
+    required = [
+        "supports_discoverability",
+        "supports_accessibility",
+        "supports_interoperability",
+        "supports_reusability",
+        "supports_governed_use",
+        "supports_ai_usability",
+        "discoverability.datacard.template_version",
+        "discoverability.datacard.datacard_version",
+        "discoverability.datacard.filename",
+        "discoverability.datacard.change_log[0].change_date",
+        "discoverability.datacard.change_log[0].data_card_version",
+        "discoverability.datacard.created_by[0].contribution_date",
+        "discoverability.identification.name",
+        "discoverability.identification.version",
+        "interoperability.data_structure.formats",
+    ]
+    for path in required:
+        if is_missing(get_path(metadata, path)):
+            findings.append(Finding("MISSING_REQUIRED", path, "error", "required value is missing"))
+    if get_path(metadata, "discoverability.datacard.template_version") != "1.2":
+        findings.append(Finding("BAD_TEMPLATE_VERSION", "discoverability.datacard.template_version", "error", "expected 1.2"))
+    capabilities = [
+        "supports_discoverability",
+        "supports_accessibility",
+        "supports_interoperability",
+        "supports_reusability",
+        "supports_governed_use",
+        "supports_ai_usability",
+    ]
+    for path in capabilities:
+        if get_path(metadata, path) not in {"Yes", "No"}:
+            findings.append(Finding("BAD_ENUM", path, "error", "expected Yes or No"))
+    if get_path(metadata, "supports_ai_usability") == "Yes":
+        for use in ("training", "inference", "evaluation"):
+            status = get_path(metadata, f"ai_usability.ai_usage.{use}_use_status")
+            if status not in {"Yes", "No", "Conditional"}:
+                findings.append(Finding("BAD_ENUM", f"ai_usability.ai_usage.{use}_use_status", "error", "expected Yes, No, or Conditional"))
+            conditions = get_path(metadata, f"ai_usability.ai_usage.{use}_use_conditions")
+            if status == "Conditional" and conditions in (None, "", "not_applicable"):
+                findings.append(Finding("MISSING_REQUIRED", f"ai_usability.ai_usage.{use}_use_conditions", "error", "required when status is Conditional"))
+    if raw_text is not None and has_placeholders(raw_text):
+        findings.append(Finding("UNRESOLVED_PLACEHOLDER", "(document)", "error", "rendered output still contains template placeholders"))
     return ValidationResult(findings)
 
 
