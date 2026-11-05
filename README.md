@@ -5,17 +5,17 @@ directory plus a reusable sidecar answers file.
 
 ## Current status
 
-The packaged Genesis 1.2 `core` bundle produces a card that passes canonical
-`xcard-evaluation` validation. It automates Discoverability, Interoperability,
-and Reusability from local inspection, supplied answers, and optional cited LLM
+The Genesis 1.2 `core` bundle automates Discoverability, Interoperability, and
+Reusability from local inspection, supplied answers, and optional cited LLM
 evidence. Accessibility, Governed Use, and AI Usability remain disabled until
 their authoritative inputs are supplied and mapped.
 
+Canonical Genesis 1.2 validation is pending the `xcard-evaluation` module's
+review and release. It is not currently included in this repository.
+
 ## Setup
 
-- Clone with `git clone --recurse-submodules ...`, or run
-  `git submodule update --init --recursive` in an existing checkout. The
-  `xcard-evaluation` submodule provides canonical Genesis 1.2 validation.
+- Clone with `git clone ...`.
 - `uv sync` to create virtual environment and install xcard_automation packages.
 - Confirm install with `uv pip list`
   - should see 
@@ -102,11 +102,10 @@ the projected model so it can be checked later:
 uv run xcard-cli evaluate card.md --schema-bundle <bundle-dir>
 ```
 
-`evaluate` validates Genesis 1.2 cards through the `xcard-evaluation`
-submodule's canonical LinkML schema at
-`xcard-evaluation/bundles/genesis_datacard/1.2`. The packaged Genesis `core`
-profile generates a canonical, valid card with Discoverability,
-Interoperability, and Reusability sections. It explicitly declares
+`evaluate` validates cards against the selected local schema bundle. Canonical
+Genesis 1.2 validation will return when the `xcard-evaluation` module completes
+review and is released. The packaged Genesis `core` profile generates a card
+with Discoverability, Interoperability, and Reusability sections. It explicitly declares
 Accessibility, Governed Use, and AI Usability unsupported because access and
 governance claims require authoritative user input.
 
